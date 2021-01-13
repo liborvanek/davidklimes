@@ -68,11 +68,6 @@
   <section class="mt-8 flex justify-between">
     <div>
       <img src="/lion.png" alt="Lion" class="w-24 mb-12" />
-      <h1
-        class="origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
-          ? 'text-8xl leading-none'
-          : 'text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
-      >{@html currentPage.heading}</h1>
     </div>
     <nav class="relative mt-8 text-2xl text-right font-bold ">
       <!-- <svg width="69" height="28" viewBox="0 0 69 28" style="transform: translate({arrowRotate});" class="z-10 rotating-arrow absolute top-2 -left-16 transition-transform duration-500 text-gray-300">
