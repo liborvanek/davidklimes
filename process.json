@@ -6,6 +6,7 @@
       "script": "npm start",
       "watch": false,
       "env_production": {
+        "PORT": "4001",
         "NODE_ENV": "production"
       }
     }
