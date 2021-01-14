@@ -1,6 +1,5 @@
 <script>
   import PageTransition from '../components/PageTransition.svelte';
-  import Heading1 from '../components/Heading1.svelte';
 </script>
 
 <svelte:head>
@@ -8,7 +7,6 @@
 </svelte:head>
 
 <PageTransition>
-  <Heading1>O mně</Heading1>
   <article class="relative max-w-screen-lg space-y-6 text-gray-700 leading-7">
     <figure class="mb-16 ml-16 -mr-48 float-right transform rotate-1">
       <picture>

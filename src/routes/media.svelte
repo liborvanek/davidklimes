@@ -1,6 +1,5 @@
 <script>
   import PageTransition from '../components/PageTransition.svelte';
-  import Heading1 from '../components/Heading1.svelte';
 </script>
 
 <svelte:head>
@@ -8,12 +7,11 @@
 </svelte:head>
 
 <PageTransition>
-  <Heading1>Komentáře</Heading1>
   <section class="mt-12 flex">
     <aside class="w-1/4">
       <ul class="text-xl font-normal space-y-4 text-blue-600 underline">
         <li>komentáře</li>
-        <li>archiv newsletterů</li>
+        <li>newslettery</li>
       </ul>
     </aside>
     <div class="px-32 space-y-8 text-gray-800">

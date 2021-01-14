@@ -1,19 +1,21 @@
 <script>
   import { cubicInOut } from 'svelte/easing';
-  let duration = 175;
-  let delay = duration;
+  const easing = cubicInOut;
+  const outDuration = 0;
+  const inDuration = 375;
+  const delay = outDuration;
 
   const transitionIn = () => ({
-    duration,
+    duration: inDuration,
     delay,
-    easing: cubicInOut,
+    easing,
     css: (t) => `opacity: ${t}`,
   });
 
   const transitionOut = () => ({
-    duration,
+    duration: outDuration,
     delay: 0,
-    easing: cubicInOut,
+    easing,
     css: (t) => `opacity: ${t}`,
   });
 </script>

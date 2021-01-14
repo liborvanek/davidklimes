@@ -1,6 +1,5 @@
 <script>
   import PageTransition from '../components/PageTransition.svelte';
-  import Heading1 from '../components/Heading1.svelte';
 </script>
 
 <svelte:head>
@@ -8,7 +7,6 @@
 </svelte:head>
 
 <PageTransition>
-  <Heading1>Knihy</Heading1>
   <article class="mt-8 ">
     <div class="w-3/12">
       <span

@@ -1,6 +1,5 @@
 <script>
   import PageTransition from '../components/PageTransition.svelte';
-  import Heading1 from '../components/Heading1.svelte';
   import Newsletter from '../components/Newsletter.svelte';
 </script>
 
@@ -9,7 +8,6 @@
 </svelte:head>
 
 <PageTransition>
-  <Heading1 size="lg">David<br />Klimeš</Heading1>
   <section class="mt-24 mb-16">
     <Newsletter />
   </section>
