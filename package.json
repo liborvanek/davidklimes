@@ -5,7 +5,7 @@
     "eslint": "eslint",
     "eslint:fix": "eslint --fix ./*.js ./src/*.js ./src/routes/**/*.svelte ./src/components/**/*.svelte",
     "dev": "sapper dev",
-    "build": "cross-env NODE_ENV=production sapper build --legacy",
+    "build": "rsync -a --exclude='*.ts' src/* build && cross-env NODE_ENV=production sapper build --legacy",
     "prod": "npm run build",
     "export": "cross-env NODE_ENV=production sapper export --legacy",
     "start": "node __sapper__/build"

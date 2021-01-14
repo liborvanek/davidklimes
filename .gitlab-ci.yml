@@ -1,0 +1,36 @@
+image: node:14
+
+before_script:
+  - apt-get update -qq && apt-get install -y -qq sshpass rsync
+
+stages:
+  - build
+  - deploy_production
+
+cache:
+  paths:
+    - node_modules
+
+build:
+  except:
+    - tags
+  stage: build
+  artifacts:
+    paths:
+      - __sapper__/
+  script:
+    - npm ci
+    - npm run build
+
+deploy_production:
+  #   only:
+  #     - master
+  except:
+    - tags
+  stage: deploy_production
+  # when: manual
+  script:
+    - export SSHPASS=$CI_USER_PASS
+    - sshpass -e ssh -o StrictHostKeyChecking=no -p 22 $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web;pm2 stop process.json;cd ..;rm -rf david-klimes-web'
+    - sshpass -e rsync -rzq -e 'ssh -o StrictHostKeyChecking=no -p 22' . $CI_USER@$CI_HOST:/var/www/david-klimes-web
+    - sshpass -e ssh $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web;pm2 start process.json --env production'

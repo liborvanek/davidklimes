@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "name": "david-klimes-web",
+      "cwd": "/",
+      "script": "npm start",
+      "watch": false,
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
