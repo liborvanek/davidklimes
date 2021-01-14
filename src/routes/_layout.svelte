@@ -8,7 +8,7 @@
   // You may not want to use `segment`, but it is passed for the time being and will
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
   // https://github.com/sveltejs/sapper/issues/824
-  const { page } = stores();
+  const { preloading } = stores();
   export let segment;
   let activeMenuItem = 0;
   let hoveredMenuItem = null;
@@ -17,29 +17,25 @@
   const pages = [
     {
       slug: '/',
-      name: 'úvod',
-      heading: 'David<br>Klimeš',
+      name: 'Úvod',
       scale: '1',
       translate: 0,
     },
     {
-      slug: 'media',
-      name: 'komentáře',
-      heading: 'Media',
+      slug: 'komentare',
+      name: 'Komentáře',
       scale: '1.7',
       translate: 9.8,
     },
     {
       slug: 'knihy',
-      name: 'knihy',
-      heading: 'Knihy',
+      name: 'Knihy',
       scale: '1.05',
       translate: 19.8,
     },
     {
       slug: 'o-mne',
-      name: 'o mně',
-      heading: 'O mně',
+      name: 'O mně',
       scale: '1.1',
       translate: 28.2,
     },
@@ -80,7 +76,7 @@
           ? pages[hoveredMenuItem].scale
           : pages[activeMenuItem].scale});"
       />
-      <ul class="pb-20 relative flex flex-row z-20">
+      <ul class="pb-20 relative flex flex-row z-20 lowercase">
         {#each pages as { slug, name }, i}
           <li class="transition-transform duration-500 origin-bottom-left">
             <!-- <a href="{slug}" class="{i === activeMenuItem ? selectedStyle : "text-gray-400"}" on:mouseover={() => handleMouseOver(i)} on:mouseout={handleMouseOut}>{name}</a> -->
@@ -88,7 +84,8 @@
               href={slug}
               class="menu-link px-8 transition-colors {i === activeMenuItem ? 'active' : ''}"
               on:mouseover={() => handleMouseOver(i)}
-              on:mouseout={handleMouseOut}>{name}</a
+              on:mouseout={handleMouseOut}
+              rel="prefetch">{name}</a
             >
           </li>
         {/each}
@@ -99,7 +96,19 @@
     class="origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
       ? 'text-8xl leading-none'
       : 'text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
-  >{@html currentPage.heading}</h1>
+  >
+    {#if activeMenuItem === 0}
+      <span
+        class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+        >David</span
+      ><span
+        class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+        >Klimeš</span
+      >
+    {:else}
+      {currentPage.name}
+    {/if}
+  </h1>
 
   <slot />
 </div>
@@ -118,6 +127,65 @@
     /* @apply text-gray-00; */
   }
   .menu-link.active {
-    @apply text-gray-700;
+    @apply text-blue-1000;
+  }
+  .reveal-text:before,
+  .reveal-text:after {
+    content: '';
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .reveal-text:before {
+    background-color: #fff;
+    opacity: 1;
+    animation-name: uncover;
+    animation-duration: 0ms;
+    animation-fill-mode: forwards;
+  }
+  .reveal-text:after {
+    @apply bg-gray-100;
+    transform: scaleX(0);
+    animation-name: overlay;
+    animation-duration: 500ms;
+  }
+  .reveal-text.first:before {
+    animation-delay: 350ms;
+  }
+  .reveal-text.first:after {
+    animation-delay: 100ms;
+  }
+  .reveal-text.second:before {
+    animation-delay: 550ms;
+  }
+  .reveal-text.second:after {
+    animation-delay: 300ms;
+  }
+
+  @keyframes overlay {
+    0% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    50% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    51% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+    100% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+  @keyframes uncover {
+    to {
+      opacity: 0;
+    }
   }
 </style>

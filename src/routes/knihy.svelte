@@ -15,7 +15,7 @@
       >
     </div>
     <div class="flex">
-      <div class="mt-12 ml-40 mr-20 w-5/12">
+      <div class="mt-12 ml-40 mr-10 w-4/12">
         <picture
           class="inline-block shadow-3xl transform -rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100">
           <!-- <source media="(min-width: 600px)" srcset="image_100x100.jpg">
@@ -24,15 +24,15 @@
             src="/cesko-vs-budoucnost.jpg"
             alt="Kniha Česko vs. budoucnost"
             class=""
-            with="384"
+            width="384"
             height="543"
           />
         </picture>
       </div>
-      <div class="w-7/12">
+      <div class="w-5/12">
         <h2 class="max-w-xs text-3xl font-bold text-gray-800 leading-snug">
           Česko versus budoucnost:<br /><span class="font-normal"
-            >Naše dnešní krize a jak z ní ven</span
+            >Naše dnešní krize a&nbsp;jak z ní ven</span
           >
         </h2>
         <p class="mt-8 text-sm text-gray-700 leading-7">
