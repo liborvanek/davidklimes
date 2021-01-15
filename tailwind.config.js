@@ -18,7 +18,7 @@ module.exports = {
 				// Match Svelte class: directives (https://github.com/tailwindlabs/tailwindcss/discussions/1731)
 				...[...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(([_match, group, ..._rest]) => group),
 			],
-			keyframes: true,
+			keyframes: false,
 		},
 	},
 	theme: {

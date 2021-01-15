@@ -165,7 +165,7 @@
     animation-delay: 300ms;
   }
 
-  @keyframes overlay {
+  @keyframes -global-overlay {
     0% {
       transform: scaleX(0);
       transform-origin: left;
@@ -183,7 +183,7 @@
       transform-origin: right;
     }
   }
-  @keyframes uncover {
+  @keyframes -global-uncover {
     to {
       opacity: 0;
     }

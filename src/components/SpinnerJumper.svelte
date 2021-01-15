@@ -1,4 +1,6 @@
 <script>
+  import { fade, fly } from 'svelte/transition';
+
   const range = (size, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
 
   export let size = 60;
@@ -13,6 +15,8 @@
 <div
   class="wrapper inline-block"
   style="--size: {size}{unit}; --color: {color}; --duration: {duration};"
+  in:fly={{ y: 50, duration: 300 }}
+  out:fade
 >
   {#each range(3, 1) as version}
     <div
