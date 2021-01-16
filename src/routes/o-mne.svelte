@@ -8,7 +8,7 @@
 
 <PageTransition>
   <article class="relative max-w-screen-lg space-y-6 text-gray-700 leading-7">
-    <figure class="mb-16 ml-16 -mr-48 float-right transform rotate-1">
+    <figure class="mb-16 ml-32 -mr-48 float-right transform rotate-1">
       <picture>
         <!-- <source media="(min-width: 600px)" srcset="image_100x100.jpg">
             <source media="(min-width: 1024px)" srcset="image_300x300.jpg"> -->

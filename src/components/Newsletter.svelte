@@ -1,11 +1,18 @@
 <script>
-  import SpinnerJumper from './SpinnerJumper.svelte';
+  import Button from './Button.svelte';
 
-  let isSubmitting = false;
-  let isDone = false;
+  let formState = {
+    isSubmitting: false,
+    isSuccess: false,
+    isError: false,
+  };
 
   function onSubmit() {
-    isSubmitting = true;
+    formState.isSubmitting = true;
+    setTimeout(() => {
+      formState.isSubmitting = false;
+      formState.isSuccess = true;
+    }, 2000);
   }
 </script>
 
@@ -19,14 +26,8 @@
     <input
       type="email"
       placeholder="váš e-mail"
-      class="w-full py-5 px-6 bg-brown-100 inline-block appearance-none placeholder-gray-500 rounded-md text-gray-700 leading-5 focus:outline-none border border-brown-100 focus:border-blue-500 transition-colors"
-    />
-    <button
-      class="ml-2 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow flex items-center space-x-4"
-      ><span
-        >{#if !isSubmitting}Přihlásit{:else}Přihlašuji{/if}</span
-      >{#if isSubmitting}<SpinnerJumper />{/if}</button
-    >
+      class="w-full py-5 px-6 bg-brown-100 inline-block appearance-none placeholder-gray-500 rounded-md text-gray-700 leading-5 focus:outline-none border border-brown-100 focus:border-blue-500 transition-colors" />
+    <Button {...formState} />
   </form>
   <p class="mt-4 ml-6 text-sm">
     <a href="" class="text-blue-500 underline">archiv všech čísel</a>
