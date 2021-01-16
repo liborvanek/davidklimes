@@ -1,4 +1,5 @@
 <script>
+  import { showNewsletterIntro } from '../stores';
   import Button from './Button.svelte';
 
   let formState = {
@@ -12,6 +13,9 @@
     setTimeout(() => {
       formState.isSubmitting = false;
       formState.isSuccess = true;
+      setTimeout(() => {
+        showNewsletterIntro.set(true);
+      }, 1200);
     }, 2000);
   }
 </script>

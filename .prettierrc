@@ -1,5 +1,7 @@
 {
+  "svelteSortOrder": "options-scripts-styles-markup",
   "printWidth": 100,
   "singleQuote": true,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "svelteBracketNewLine": false
 }

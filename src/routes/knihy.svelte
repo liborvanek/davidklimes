@@ -11,8 +11,7 @@
     <div class="w-3/12">
       <span
         class="inline-block ml-64 transform -rotate-2 origin-bottom text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-50"
-        >2020</span
-      >
+        >2020</span>
     </div>
     <div class="flex">
       <div class="mt-12 ml-40 mr-10 w-4/12">
@@ -25,17 +24,15 @@
             alt="Kniha Česko vs. budoucnost"
             class=""
             width="384"
-            height="543"
-          />
+            height="543" />
         </picture>
       </div>
       <div class="w-5/12">
         <h2 class="max-w-xs text-3xl font-bold text-gray-800 leading-snug">
           Česko versus budoucnost:<br /><span class="font-normal"
-            >Naše dnešní krize a&nbsp;jak z ní ven</span
-          >
+            >Naše dnešní krize a&nbsp;jak z ní ven</span>
         </h2>
-        <p class="mt-8 text-sm text-gray-700 leading-7">
+        <p class="mt-8 text-sm leading-7">
           Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci
           přirovnává k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou
           a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot,
@@ -44,8 +41,7 @@
         <a
           href=""
           class="inline-block mt-8 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md"
-          >Koupit</a
-        >
+          >Koupit</a>
         <p class="mt-8 text-gray-500 text-sm">
           <span class="">Nakladatel:</span>
           <a href="" class="font-bold">Vyšehrad</a>
@@ -61,8 +57,7 @@
     <div class="text-right mr-64">
       <span
         class="inline-block transform origin-bottom text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-50"
-        >2017</span
-      >
+        >2017</span>
     </div>
     <div class="flex">
       <div class="w-7/12 pl-16 mt-20 text-right">
@@ -70,7 +65,7 @@
           Jak probudit Česko
           <br /><span class="font-normal">Recept na úspěšnou republiku</span>
         </h2>
-        <p class="mt-8 text-sm text-gray-700 leading-7 pl-32">
+        <p class="mt-8 text-sm leading-7 pl-32">
           Česká společnost zažívá od roku 1989 nejúspěšnější a nejsvobodnější období své historie.
           Ale dosavadní sociální a ekonomický model nevyhnutelně krachuje. Mylně si namlouváme, že
           za vše mohou neschopní politici a snažíme se je nahradit novými a neokoukanými. Ale za

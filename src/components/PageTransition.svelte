@@ -1,9 +1,9 @@
 <script>
   import { cubicInOut } from 'svelte/easing';
-  const easing = cubicInOut;
-  const outDuration = 0;
-  const inDuration = 375;
-  const delay = outDuration;
+  export let easing = cubicInOut;
+  export let outDuration = 0;
+  export let inDuration = 375;
+  export let delay = outDuration;
 
   const transitionIn = () => ({
     duration: inDuration,

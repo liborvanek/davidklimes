@@ -8,6 +8,20 @@
   export let isError = false;
 </script>
 
+<style>
+  @keyframes -global-pulse {
+    0% {
+      scale: 1;
+    }
+    100% {
+      scale: 1.2;
+    }
+  }
+  .success {
+    animation: pulse 300ms infinite;
+  }
+</style>
+
 <button
   class="button relative flex items-center ml-2 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow"
   disabled={isSubmitting}
@@ -19,7 +33,7 @@
       width="37"
       height="29"
       viewBox="0 0 37 29"
-      class="absolute left-16"
+      class="success absolute left-16 pulse transition-transform ease-in-out"
       in:fly={{ y: 50, duration: 450, delay: 100, easing: elasticOut }}>
       <path
         fill="none"
