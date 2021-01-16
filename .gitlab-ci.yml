@@ -18,9 +18,11 @@ build:
   artifacts:
     paths:
       - __sapper__/
+      - static/
   script:
     - npm ci
     - npm run build
+    - cat static/global.css
 
 deploy_production:
   #   only:
@@ -31,6 +33,6 @@ deploy_production:
   # when: manual
   script:
     - export SSHPASS=$CI_USER_PASS
-    - sshpass -e ssh -o StrictHostKeyChecking=no -p 22 $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web;pm2 stop process.json;cd ..;rm -rf david-klimes-web'
-    - sshpass -e rsync -rzq -e 'ssh -o StrictHostKeyChecking=no -p 22' . $CI_USER@$CI_HOST:/var/www/david-klimes-web
-    - sshpass -e ssh $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web;pm2 start process.json --env production'
+    - sshpass -e ssh -o StrictHostKeyChecking=no -p 22 $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web/current;pm2 stop process.json;cd ..;rm -rf current'
+    - sshpass -e rsync -rzq -e 'ssh -o StrictHostKeyChecking=no -p 22' . $CI_USER@$CI_HOST:/var/www/david-klimes-web/current
+    - sshpass -e ssh $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web/current;pm2 start process.json --env production'
