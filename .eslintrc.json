@@ -32,10 +32,6 @@
             {
                 "argsIgnorePattern": "^_"
             }
-        ],
-        "quotes": [
-            "error",
-            "double"
         ]
     },
     "overrides": [
@@ -44,7 +40,8 @@
                 "*.svelte"
             ],
             "plugins": [
-                "svelte3"
+                "svelte3",
+                "prettier"
             ],
             "processor": "svelte3/svelte3",
             "rules": {

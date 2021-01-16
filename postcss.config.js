@@ -1,11 +1,11 @@
-const cssnano = require("cssnano");
-const postcssImport = require("postcss-import");
-const autoprefixer = require("autoprefixer");
-const tailwindcss = require("tailwindcss");
-const tailwindcssConfig = require("./tailwind.config");
+const cssnano = require('cssnano');
+const postcssImport = require('postcss-import');
+const autoprefixer = require('autoprefixer');
+const tailwindcss = require('tailwindcss');
+const tailwindcssConfig = require('./tailwind.config');
 
 const mode = process.env.NODE_ENV;
-const dev = mode === "development";
+const dev = mode === 'development';
 
 module.exports = {
 	plugins: [
@@ -18,7 +18,7 @@ module.exports = {
 		autoprefixer,
 		!dev && cssnano({
 			preset: [
-				"default",
+				'default',
 				{ discardComments: { removeAll: true } },
 			],
 		}),
