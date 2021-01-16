@@ -19,7 +19,7 @@
         <li><a href="" class="text-blue-1000 font-bold">newslettery</a></li>
       </ul>
     </aside>
-    <div class="px-32 space-y-8 text-gray-800">
+    <div class="px-32 space-y-8">
       <slot />
     </div>
   </section>
