@@ -7,9 +7,12 @@
 @import 'tailwindcss/utilities';
 /* @import "./utilities.pcss"; */
 
-html {
-  font-size: 20px;
+@layer base {
+  a {
+    @apply text-blue-600 hover:text-blue-800 transition-colors underline;
+  }
 }
 
-a {
+html {
+  font-size: 20px;
 }

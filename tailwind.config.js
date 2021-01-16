@@ -38,6 +38,9 @@ module.exports = {
 					400: '#b7a683',
 				},
 			},
+			listStyleType: {
+				square: 'square',
+			},
 			rotate: {
 				'-33': '-33deg',
 				33: '33deg',

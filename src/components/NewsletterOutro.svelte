@@ -1,5 +1,7 @@
 <script>
   import { fly } from 'svelte/transition';
+
+  import Button from './Button.svelte';
 </script>
 
 <div
@@ -7,11 +9,11 @@
   in:fly={{ y: 100, duration: 750, delay: 300 }}>
   <p class="mt-6 text-2xl text-gray-700 leading-normal font-bold">
     Moc mě těší, že máte zájem o můj newsletter.<br />Reportuji v&nbsp;něm o událostech v politice a
-    ekonomice, které možná nejsou na první pohled zjevné, ale zasluhují přitom pozornost.
+    ekonomice, které nejsou na první pohled zjevné, ale zasluhují pozornost.
   </p>
   <p class="mt-6 text-lg leading-relaxed">
-    Jeden z hlavních důvodů, proč ho každý týden píšu je přímý kontakt s vámi a bezprostřední zpětná
-    vazba. Konec konců, demokracie je diskuze.
+    Jeden z hlavních důvodů, proč ho každý týden píšu je přímý kontakt s vámi a&nbsp;bezprostřední
+    zpětná vazba. Konec konců, demokracie je diskuze.
   </p>
   <p class="my-6 text-lg leading-relaxed">
     Máte-li chuť, napište mi, prosím, pár řádků o tom, čemu se profesně věnujete a&nbsp;třeba
@@ -40,4 +42,5 @@
     Tady bude text o tom, že newsletter bude vždycky zdarma, ale zároveň jeho provoz je financován z
     darů. Vysvětlení co to znamená a na co se peníze použijí.
   </p>
+  <Button classes="mt-16">Odeslat</Button>
 </div>

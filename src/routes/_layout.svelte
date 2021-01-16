@@ -67,7 +67,7 @@
     top: -0.1rem;
   }
   .menu-link {
-    @apply text-gray-400;
+    @apply text-gray-400 no-underline;
   }
   .menu-link:hover {
     /* @apply text-gray-00; */
@@ -142,7 +142,13 @@
       class="transform {activeMenuItem
         ? 'scale-75'
         : 'scale-100'} transition-transform duration-150">
-      <a href="/"><img src="/lion.png" alt="Lion" class="w-24 mb-12" /></a>
+      <a href="/">
+        <picture>
+          <source srcset="lion.webp" type="image/webp" />
+          <source srcset="lion.png" type="image/png" />
+          <img src="lion.png" alt="Ilustrace lva" class="w-24 mb-12" />
+        </picture>
+      </a>
     </div>
     <nav class="relative mt-8 text-2xl text-right font-bold ">
       <!-- <svg width="69" height="28" viewBox="0 0 69 28" style="transform: translate({arrowRotate});" class="z-10 rotating-arrow absolute top-2 -left-16 transition-transform duration-500 text-gray-300">
@@ -158,7 +164,6 @@
       <ul class="pb-20 relative flex flex-row z-20 lowercase">
         {#each pages as { slug, name }, i}
           <li class="transition-transform duration-500 origin-bottom-left">
-            <!-- <a href="{slug}" class="{i === activeMenuItem ? selectedStyle : "text-gray-400"}" on:mouseover={() => handleMouseOver(i)} on:mouseout={handleMouseOut}>{name}</a> -->
             <a
               href={slug}
               class="menu-link px-8 transition-colors {i === activeMenuItem ? 'active' : ''}"
@@ -170,24 +175,26 @@
       </ul>
     </nav>
   </section>
-  {#if !$showNewsletterIntro}
-    <h1
-      class="origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
-        ? 'text-8xl leading-none'
-        : 'text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
-      out:fade={{ duration: 300, easing: cubicInOut }}>
-      {#if activeMenuItem === 0}
-        <span
-          class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
-          >David</span
-        ><span
-          class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
-          >Klimeš</span>
-      {:else}
-        {currentPage.name}
-      {/if}
-    </h1>
-  {/if}
+  <main>
+    {#if !$showNewsletterIntro}
+      <h1
+        class="origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
+          ? 'text-8xl leading-none'
+          : 'text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+        out:fade={{ duration: 300, easing: cubicInOut }}>
+        {#if activeMenuItem === 0}
+          <span
+            class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+            >David</span
+          ><span
+            class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+            >Klimeš</span>
+        {:else}
+          {currentPage.name}
+        {/if}
+      </h1>
+    {/if}
 
-  <slot />
+    <slot />
+  </main>
 </div>

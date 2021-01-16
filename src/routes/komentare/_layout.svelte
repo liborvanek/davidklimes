@@ -15,8 +15,8 @@
   <section class="mt-12 flex">
     <aside class="w-1/4">
       <ul class="text-xl font-normal space-y-4 text-right">
-        <li><a href="" class="text-blue-1000 font-bold">komentáře</a></li>
-        <li><a href="" class="text-blue-1000 font-bold">newslettery</a></li>
+        <li><a href="" class="text-blue-1000 font-bold">v médiích</a></li>
+        <li><span class="text-gray-400 font-bold">archiv newsletterů</span></li>
       </ul>
     </aside>
     <div class="px-32 space-y-8">

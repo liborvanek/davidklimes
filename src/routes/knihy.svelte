@@ -1,5 +1,6 @@
 <script>
   import PageTransition from '../components/PageTransition.svelte';
+  import LinkButton from '../components/LinkButton.svelte';
 </script>
 
 <svelte:head>
@@ -17,12 +18,10 @@
       <div class="mt-12 ml-40 mr-10 w-4/12">
         <picture
           class="inline-block shadow-3xl transform -rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100">
-          <!-- <source media="(min-width: 600px)" srcset="image_100x100.jpg">
-          <source media="(min-width: 1024px)" srcset="image_300x300.jpg"> -->
+          <source srcset="/cesko-vs-budoucnost.webp" type="image/webp" />
           <img
             src="/cesko-vs-budoucnost.jpg"
             alt="Kniha Česko vs. budoucnost"
-            class=""
             width="384"
             height="543" />
         </picture>
@@ -38,10 +37,7 @@
           a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot,
           který nedokáže řešit některé nejnaléhavější úkoly.
         </p>
-        <a
-          href=""
-          class="inline-block mt-8 px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md"
-          >Koupit</a>
+        <LinkButton classes="mt-8">Koupit</LinkButton>
         <p class="mt-8 text-gray-500 text-sm">
           <span class="">Nakladatel:</span>
           <a href="" class="font-bold">Vyšehrad</a>
@@ -60,7 +56,7 @@
         >2017</span>
     </div>
     <div class="flex">
-      <div class="w-7/12 pl-16 mt-20 text-right">
+      <div class="w-7/12 pl-16 mt-8 text-right">
         <h2 class="text-3xl font-bold text-gray-800 leading-snug">
           Jak probudit Česko
           <br /><span class="font-normal">Recept na úspěšnou republiku</span>
@@ -73,14 +69,27 @@
           ale probudit Česko, aby přestalo jen přešlapovat na místě a vykročilo k dalšímu
           čtvrtstoletí prosperity a úspěchů?
         </p>
+        <LinkButton classes="mt-8">Koupit</LinkButton>
+        <p class="mt-8 text-gray-500 text-sm">
+          <span class="">Nakladatel:</span>
+          <a href="" class="font-bold">BizBooks</a>
+        </p>
+        <p class="mt-1 text-gray-500 text-sm">
+          <span class="">Datum vydání:</span>
+          <span href="" class="font-bold">2017</span>
+        </p>
       </div>
 
-      <div class="mt-8 ml-20 mr-20 w-5/12">
+      <div class="mt-8 ml-20 mr-20 w-4/12">
         <picture
-          class="inline-block shadow-3xl rounded-md transform rotate-1 border-8 border-gray-100">
-          <!-- <source media="(min-width: 600px)" srcset="image_100x100.jpg">
-          <source media="(min-width: 1024px)" srcset="image_300x300.jpg"> -->
-          <img src="/jak-probudit-cesko.jpg" alt="Kniha Česko vs. budoucnost" class="" />
+          class="inline-block shadow-3xl transform rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100">
+          <source srcset="/jak-probudit-cesko.webp" type="image/webp" />
+          <img
+            src="/jak-probudit-cesko.jpg"
+            alt="Kniha Česko vs. budoucnost"
+            width="424"
+            height="599"
+            loading="lazy" />
         </picture>
       </div>
     </div>
