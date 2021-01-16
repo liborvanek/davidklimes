@@ -1,11 +1,11 @@
-const sveltePreprocess = require("svelte-preprocess");
-const postcss = require("./postcss.config");
+const sveltePreprocess = require('svelte-preprocess');
+const postcss = require('./postcss.config');
 
 const createPreprocessors = ({ sourceMap }) => [
 	sveltePreprocess({
 		sourceMap,
 		defaults: {
-			style: "postcss",
+			style: 'postcss',
 		},
 		postcss,
 	}),

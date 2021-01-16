@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import {
 	files, routes, shell, timestamp, // eslint-disable-line no-unused-vars
-} from "@sapper/service-worker"; // eslint-disable-line import/no-unresolved
+} from '@sapper/service-worker'; // eslint-disable-line import/no-unresolved
 
 const ASSETS = `cache${timestamp}`;
 
@@ -10,7 +10,7 @@ const ASSETS = `cache${timestamp}`;
 const toCache = shell.concat(files);
 const cached = new Set(toCache);
 
-self.addEventListener("install", (event) => { // eslint-disable-line no-shadow,no-inline-comments,line-comment-position
+self.addEventListener('install', (event) => { // eslint-disable-line no-shadow,no-inline-comments,line-comment-position
 	event.waitUntil(
 		caches
 			.open(ASSETS)
@@ -21,7 +21,7 @@ self.addEventListener("install", (event) => { // eslint-disable-line no-shadow,n
 	);
 });
 
-self.addEventListener("activate", (event) => { // eslint-disable-line no-shadow,no-inline-comments,line-comment-position
+self.addEventListener('activate', (event) => { // eslint-disable-line no-shadow,no-inline-comments,line-comment-position
 	event.waitUntil(
 		caches.keys().then(async (keys) => {
 			// Delete old caches
@@ -34,13 +34,13 @@ self.addEventListener("activate", (event) => { // eslint-disable-line no-shadow,
 	);
 });
 
-self.addEventListener("fetch", (event) => { // eslint-disable-line no-shadow,no-inline-comments,line-comment-position
-	if (event.request.method !== "GET" || event.request.headers.has("range")) return;
+self.addEventListener('fetch', (event) => { // eslint-disable-line no-shadow,no-inline-comments,line-comment-position
+	if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
 
 	const url = new URL(event.request.url);
 
 	// Don't try to handle e.g. data: URIs
-	if (!url.protocol.startsWith("http")) return;
+	if (!url.protocol.startsWith('http')) return;
 
 	// Ignore dev server requests
 	if (url.hostname === self.location.hostname && url.port !== self.location.port) return;
@@ -61,7 +61,7 @@ self.addEventListener("fetch", (event) => { // eslint-disable-line no-shadow,no-
 	}
 	*/
 
-	if (event.request.cache === "only-if-cached") return;
+	if (event.request.cache === 'only-if-cached') return;
 
 	// For everything else, try the network first, falling back to
 	// Cache if the user is offline. (If the pages never change, you
