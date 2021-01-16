@@ -31,11 +31,11 @@
       type="email"
       placeholder="váš e-mail"
       class="w-full py-5 px-6 bg-brown-100 inline-block appearance-none placeholder-gray-500 rounded-md text-gray-700 leading-5 focus:outline-none border border-brown-100 focus:border-blue-500 transition-colors" />
-    <Button {...formState} />
+    <Button {...formState}>Přihlásit</Button>
   </form>
   <p class="mt-4 ml-6 text-sm">
-    <a href="" class="text-blue-500 underline">archiv všech čísel</a>
+    <a href="">archiv všech čísel</a>
     <span class="text-gray-400">&bull;</span>
-    <a href="" class="text-blue-500 underline">spravovat členství</a>
+    <a href="">spravovat členství</a>
   </p>
 </div>

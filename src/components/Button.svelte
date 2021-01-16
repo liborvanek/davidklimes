@@ -6,6 +6,7 @@
   export let isSubmitting = false;
   export let isSuccess = false;
   export let isError = false;
+  export let classes = 'false';
 </script>
 
 <style>
@@ -13,22 +14,25 @@
     0% {
       scale: 1;
     }
-    100% {
+    80% {
       scale: 1.2;
+    }
+    100% {
+      scale: 1;
     }
   }
   .success {
-    animation: pulse 300ms infinite;
+    animation: pulse 300ms forwards ease-in-out;
   }
 </style>
 
 <button
-  class="button relative flex items-center ml-2 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow"
+  class="button relative flex items-center ml-2 py-5 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow {classes}"
   disabled={isSubmitting}
   ><span
     class="transition-all {isSubmitting || isSuccess || isError
       ? 'transform -translate-y-10 opacity-0 delay-0'
-      : ''}">Přihlásit</span
+      : ''}"><slot /></span
   >{#if isSubmitting}<SpinnerJumper classes="absolute left-14" />{:else if isSuccess}<svg
       width="37"
       height="29"

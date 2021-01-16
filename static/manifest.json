@@ -2,7 +2,6 @@
   "short_name": "David Klimeš",
   "name": "David Klimeš – novinář",
   "description": "",
-  "categories": ["personalization", "productivity"],
   "lang": "cs-CZ",
   "dir": "ltr",
   "icons": [
@@ -22,12 +21,5 @@
   "start_url": "/",
   "display": "minimal-ui",
   "background_color": "#FFFFFF",
-  "theme_color": "#3F83F8",
-  "screenshots": [
-    {
-      "src": "screenshot-1.png",
-      "sizes": "1280x720",
-      "type": "image/png"
-    }
-  ]
+  "theme_color": "#4f46e5"
 }
