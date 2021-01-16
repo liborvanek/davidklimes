@@ -2,8 +2,8 @@
   "apps": [
     {
       "name": "david-klimes-web",
-      "cwd": "/",
-      "script": "npm start",
+      "cwd": "/var/www/david-klimes-web/current",
+      "script": "node __sapper__/build",
       "watch": false,
       "env_production": {
         "PORT": "4001",
