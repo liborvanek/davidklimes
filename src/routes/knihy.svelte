@@ -33,6 +33,15 @@
       publisher: 'Karolinum',
       year: 2015,
     },
+    {
+      title: 'Šimon Pánek<br /><span class="font-normal ">Aby dobro neškodilo</span>',
+      description:
+        'Šimon Pánek je výrazná osobnost veřejného života a humanitární manažer. Knižní rozhovor představuje obě roviny jeho celoživotní práce a od konkrétních životních situací se dostává k obecnějším, nadčasovým problémům.',
+      image: 'aby-dobro-neskodilo',
+      link: 'https://www.cz',
+      publisher: 'Portál',
+      year: 2015,
+    },
   ];
 </script>
 
@@ -92,11 +101,11 @@
           </picture>
           <figcaption class="mt-8 space-y-1 text-center text-gray-500 text-sm">
             <p>
-              <span class="italic text-xs">Nakladatel:</span>
+              <span class="text-xs">Nakladatel:</span>
               <a href="" class="font-bold">{publisher}</a>
             </p>
             <p>
-              <span class="italic text-xs">Datum vydání:</span>
+              <span class="text-xs">Datum vydání:</span>
               <span href="" class="text-gray-600 font-bold">{year}</span>
             </p>
           </figcaption>
