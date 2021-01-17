@@ -8,12 +8,12 @@
   class="max-w-screen-lg mx-auto p-16 bg-gray-50 rounded shadow-2xl font-light"
   in:fly={{ y: 100, duration: 750, delay: 300 }}>
   <p class="mt-6 text-2xl text-gray-700 leading-normal font-bold">
-    Moc mě těší, že máte zájem o můj newsletter.<br />Reportuji v&nbsp;něm o událostech v politice a
+    Moc mě těší, že máte zájem o můj newsletter.<br />Píšu v&nbsp;něm o událostech v politice a
     ekonomice, které nejsou na první pohled zjevné, ale zasluhují pozornost.
   </p>
   <p class="mt-6 text-lg leading-relaxed">
     Jeden z hlavních důvodů, proč ho každý týden píšu je přímý kontakt s vámi a&nbsp;bezprostřední
-    zpětná vazba. Konec konců, demokracie je diskuze.
+    zpětná vazba. Hodně mi na ní záleží.
   </p>
   <p class="my-6 text-lg leading-relaxed">
     Máte-li chuť, napište mi, prosím, pár řádků o tom, čemu se profesně věnujete a&nbsp;třeba
