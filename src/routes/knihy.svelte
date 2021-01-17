@@ -1,97 +1,107 @@
 <script>
   import PageTransition from '../components/PageTransition.svelte';
   import LinkButton from '../components/LinkButton.svelte';
+
+  const books = [
+    {
+      title:
+        'Česko versus budoucnost:<br /><span class="font-normal ">Naše dnešní krize a&nbsp;jak z ní ven</span>',
+      description:
+        'Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci přirovnává k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot, který nedokáže řešit některé nejnaléhavější úkoly.',
+      image: 'cesko-vs-budoucnost',
+      link: 'https://www.cz',
+      publisher: 'Vyšehrad',
+      year: 2020,
+    },
+    {
+      title:
+        'Jak probudit Česko<br /><span class="font-normal ">Recept na úspěšnou republiku</span>',
+      description:
+        'Česká společnost zažívá od roku 1989 nejúspěšnější a nejsvobodnější období své historie. Ale dosavadní sociální a ekonomický model nevyhnutelně krachuje. Mylně si namlouváme, že za vše mohou neschopní politici a snažíme se je nahradit novými a neokoukanými. Ale za politickými krizemi číhá čím dál jasnější úpadek dosavadního polistopadového konsenzu. Jak ale probudit Česko, aby přestalo jen přešlapovat na místě a vykročilo k dalšímu čtvrtstoletí prosperity a úspěchů?',
+      image: 'jak-probudit-cesko',
+      link: 'https://www.cz',
+      publisher: 'BizBooks',
+      year: 2017,
+    },
+    {
+      title:
+        'Jak zábavné je informovat<br /><span class="font-normal ">Infotainment čili infozábava v teorii, praxi a českém kontextu</span>',
+      description:
+        'Publikace shrnuje teoretické uvažování o pronikání zábavy do zpravodajství a předkládá odpovídající koncept infotainmentu (infozábavy), skrze který je užitečné jednotlivé infozábavní jevy analyzovat. Přináší také nový pohled na to, jak k šíření infozábavy do médií přistupovat. ',
+      image: 'jak-zabavne-je-informovat',
+      link: 'https://www.cz',
+      publisher: 'Karolinum',
+      year: 2015,
+    },
+  ];
 </script>
+
+<style>
+  .book-grid {
+    display: grid;
+    grid-template-columns: 1fr 6rem 6rem 1fr;
+  }
+
+  .book-grid:nth-of-type(odd) > .image {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .book-grid:nth-of-type(odd) > .text {
+    grid-column: 3 / 5;
+  }
+  .book-grid:nth-of-type(even) > .image {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  .book-grid:nth-of-type(even) > .text {
+    grid-column: 1 / 3;
+    text-align: right;
+  }
+</style>
 
 <svelte:head>
   <title>Knihy | David Klimeš</title>
 </svelte:head>
 
-<PageTransition>
-  <article class="mt-8 ">
-    <div class="w-3/12">
-      <span
-        class="inline-block ml-64 transform -rotate-2 origin-bottom text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-50"
-        >2020</span>
-    </div>
-    <div class="flex">
-      <div class="mt-12 ml-40 mr-10 w-4/12">
-        <picture
-          class="inline-block shadow-3xl transform -rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100">
-          <source srcset="/cesko-vs-budoucnost.webp" type="image/webp" />
-          <img
-            src="/cesko-vs-budoucnost.jpg"
-            alt="Kniha Česko vs. budoucnost"
-            width="384"
-            height="543" />
-        </picture>
-      </div>
-      <div class="w-5/12">
-        <h2 class="max-w-xs text-3xl font-bold text-gray-800 leading-snug">
-          Česko versus budoucnost:<br /><span class="font-normal"
-            >Naše dnešní krize a&nbsp;jak z ní ven</span>
+<PageTransition classes="max-w-screen-lg mx-auto mt-16 space-y-32">
+  {#each books as { title, description, image, link, publisher, year }, i}
+    <article class="book-grid">
+      <div class="text flex flex-col {i % 2 === 0 ? '' : 'items-end'}">
+        <h2 class="max-w-xs mt-4 heading text-3xl font-bold text-gray-800 leading-snug">
+          {@html title}
         </h2>
         <p class="mt-8 text-sm leading-7">
-          Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci
-          přirovnává k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou
-          a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot,
-          který nedokáže řešit některé nejnaléhavější úkoly.
+          {description}
         </p>
-        <LinkButton classes="mt-8">Koupit</LinkButton>
-        <p class="mt-8 text-gray-500 text-sm">
-          <span class="">Nakladatel:</span>
-          <a href="" class="font-bold">Vyšehrad</a>
-        </p>
-        <p class="mt-1 text-gray-500 text-sm">
-          <span class="">Datum vydání:</span>
-          <span href="" class="font-bold">2020</span>
-        </p>
+        <p class="mt-10"><LinkButton>Koupit</LinkButton></p>
       </div>
-    </div>
-  </article>
-  <article class="mt-24 ">
-    <div class="text-right mr-64">
-      <span
-        class="inline-block transform origin-bottom text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-50"
-        >2017</span>
-    </div>
-    <div class="flex">
-      <div class="w-7/12 pl-16 mt-8 text-right">
-        <h2 class="text-3xl font-bold text-gray-800 leading-snug">
-          Jak probudit Česko
-          <br /><span class="font-normal">Recept na úspěšnou republiku</span>
-        </h2>
-        <p class="mt-8 text-sm leading-7 pl-32">
-          Česká společnost zažívá od roku 1989 nejúspěšnější a nejsvobodnější období své historie.
-          Ale dosavadní sociální a ekonomický model nevyhnutelně krachuje. Mylně si namlouváme, že
-          za vše mohou neschopní politici a snažíme se je nahradit novými a neokoukanými. Ale za
-          politickými krizemi číhá čím dál jasnější úpadek dosavadního polistopadového konsenzu. Jak
-          ale probudit Česko, aby přestalo jen přešlapovat na místě a vykročilo k dalšímu
-          čtvrtstoletí prosperity a úspěchů?
-        </p>
-        <LinkButton classes="mt-8">Koupit</LinkButton>
-        <p class="mt-8 text-gray-500 text-sm">
-          <span class="">Nakladatel:</span>
-          <a href="" class="font-bold">BizBooks</a>
-        </p>
-        <p class="mt-1 text-gray-500 text-sm">
-          <span class="">Datum vydání:</span>
-          <span href="" class="font-bold">2017</span>
-        </p>
+      <div class="image">
+        <figure>
+          <picture>
+            <source srcset="/{image}.webp" type="image/webp" />
+            <img
+              src="/{image}.jpg"
+              alt="Kniha Česko vs. budoucnost"
+              width="384"
+              height="543"
+              class="block shadow-3xl transform {i % 2 === 0
+                ? '-'
+                : ''}rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100"
+              loading={i === 0 ? 'eager' : 'lazy'} />
+          </picture>
+          <figcaption class="mt-8 space-y-1 text-center text-gray-500 text-sm">
+            <p>
+              <span class="italic text-xs">Nakladatel:</span>
+              <a href="" class="font-bold">{publisher}</a>
+            </p>
+            <p>
+              <span class="italic text-xs">Datum vydání:</span>
+              <span href="" class="text-gray-600 font-bold">{year}</span>
+            </p>
+          </figcaption>
+        </figure>
       </div>
-
-      <div class="mt-8 ml-20 mr-20 w-4/12">
-        <picture
-          class="inline-block shadow-3xl transform rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100">
-          <source srcset="/jak-probudit-cesko.webp" type="image/webp" />
-          <img
-            src="/jak-probudit-cesko.jpg"
-            alt="Kniha Česko vs. budoucnost"
-            width="424"
-            height="599"
-            loading="lazy" />
-        </picture>
-      </div>
-    </div>
-  </article>
+    </article>
+  {/each}
 </PageTransition>

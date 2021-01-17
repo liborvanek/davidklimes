@@ -4,6 +4,7 @@
   export let outDuration = 0;
   export let inDuration = 375;
   export let delay = outDuration;
+  export let classes;
 
   const transitionIn = () => ({
     duration: inDuration,
@@ -20,6 +21,6 @@
   });
 </script>
 
-<div in:transitionIn out:transitionOut>
+<div class={classes} in:transitionIn out:transitionOut>
   <slot />
 </div>
