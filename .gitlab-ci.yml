@@ -30,7 +30,7 @@ deploy_production:
   except:
     - tags
   stage: deploy_production
-  # when: manual
+  when: manual
   script:
     - export SSHPASS=$CI_USER_PASS
     - sshpass -e ssh -o StrictHostKeyChecking=no -p 22 $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web/current;pm2 stop process.json;cd ..;rm -rf current'

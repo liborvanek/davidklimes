@@ -1,6 +1,7 @@
 import { config as dotenvConfig } from 'dotenv-safe';
 import sirv from 'sirv';
 import express from 'express';
+import { json } from 'body-parser';
 import compression from 'compression';
 import * as sapper from '@sapper/server';
 import mongoose from 'mongoose';
@@ -16,23 +17,23 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 export const db = mongoose.connection;
-
-db.once('open', () => {
-	console.log('Connected to mongodb.');
-}).on('error: ', (error) => {
-	throw new Error(`Disconnected from mongodb. Reason: ${error}`);
-});
-
 const server = express();
 
 server
 	.use(
+		json(),
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware(),
-	)
-	.listen(PORT, (error) => {
+	);
+
+db.once('open', () => {
+	console.log('Connected to mongodb.');
+	server.listen(PORT, (error) => {
 		if (error) {
 			console.error('error', error);
 		}
 	});
+}).on('error: ', (error) => {
+	throw new Error(`Disconnected from mongodb. Reason: ${error}`);
+});
