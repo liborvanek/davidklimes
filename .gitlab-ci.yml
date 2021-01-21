@@ -22,7 +22,6 @@ build:
   script:
     - npm ci
     - npm run build
-    - cat static/global.css
 
 deploy_production:
   #   only:
