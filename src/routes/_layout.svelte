@@ -67,13 +67,13 @@
     top: -0.1rem;
   }
   .menu-link {
-    @apply text-gray-400 no-underline;
+    @apply text-gray-500 no-underline;
   }
   .menu-link:hover {
-    /* @apply text-gray-00; */
+    @apply text-blue-700;
   }
   .menu-link.active {
-    @apply text-blue-1000;
+    @apply text-blue-900;
   }
   .reveal-text:before,
   .reveal-text:after {
