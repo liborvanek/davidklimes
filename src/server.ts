@@ -12,6 +12,7 @@ import mongoose from 'mongoose';
 import cron from 'node-cron';
 
 import { rssFeed } from './server/rssFeed';
+import { newsletterFromEcomail } from './server/newsletterFromEcomail';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
@@ -49,6 +50,16 @@ db.once('open', () => {
   cron.schedule('*/10 * * * *', () => {
     rssFeed();
   });
+  cron.schedule('*/10 * * * *', () => {
+    newsletterFromEcomail();
+  });
+
+  // on production we want to execute crons immediately
+  // (dev can restart many times resulting in many unecessary calls)
+  if (!dev) {
+    rssFeed();
+    newsletterFromEcomail();
+  }
 
   server.listen(PORT, () => listenCallback);
 }).on('error: ', (error) => {
