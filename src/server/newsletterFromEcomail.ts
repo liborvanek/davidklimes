@@ -12,6 +12,7 @@ export const newsletterFromEcomail = async () => {
     const rawNewsletterCollection = await query('newsletterArchive', ['id']);
     const newsletterCollectionIds = rawNewsletterCollection.map(({ id }) => id);
 
+    // status=3 => sent
     const ecomailNewsletters = await fetch(
       `${process.env.ECOMAIL_URL}/campaigns?filters[status]=3`,
       {

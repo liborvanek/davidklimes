@@ -39,13 +39,13 @@ export async function get(_: {}, res: express.Response, next: () => void) {
     type: 'aktualne',
   }));
   const joinFeeds = identifyRozhlas.concat(identifyAktualne);
-  const sortDescByDate = joinFeeds.sort(
+  const sortedFeedsByDate = joinFeeds.sort(
     (a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime(),
   );
 
   if (rozhlasRssFeed.length !== 0 && aktualneRssFeed.length !== 0) {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(sortDescByDate));
+    res.end(JSON.stringify(sortedFeedsByDate));
   } else {
     next();
   }
