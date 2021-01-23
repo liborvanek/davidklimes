@@ -1,6 +1,6 @@
 import Parser from 'rss-parser';
 
-import { db } from '../server';
+import { insertMany, query } from './dbUtils';
 
 const rssParser = new Parser();
 
@@ -8,20 +8,14 @@ const compareRssItems = (rssFeed: any, collectionIds: string[]) => [
   ...rssFeed.items.filter(({ guid }: { guid: string }) => !collectionIds.includes(guid)),
 ];
 
-const query = (collectionName: string) =>
-  db
-    .collection(collectionName)
-    .find({}, { projection: ['guid'] })
-    .toArray();
-
 export const rssFeed = async () => {
   try {
     const [rawRozhlasCollection, rawAktualneCollection] = await Promise.all([
-      query('rozhlasRssFeed'),
-      query('aktualneRssFeed'),
+      query('rozhlasRssFeed', ['guid']),
+      query('aktualneRssFeed', ['guid']),
     ]);
-    const rozhlasCollectionIds = rawRozhlasCollection.map(({ guid }) => guid);
-    const aktualneCollectionIds = rawAktualneCollection.map(({ guid }) => guid);
+    const rozhlasCollectionIds: string[] = rawRozhlasCollection.map(({ guid }) => guid);
+    const aktualneCollectionIds: string[] = rawAktualneCollection.map(({ guid }) => guid);
 
     const [rawRozhlasRss, rawAktualneRss] = await Promise.all([
       rssParser.parseURL(process.env.ROZHLAS_RSSFEED_URL),
@@ -43,17 +37,17 @@ export const rssFeed = async () => {
     );
 
     if (onlyNewRozhlasRss.length !== 0) {
-      await db.collection('rozhlasRssFeed').insertMany(onlyNewRozhlasRss);
+      insertMany('rozhlasRssFeed', onlyNewRozhlasRss);
     }
 
     if (correctOnlyNewAktualneRss.length !== 0) {
-      await db.collection('aktualneRssFeed').insertMany(correctOnlyNewAktualneRss);
+      insertMany('aktualneRssFeed', correctOnlyNewAktualneRss);
     }
 
     console.log(
-      `Rss sync is successfull.\n
-      Added: ${onlyNewRozhlasRss.length} rozhlas items.\n
-      Added: ${correctOnlyNewAktualneRss.length} aktualne items`,
+      `Rss sync is successfull.
+        Added: ${onlyNewRozhlasRss.length} rozhlas items.
+        Added: ${correctOnlyNewAktualneRss.length} aktualne items`,
     );
   } catch (error) {
     console.error('Rss sync failed. Reason: ', error);

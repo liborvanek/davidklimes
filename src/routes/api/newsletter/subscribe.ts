@@ -11,6 +11,7 @@ export interface SubscribeSuccessResult {
 }
 
 export async function post(req: Request, res: Response, next: () => void) {
+  // TODO: add server side validation
   const { email }: BodyParams = req.body;
 
   if (req.body.email) {

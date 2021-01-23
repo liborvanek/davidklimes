@@ -9,17 +9,20 @@
   }
 
   export async function preload() {
-    const res = await this.fetch(`/newsletter-mailchimp-tmp.json`);
-    const rawFeed: NewsletterItem[] = await res.json();
+    const res = await this.fetch('/api/newsletter-archive.json');
+    const rawNewsletterArchive: NewsletterItem[] = await res.json();
 
-    const feed = rawFeed.map((item) => ({ ...item, date: formatDate(item.date) }));
+    const newsletterArchive = rawNewsletterArchive.map((item) => ({
+      ...item,
+      date: formatDate(item.date),
+    }));
 
-    return { feed };
+    return { newsletterArchive };
   }
 </script>
 
 <script lang="ts">
-  export let feed: NewsletterItem[];
+  export let newsletterArchive: NewsletterItem[];
 </script>
 
 <svelte:head>
@@ -28,7 +31,7 @@
 
 <PageTransition>
   <div class="grid grid-cols-3 gap-x-20 gap-y-8">
-    {#each feed as newsletter}
+    {#each newsletterArchive as newsletter}
       <article class="">
         <h2 class="mb-2 text-base font-bold text-gray-700">
           <a href={newsletter.link} target="_blank" class="no-underline">{newsletter.subject}</a>
