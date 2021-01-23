@@ -12,28 +12,32 @@ const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
 mongoose.connect(process.env.MONGO_URL, {
-	useUnifiedTopology: true,
-	useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
 });
 
 export const db = mongoose.connection;
 const server = express();
 
-server
-	.use(
-		json(),
-		compression({ threshold: 0 }),
-		sirv('static', { dev }),
-		sapper.middleware(),
-	);
+server.use(
+  json(),
+  compression({ threshold: 0 }),
+  sirv('static', { dev }),
+  sapper.middleware() as any,
+);
 
 db.once('open', () => {
-	console.log('Connected to mongodb.');
-	server.listen(PORT, (error) => {
-		if (error) {
-			console.error('error', error);
-		}
-	});
+  console.log('Connected to mongodb.');
+
+  const listenCallback = () => {
+    if (process.send) {
+      process.send('online');
+    }
+
+    console.log(`> Ready on http://${PORT}`);
+  };
+
+  server.listen(PORT, () => listenCallback);
 }).on('error: ', (error) => {
-	throw new Error(`Disconnected from mongodb. Reason: ${error}`);
+  throw new Error(`Disconnected from mongodb. Reason: ${error}`);
 });

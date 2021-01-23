@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { showNewsletterIntro } from '../stores';
 
   import PageTransition from '../components/PageTransition.svelte';

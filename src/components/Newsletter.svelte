@@ -1,40 +1,43 @@
-<script>
+<script lang="ts">
   import { showNewsletterIntro, email as emailStore, alreadySubscribed } from '../stores';
   import Button from './Button.svelte';
+  import type { SubscribeSuccessResult } from '../routes/api/newsletter/subscribe';
 
-  function isUserAlreadySubscribed() {
+  const isUserAlreadySubscribed = () => {
     if (typeof window !== 'undefined' && document) {
       // TODO: fix once typescript
-      const alreadySubscribedCookie = document.cookie.split('; ').find(row => row.startsWith('alreadySubscribed'));
+      const alreadySubscribedCookie = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('alreadySubscribed'));
       const foundCookie = alreadySubscribedCookie ? alreadySubscribedCookie.split('=')[1] : false;
 
       return foundCookie;
     }
 
     return false;
-  }
+  };
 
   let formState = {
     isSubmitting: false,
     isSuccess: false,
     isError: false,
   };
-  let email = null;
+  let email: string | null = null;
 
   if (isUserAlreadySubscribed()) {
     alreadySubscribed.set(true);
   }
 
-  async function onSubmit() {
+  const onSubmit = async () => {
     if (email) {
       try {
-        const subscribe = await fetch('/api/newsletter/subscribe', {
+        const subscribe: SubscribeSuccessResult = await fetch('/api/newsletter/subscribe', {
           method: 'POST',
           body: JSON.stringify({ email }),
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-        }).then(body => body.json());
+        }).then((body) => body.json());
         emailStore.set(email);
 
         // TODO: proper error and success handling
@@ -55,7 +58,7 @@
         console.log('error: ', error);
       }
     }
-  }
+  };
 </script>
 
 <div>
@@ -78,7 +81,7 @@
       <Button {...formState}>Přihlásit</Button>
     </form>
   {/if}
-  
+
   <p class="mt-4 ml-6 text-sm">
     <a href="">archiv všech čísel</a>
     <span class="text-gray-400">&bull;</span>

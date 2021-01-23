@@ -6,6 +6,7 @@ const createPreprocessors = ({ sourceMap }) => [
 		sourceMap,
 		defaults: {
 			style: 'postcss',
+			script: 'typescript',
 		},
 		postcss,
 	}),
