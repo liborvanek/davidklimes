@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
   import { fly } from 'svelte/transition';
   import { cubicInOut } from 'svelte/easing';
 
-  const range = (size, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
+  const range = (size: number, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
 
   export let classes = '';
   export let size = 60;
@@ -60,6 +60,6 @@
   {#each range(3, 1) as version}
     <div
       class="circle"
-      style="animation-delay: {(durationNum / 3) * (version - 1) + durationUnit};" />
+      style="animation-delay: {(parseInt(durationNum, 10) / 3) * (version - 1) + durationUnit};" />
   {/each}
 </div>

@@ -1,8 +1,8 @@
-<script context="module">
+<script context="module" lang="ts">
   export const preload = () => {};
 </script>
 
-<script>
+<script lang="ts">
   import { stores } from '@sapper/app';
   import { fade } from 'svelte/transition';
   import { cubicInOut } from 'svelte/easing';
@@ -13,10 +13,10 @@
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
   // https://github.com/sveltejs/sapper/issues/824
   const { preloading } = stores();
-  export let segment;
+  export let segment: string;
   let activeMenuItem = 0;
-  let hoveredMenuItem = null;
-  let searchResult;
+  let hoveredMenuItem: number | null = null;
+  let searchResult: number;
 
   const pages = [
     {
@@ -44,9 +44,8 @@
       translate: 28.2,
     },
   ];
-  let arrowRotate = pages[activeMenuItem].translate;
 
-  function handleMouseOver(linkNr) {
+  function handleMouseOver(linkNr: number) {
     hoveredMenuItem = linkNr;
   }
   function handleMouseOut() {

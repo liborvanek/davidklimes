@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import PageTransition from '../components/PageTransition.svelte';
   import LinkButton from '../components/LinkButton.svelte';
 

@@ -1,33 +1,33 @@
-<script>
+<script lang="ts">
   import { fly } from 'svelte/transition';
   import { goto } from '@sapper/app';
-  
+
   import { showNewsletterIntro, email, alreadySubscribed } from '../stores';
   import Button from './Button.svelte';
 
-  let jmeno = null;
-  let prijmeni = null;
-  let note = null;
+  let jmeno: string | null = null;
+  let prijmeni: string | null = null;
+  let note: string | null = null;
 
-  function setCookieAndRedirect() {
+  const setCookieAndRedirect = () => {
     document.cookie = 'alreadySubscribed=true';
     alreadySubscribed.set(true);
     email.set('');
     showNewsletterIntro.set(false);
 
     goto('/');
-  }
+  };
 
-  async function onSubmit() {
+  const onSubmit = async () => {
     if ((jmeno || prijmeni || note) && $email) {
       try {
         await fetch('/api/newsletter/update', {
           method: 'PUT',
           body: JSON.stringify({ email: $email, jmeno, prijmeni, note }),
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-        }).then(body => body.json());
+        }).then((body) => body.json());
         setCookieAndRedirect();
 
         // TODO: proper error and success handling
@@ -37,7 +37,7 @@
     } else {
       setCookieAndRedirect();
     }
-  }
+  };
 </script>
 
 <div
@@ -80,8 +80,8 @@
     </p>
 
     <p class="mt-12 text-lg leading-relaxed">
-      Tady bude text o tom, že newsletter bude vždycky zdarma, ale zároveň jeho provoz je financován z
-      darů. Vysvětlení co to znamená a na co se peníze použijí.
+      Tady bude text o tom, že newsletter bude vždycky zdarma, ale zároveň jeho provoz je financován
+      z darů. Vysvětlení co to znamená a na co se peníze použijí.
     </p>
     {#if jmeno || prijmeni || note}
       <Button classes="mt-16">Aktualizovat</Button>

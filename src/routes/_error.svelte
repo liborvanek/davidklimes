@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
   import PageTransition from '../components/PageTransition.svelte';
 
-  export let status;
-  export let error;
+  export let status: number;
+  export let error: Error;
 
   const mode = process.env.NODE_ENV;
   const dev = mode === 'development';

@@ -1,10 +1,16 @@
-<script context="module">
+<script context="module" lang="ts">
   import PageTransition from '../../components/PageTransition.svelte';
   import { formatDate } from '../../utils';
 
+  interface NewsletterItem {
+    date: string;
+    subject: string;
+    link: string;
+  }
+
   export async function preload() {
     const res = await this.fetch(`/newsletter-mailchimp-tmp.json`);
-    const rawFeed = await res.json();
+    const rawFeed: NewsletterItem[] = await res.json();
 
     const feed = rawFeed.map((item) => ({ ...item, date: formatDate(item.date) }));
 
@@ -12,8 +18,8 @@
   }
 </script>
 
-<script>
-  export let feed;
+<script lang="ts">
+  export let feed: NewsletterItem[];
 </script>
 
 <svelte:head>

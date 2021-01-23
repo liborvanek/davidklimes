@@ -7,6 +7,7 @@ import svelte from 'rollup-plugin-svelte';
 import babel from '@rollup/plugin-babel';
 import colors from 'kleur';
 import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
 import config from 'sapper/config/rollup';
 import pkg from './package.json';
 
@@ -27,7 +28,7 @@ const onwarn = (warning, _onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && 
 
 export default {
 	client: {
-		input: config.client.input(),
+		input: config.client.input().replace(/\.js$/, '.ts'),
 		output: { ...config.client.output(), sourcemap },
 		plugins: [
 			replace({
@@ -45,8 +46,13 @@ export default {
 			resolve({
 				browser: true,
 				dedupe: ['svelte'],
+				preferBuiltins: false,
 			}),
 			commonjs({
+				sourceMap: !!sourcemap,
+			}),
+			typescript({
+				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
 			}),
 
@@ -130,7 +136,7 @@ export default {
 	},
 
 	server: {
-		input: config.server.input(),
+		input: { server: config.server.input().server.replace(/\.js$/, '.ts') },
 		output: { ...config.server.output(), sourcemap },
 		plugins: [
 			replace({
@@ -146,8 +152,13 @@ export default {
 			}),
 			resolve({
 				dedupe: ['svelte'],
+				preferBuiltins: false,
 			}),
 			commonjs({
+				sourceMap: !!sourcemap,
+			}),
+			typescript({
+				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
 			}),
 		],
@@ -160,7 +171,7 @@ export default {
 	},
 
 	serviceworker: {
-		input: config.serviceworker.input(),
+		input: config.serviceworker.input().replace(/\.js$/, '.ts'),
 		output: { ...config.serviceworker.output(), sourcemap },
 		plugins: [
 			resolve(),
@@ -169,6 +180,10 @@ export default {
 				'process.env.NODE_ENV': JSON.stringify(mode),
 			}),
 			commonjs({
+				sourceMap: !!sourcemap,
+			}),
+			typescript({
+				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
 			}),
 			!dev && terser(),

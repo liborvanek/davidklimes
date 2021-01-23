@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import PageTransition from '../../components/PageTransition.svelte';
 
   // You may not want to use `segment`, but it is passed for the time being and will
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
   // https://github.com/sveltejs/sapper/issues/824
-  export let segment;
+  export let segment: string;
 
   const activeClass =
     'text-blue-1000 visited:text-blue-1000 bg-gray-100 transition-colors duration-500 rounded-sm';
