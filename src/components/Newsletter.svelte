@@ -83,7 +83,7 @@
   {/if}
 
   <p class="mt-4 ml-6 text-sm">
-    <a href="">archiv všech čísel</a>
+    <a href="/komentare/archiv-newsletteru">archiv všech čísel</a>
     <span class="text-gray-400">&bull;</span>
     <a href="">spravovat členství</a>
   </p>
