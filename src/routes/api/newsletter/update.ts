@@ -9,6 +9,7 @@ interface BodyParams {
 }
 
 export async function put(req: express.Request, res: express.Response, next: () => void) {
+  // TODO: add server side validation
   const { email, jmeno, prijmeni, note }: BodyParams = req.body;
 
   if (email && (jmeno || prijmeni || note)) {

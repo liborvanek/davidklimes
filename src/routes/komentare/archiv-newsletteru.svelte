@@ -9,7 +9,7 @@
   }
 
   export async function preload() {
-    const res = await this.fetch(`komentare/newsletter-archive.json`);
+    const res = await this.fetch('/api/newsletter-archive.json');
     const rawNewsletterArchive: NewsletterItem[] = await res.json();
 
     const newsletterArchive = rawNewsletterArchive.map((item) => ({

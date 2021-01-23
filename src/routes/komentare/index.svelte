@@ -1,14 +1,14 @@
 <script context="module" lang="ts">
   import PageTransition from '../../components/PageTransition.svelte';
   import { formatDate } from '../../utils';
-  import type { RawRssFeedItemWithType } from './rssFeed.json';
+  import type { RawRssFeedItemWithType } from '../api/rssFeed.json';
 
   interface RssFeedItem extends RawRssFeedItemWithType {
     date: string;
   }
 
   export async function preload() {
-    const res = await this.fetch(`komentare/rssFeed.json`);
+    const res = await this.fetch('/api/rssFeed.json');
     const rawRssFeed: RawRssFeedItemWithType[] = await res.json();
 
     const rssFeed = rawRssFeed.map((item) => ({ ...item, date: formatDate(item.isoDate) }));

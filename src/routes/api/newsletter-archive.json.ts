@@ -14,6 +14,7 @@ interface RawNewsletterItem {
   send_time: string;
 }
 
+// TODO: unify with fn from rssFeed
 async function getCollectionFromDb(): Promise<RawNewsletterItem[]> {
   return db
     .collection('newsletterArchive')
@@ -39,22 +40,27 @@ function trimmerSubject(subject: string): string {
 }
 
 export async function get(_: {}, res: express.Response, next: () => void) {
-  const newsletterArchive = await getCollectionFromDb();
+  try {
+    const newsletterArchive = await getCollectionFromDb();
 
-  const unifiedNewsletterArchive = newsletterArchive.map((item) => ({
-    subject: item.subject || trimmerSubject(item.settings.subject_line),
-    date: item.sent_at || item.send_time,
-    link: item.long_archive_url || item.archive_url,
-  }));
+    const unifiedNewsletterArchive = newsletterArchive.map((item) => ({
+      subject: item.subject || trimmerSubject(item.settings.subject_line),
+      date: item.sent_at || item.send_time,
+      link: item.long_archive_url || item.archive_url,
+    }));
 
-  const sortedNewsletterArchiveByDate = unifiedNewsletterArchive.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
+    const sortedNewsletterArchiveByDate = unifiedNewsletterArchive.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
 
-  if (sortedNewsletterArchiveByDate.length !== 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(sortedNewsletterArchiveByDate));
-  } else {
-    next();
+    if (sortedNewsletterArchiveByDate.length !== 0) {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(sortedNewsletterArchiveByDate));
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to load data.');
   }
 }
