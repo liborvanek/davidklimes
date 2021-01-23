@@ -1,12 +1,17 @@
 import { config as dotenvConfig } from 'dotenv-safe';
+
+dotenvConfig();
+
 import sirv from 'sirv';
 import express from 'express';
 import { json } from 'body-parser';
 import compression from 'compression';
+import helmet from 'helmet';
 import * as sapper from '@sapper/server';
 import mongoose from 'mongoose';
+import cron from 'node-cron';
 
-dotenvConfig();
+import { rssFeed } from './server/rssFeed';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
@@ -20,6 +25,9 @@ export const db = mongoose.connection;
 const server = express();
 
 server.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
   json(),
   compression({ threshold: 0 }),
   sirv('static', { dev }),
@@ -36,6 +44,11 @@ db.once('open', () => {
 
     console.log(`> Ready on http://${PORT}`);
   };
+
+  // run rss sync every 10 minutes
+  cron.schedule('*/10 * * * *', () => {
+    rssFeed();
+  });
 
   server.listen(PORT, () => listenCallback);
 }).on('error: ', (error) => {
