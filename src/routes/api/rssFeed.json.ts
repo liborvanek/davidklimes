@@ -2,10 +2,10 @@ import express from 'express';
 
 import { db } from '../../server';
 
-type CollectionType = 'rozhlasRssFeed' | 'aktualneRssFeed';
+export type CollectionType = 'rozhlasRssFeed' | 'aktualneRssFeed';
 type RssFeedItemType = 'rozhlas' | 'aktualne';
 
-interface RawRssFeedItem {
+export interface RawRssFeedItem {
   _id: string;
   title: string;
   content: string;
