@@ -20,7 +20,7 @@
 </svelte:head>
 
 <PageTransition>
-  <div class="grid grid-cols-2 gap-x-16 gap-y-8">
+  <div class="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-8">
     {#each rssFeed as rssItem}
       <article class="">
         <h2 class="max-w-lg mb-2 text-xl font-bold text-gray-700">

@@ -21,7 +21,7 @@
 </svelte:head>
 
 <PageTransition>
-  <div class="grid grid-cols-3 gap-x-20 gap-y-8">
+  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-20 gap-y-8">
     {#each feed as newsletter}
       <article class="">
         <h2 class="mb-2 text-base font-bold text-gray-700">

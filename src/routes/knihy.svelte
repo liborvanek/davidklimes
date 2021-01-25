@@ -46,26 +46,34 @@
 </script>
 
 <style>
-  .book-grid {
-    display: grid;
-    grid-template-columns: 1fr 6rem 6rem 1fr;
-  }
+  @screen sm {
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1fr 3rem 3rem 1fr;
+    }
 
-  .book-grid:nth-of-type(odd) > .image {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: end;
+    .book-grid:nth-of-type(odd) > .image {
+      grid-column: 1;
+      grid-row: 1 / 5;
+      justify-self: end;
+    }
+    .book-grid:nth-of-type(odd) > .info {
+      grid-column: 3 / 5;
+    }
+    .book-grid:nth-of-type(even) > .image {
+      grid-column: 4;
+      grid-row: 1 / 5;
+    }
+    .book-grid:nth-of-type(even) > .info {
+      grid-column: 1 / 3;
+      text-align: right;
+      justify-self: end;
+    }
   }
-  .book-grid:nth-of-type(odd) > .text {
-    grid-column: 3 / 5;
-  }
-  .book-grid:nth-of-type(even) > .image {
-    grid-column: 4;
-    grid-row: 1;
-  }
-  .book-grid:nth-of-type(even) > .text {
-    grid-column: 1 / 3;
-    text-align: right;
+  @screen lg {
+    .book-grid {
+      grid-template-columns: 1fr 6rem 6rem 1fr;
+    }
   }
 </style>
 
@@ -73,44 +81,41 @@
   <title>Knihy | David Klimeš</title>
 </svelte:head>
 
-<PageTransition classes="max-w-screen-lg mx-auto mt-16 space-y-32">
+<PageTransition classes="max-w-screen-lg mx-auto mt-8 lg:mt-16 space-y-24 lg:space-y-32">
   {#each books as { title, description, image, link, publisher, year }, i}
     <article class="book-grid">
-      <div class="text flex flex-col {i % 2 === 0 ? '' : 'items-end'}">
-        <h2 class="max-w-xs mt-4 heading text-3xl font-bold text-gray-800 leading-snug">
-          {@html title}
-        </h2>
-        <p class="mt-8 text-sm leading-7">
-          {description}
-        </p>
-        <p class="mt-10"><LinkButton>Koupit</LinkButton></p>
-      </div>
-      <div class="image">
-        <figure>
-          <picture>
-            <source srcset="/{image}.webp" type="image/webp" />
-            <img
-              src="/{image}.jpg"
-              alt="Kniha Česko vs. budoucnost"
-              width="384"
-              height="543"
-              class="block shadow-3xl transform {i % 2 === 0
-                ? '-'
-                : ''}rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100"
-              loading={i === 0 ? 'eager' : 'lazy'} />
-          </picture>
-          <figcaption class="mt-8 space-y-1 text-center text-gray-500 text-sm">
-            <p>
-              <span class="text-xs">Nakladatel:</span>
-              <a href="" class="font-bold">{publisher}</a>
-            </p>
-            <p>
-              <span class="text-xs">Datum vydání:</span>
-              <span href="" class="text-gray-600 font-bold">{year}</span>
-            </p>
-          </figcaption>
-        </figure>
-      </div>
+      <h2
+        class="info max-w-xs mt-4 heading text-2xl lg:text-3xl font-bold text-gray-800 leading-snug">
+        {@html title}
+      </h2>
+      <figure class="image my-8 sm:my-0">
+        <picture>
+          <source srcset="/{image}.webp" type="image/webp" />
+          <img
+            src="/{image}.jpg"
+            alt="Kniha Česko vs. budoucnost"
+            width="384"
+            height="543"
+            class="block w-32 sm:w-auto shadow-3xl transform {i % 2 === 0
+              ? '-'
+              : ''}rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100"
+            loading={i === 0 ? 'eager' : 'lazy'} />
+        </picture>
+        <figcaption class="mt-8 space-y-1 sm:text-center text-gray-500 text-sm">
+          <p>
+            <span class="text-xs">Nakladatel:</span>
+            <a href="" class="font-bold">{publisher}</a>
+          </p>
+          <p>
+            <span class="text-xs">Datum vydání:</span>
+            <span href="" class="text-gray-600 font-bold">{year}</span>
+          </p>
+        </figcaption>
+      </figure>
+      <p class="info sm:mt-8 text-sm leading-7">
+        {description}
+      </p>
+      <div class="info mt-8"><LinkButton>Koupit</LinkButton></div>
     </article>
   {/each}
 </PageTransition>

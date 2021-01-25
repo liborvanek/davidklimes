@@ -4,7 +4,7 @@
   export let outDuration = 0;
   export let inDuration = 375;
   export let delay = outDuration;
-  export let classes;
+  export let classes = '';
 
   const transitionIn = () => ({
     duration: inDuration,

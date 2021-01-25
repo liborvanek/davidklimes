@@ -16,9 +16,9 @@
 </svelte:head>
 
 <PageTransition>
-  <section class="mt-12 flex">
-    <aside class="w-1/4 pr-8">
-      <ul class="text-xl font-normal space-y-4 text-right">
+  <section class="mt-6 lg:mt-12 lg:flex">
+    <aside class="lg:w-1/4 pr-8">
+      <ul class="sm:flex lg:block text-xl font-normal lg:space-y-4 lg:text-right">
         <li>
           <a
             href="/komentare"
@@ -37,7 +37,7 @@
         </li>
       </ul>
     </aside>
-    <div class="w-3/4 pl-8 space-y-8">
+    <div class="lg:w-3/4 lg:pl-8 space-y-8 mt-8 lg:mt-0">
       <slot />
     </div>
   </section>
