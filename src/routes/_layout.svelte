@@ -3,10 +3,12 @@
 </script>
 
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { stores } from '@sapper/app';
   import { fade } from 'svelte/transition';
   import { cubicInOut } from 'svelte/easing';
 
+  import MenuIcon from '../components/MenuIcon.svelte';
   import { showNewsletterIntro } from '../stores';
 
   // You may not want to use `segment`, but it is passed for the time being and will
@@ -17,6 +19,8 @@
   let activeMenuItem = 0;
   let hoveredMenuItem: number | null = null;
   let searchResult: number;
+  let showMobileMenu = false;
+  let isNarrowScreen = false;
 
   const pages = [
     {
@@ -51,6 +55,23 @@
   function handleMouseOut() {
     hoveredMenuItem = null;
   }
+
+  const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
+  const mediaQueryHandler = (e) => {
+    // Reset mobile state
+    if (!e.matches) {
+      showMobileMenu = false;
+      isNarrowScreen = true;
+    }
+  };
+
+  // Attach media query listener on mount hook
+  onMount(() => {
+    const mediaListener = window.matchMedia('(max-width: 767px)');
+
+    mediaListener.addListener(mediaQueryHandler);
+  });
+
   $: {
     searchResult = pages.findIndex(({ slug }) => slug === segment);
     activeMenuItem = searchResult === -1 ? 0 : searchResult;
@@ -67,6 +88,9 @@
   }
   .menu-link {
     @apply text-gray-500 no-underline;
+  }
+  .showMobileMenu .menu-link {
+    @apply text-white text-3xl;
   }
   .menu-link:hover {
     @apply text-blue-700;
@@ -135,51 +159,58 @@
   }
 </style>
 
-<div class="mx-auto max-w-screen-2xl px-12 pb-32">
-  <section class="mt-8 flex justify-between">
+<div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">
+  <header class="py-4 md:py-8 flex justify-between items-center">
     <div
       class="transform {activeMenuItem
-        ? 'scale-75'
-        : 'scale-100'} transition-transform duration-150">
+        ? 'md:scale-75'
+        : 'md:scale-100'} transition-transform duration-150">
       <a href="/">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
           <source srcset="lion.png" type="image/png" />
-          <img src="lion.png" alt="Ilustrace lva" class="w-24 mb-12" />
+          <img src="lion.png" alt="Logo" class="w-14 md:w-24" aria-label="Na úvod" />
         </picture>
       </a>
     </div>
-    <nav class="relative mt-8 text-2xl text-right font-bold ">
-      <!-- <svg width="69" height="28" viewBox="0 0 69 28" style="transform: translate({arrowRotate});" class="z-10 rotating-arrow absolute top-2 -left-16 transition-transform duration-500 text-gray-300">
-        <path fill="currentColor" fill-rule="nonzero" d="M54.52 27.248l13.568-13.536L54.52.176l-2.976 2.976 8.448 8.448L0 11.776V16l59.992-.176-8.448 8.448z" />
-      </svg> -->
+    <nav class="lg:relative text-2xl text-right font-bold" role="navigation">
+      <MenuIcon
+        isOpen={showMobileMenu}
+        on:menuClick={handleMobileIconClick}
+        menuId="menu"
+        classes="z-30 relative fixed" />
       <div
-        class="moving-box absolute bg-gray-100 transition-transform duration-500 rounded-sm"
+        class="moving-box absolute hidden lg:block bg-gray-100 transition-transform duration-500 rounded-sm"
         style="transform: translateX({hoveredMenuItem !== null
           ? pages[hoveredMenuItem].translate
           : pages[activeMenuItem].translate}rem) rotate(-1deg) scaleX({hoveredMenuItem !== null
           ? pages[hoveredMenuItem].scale
           : pages[activeMenuItem].scale});" />
-      <ul class="pb-20 relative flex flex-row z-20 lowercase">
+      <ul
+        id="menu"
+        class="{showMobileMenu
+          ? 'opacity-100 showMobileMenu transition-opacity duration-300'
+          : 'invisible lg:visible opacity-0 lg:opacity-100'} absolute left-0 top-0 w-full h-screen lg:w-auto lg:h-auto lg:relative lg:flex flex-col lg:flex-row pt-12 lg:pt-0 bg-blue-500 bg-opacity-97 lg:bg-transparent z-20 lowercase">
         {#each pages as { slug, name }, i}
-          <li class="transition-transform duration-500 origin-bottom-left">
+          <li class="transition-transform duration-500 origin-bottom-left text-center py-2 lg:py-0">
             <a
               href={slug}
               class="menu-link px-8 transition-colors {i === activeMenuItem ? 'active' : ''}"
               on:mouseover={() => handleMouseOver(i)}
               on:mouseout={handleMouseOut}
+              on:click={() => (showMobileMenu = false)}
               rel="prefetch">{name}</a>
           </li>
         {/each}
       </ul>
     </nav>
-  </section>
-  <main>
+  </header>
+  <main class="mt-4">
     {#if !$showNewsletterIntro}
       <h1
-        class="origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
-          ? 'text-8xl leading-none'
-          : 'text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+        class="mb-4 origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
+          ? 'text-6xl md:text-8xl leading-none'
+          : 'text-4xl md:text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
         out:fade={{ duration: 300, easing: cubicInOut }}>
         {#if activeMenuItem === 0}
           <span

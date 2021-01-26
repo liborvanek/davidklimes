@@ -23,6 +23,9 @@ module.exports = {
 	},
 	theme: {
 		extend: {
+			backgroundOpacity: {
+				97: '0.97',
+			},
 			boxShadow: {
 				'3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.4)',
 			},
@@ -37,6 +40,9 @@ module.exports = {
 					300: '#d3c9b0',
 					400: '#b7a683',
 				},
+			},
+			fontSize: {
+				'6xl': ['3.75rem', '1.2'],
 			},
 			listStyleType: {
 				square: 'square',

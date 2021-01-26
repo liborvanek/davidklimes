@@ -61,30 +61,32 @@
   };
 </script>
 
-<div>
-  <h2 class="text-3xl font-bold text-gray-700">newsletter o souvislostech v byznysu a politice</h2>
-  <p class=" mt-3 text-gray-500">
-    každé pondělí <span class="text-blue-500">&bull;</span> jen to podstatné
-    <span class="text-blue-500">&bull;</span> kdykoliv se můžete odhlásit
-  </p>
-  {#if $alreadySubscribed}
-    <div class="mt-12 flex w-2/3">
-      <Button {...formState}>Jsi již přihlášen k odběru</Button>
-    </div>
-  {:else}
-    <form class="mt-12 flex w-2/3" on:submit|preventDefault={onSubmit}>
-      <input
-        type="email"
-        bind:value={email}
-        placeholder="váš e-mail"
-        class="w-full py-5 px-6 bg-brown-100 inline-block appearance-none placeholder-gray-500 rounded-md text-gray-700 leading-5 focus:outline-none border border-brown-100 focus:border-blue-500 transition-colors" />
-      <Button {...formState}>Přihlásit</Button>
-    </form>
-  {/if}
+<h2 class="text-2xl lg:text-3xl font-bold text-gray-700">
+  newsletter o&nbsp;souvislostech v&nbsp;byznysu a&nbsp;politice
+</h2>
+<p class="mt-3 text-gray-500">
+  každé pondělí <span class="text-blue-500">&bull;</span>&nbsp;jen to podstatné
+  <span class="text-blue-500">&bull;</span>&nbsp;kdykoliv se můžete odhlásit
+</p>
+{#if $alreadySubscribed}
+  <div class="mt-8 lg:mt-12 flex w-2/3">
+    <Button {...formState}>Jsi již přihlášen k odběru</Button>
+  </div>
+{:else}
+  <form
+    class="mt-8 lg:mt-12 flex flex-wrap md:flex-nowrap w-full xl:w-2/3"
+    on:submit|preventDefault={onSubmit}>
+    <input
+      type="email"
+      bind:value={email}
+      placeholder="váš e-mail"
+      class="w-full py-5 px-6 bg-brown-100 inline-block appearance-none placeholder-gray-500 rounded-md text-gray-700 leading-5 focus:outline-none border border-brown-100 focus:border-blue-500 transition-colors" />
+    <Button {...formState} classes="mt-1 md:mt-0 w-full md:w-auto md:ml-2">Přihlásit</Button>
+  </form>
+{/if}
 
-  <p class="mt-4 ml-6 text-sm">
-    <a href="/komentare/archiv-newsletteru">archiv všech čísel</a>
-    <span class="text-gray-400">&bull;</span>
-    <a href="">spravovat členství</a>
-  </p>
-</div>
+<p class="mt-4 ml-6 text-sm">
+  <a href="/komentare/archiv-newsletteru">archiv všech čísel</a>
+  <span class="text-gray-400">&bull;</span>
+  <a href="">spravovat členství</a>
+</p>

@@ -30,14 +30,14 @@
 </svelte:head>
 
 <PageTransition>
-  <div class="grid grid-cols-3 gap-x-20 gap-y-8">
-    {#each newsletterArchive as newsletter}
+  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-20 gap-y-8">
+    {#each newsletterArchive as { link, subject, date }}
       <article class="">
         <h2 class="mb-2 text-base font-bold text-gray-700">
-          <a href={newsletter.link} target="_blank" class="no-underline">{newsletter.subject}</a>
+          <a href={link} target="_blank" class="no-underline">{subject}</a>
         </h2>
         <p class="mt-3 text-sm text-gray-500 flex items-center">
-          {newsletter.date}
+          {date}
         </p>
       </article>
     {/each}

@@ -14,11 +14,11 @@
   <NewsletterOutro />
 {:else}
   <PageTransition outDuration={$showNewsletterIntro ? 300 : 0}>
-    <section class="mt-24 mb-16">
+    <section class="mt-8 lg:mt-24 mb-16">
       <Newsletter />
     </section>
     <hr class="h-1 bg-gradient-to-r from-brown-50 to-brown-100 border-transparent" />
-    <section class="w-1/2 mt-10 mb-12 ml-4">
+    <section class="lg:w-2/3 mt-10 mb-12 ml-4">
       <blockquote class="mb-8 text-gray-500 text italic leading-relaxed">
         „Davida Klimeše považuji za vzácný druh racionálního komentátora, který pečlivě pracuje se
         zdroji, má historickou paměť a píše tak, aby se podle toho dalo vládnout.“

@@ -27,7 +27,7 @@
 </style>
 
 <button
-  class="button relative flex items-center ml-2 py-5 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow {classes}"
+  class="button relative flex items-center justify-center py-5 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow {classes}"
   disabled={isSubmitting}
   ><span
     class="transition-all {isSubmitting || isSuccess || isError
