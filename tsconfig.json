@@ -3,7 +3,9 @@
 		"compilerOptions": {
 			"lib": ["DOM", "ES2017", "WebWorker"],
 			"importsNotUsedAsValues": "remove",
-			"rootDir": "src"
+      "rootDir": "src",
+      // https://github.com/rollup/rollup/issues/1518#issuecomment-684962173
+      "target": "es2017"
 		},
 		"include": ["src/**/*", "src/node_modules/**/*"],
 		"exclude": ["node_modules/*", "__sapper__/*", "static/*", "src/xservice-worker.ts"]
