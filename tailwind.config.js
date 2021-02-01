@@ -73,6 +73,7 @@ module.exports = {
 			white: colors.white,
 			gray: colors.warmGray,
 			green: colors.lime,
+			red: colors.red,
 			blue: colors.indigo,
 		},
 		container: {

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { insertMany, query } from './dbUtils';
+import { insertMultipleArticles, getNewsletters } from './dbApi';
 
 // TODO: unify with rss compare fn
 const compareNewsletterItems = (newsletterFeed: any, collectionIds: string[]) => [
@@ -9,7 +9,7 @@ const compareNewsletterItems = (newsletterFeed: any, collectionIds: string[]) =>
 
 export const newsletterFromEcomail = async () => {
   try {
-    const rawNewsletterCollection = await query('newsletterArchive', ['id']);
+    const rawNewsletterCollection = await getNewsletters(['id']);
     const newsletterCollectionIds = rawNewsletterCollection.map(({ id }) => id);
 
     // status=3 => sent
@@ -27,7 +27,7 @@ export const newsletterFromEcomail = async () => {
     const onlyNewNewsletters = compareNewsletterItems(ecomailNewsletters, newsletterCollectionIds);
 
     if (onlyNewNewsletters.length !== 0) {
-      insertMany('newsletterArchive', onlyNewNewsletters);
+      insertMultipleArticles('newsletterArchive', onlyNewNewsletters);
     }
 
     console.log(

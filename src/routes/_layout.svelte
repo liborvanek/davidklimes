@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { stores } from '@sapper/app';
+  // import { stores } from '@sapper/app';
   import { fade } from 'svelte/transition';
   import { cubicInOut } from 'svelte/easing';
 
@@ -14,7 +14,10 @@
   // You may not want to use `segment`, but it is passed for the time being and will
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
   // https://github.com/sveltejs/sapper/issues/824
-  const { preloading } = stores();
+
+  // To see the loading status
+  // const { preloading } = stores();
+
   export let segment: string;
   let activeMenuItem = 0;
   let hoveredMenuItem: number | null = null;
@@ -87,7 +90,7 @@
     top: -0.1rem;
   }
   .menu-link {
-    @apply text-gray-500 no-underline;
+    @apply text-gray-600 no-underline;
   }
   .showMobileMenu .menu-link {
     @apply text-white text-3xl;
@@ -205,7 +208,7 @@
       </ul>
     </nav>
   </header>
-  <main class="mt-4">
+  <main aria-live="polite" class="mt-4 relative">
     {#if !$showNewsletterIntro}
       <h1
         class="mb-4 origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
@@ -217,7 +220,7 @@
             class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
             >David</span
           ><span
-            class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+            class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000 ml-8"
             >Klimeš</span>
         {:else}
           {currentPage.name}

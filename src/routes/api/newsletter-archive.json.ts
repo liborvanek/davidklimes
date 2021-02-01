@@ -1,38 +1,6 @@
 import express from 'express';
 
-import { db } from '../../server';
-
-interface RawNewsletterItem {
-  _id: string;
-  subject: string;
-  settings: {
-    subject_line: string;
-  };
-  archive_url: string;
-  long_archive_url: string;
-  sent_at: string;
-  send_time: string;
-}
-
-// TODO: unify with fn from rssFeed
-async function getCollectionFromDb(): Promise<RawNewsletterItem[]> {
-  return db
-    .collection('newsletterArchive')
-    .find(
-      {},
-      {
-        projection: [
-          'subject',
-          'settings.subject_line',
-          'archive_url',
-          'long_archive_url',
-          'sent_at',
-          'send_time',
-        ],
-      },
-    )
-    .toArray();
-}
+import { getNewsletters } from '../../server/dbApi';
 
 // TODO: ecomail prefix needs to go to regex in replace
 function trimmerSubject(subject: string): string {
@@ -41,7 +9,7 @@ function trimmerSubject(subject: string): string {
 
 export async function get(_: {}, res: express.Response, next: () => void) {
   try {
-    const newsletterArchive = await getCollectionFromDb();
+    const newsletterArchive = await getNewsletters();
 
     const unifiedNewsletterArchive = newsletterArchive.map((item) => ({
       subject: item.subject || trimmerSubject(item.settings.subject_line),
