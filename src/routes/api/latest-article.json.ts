@@ -1,7 +1,6 @@
 import express from 'express';
 
-import { getLatestArticle, CollectionType } from '../../server/dbApi';
-import { formatDate } from '../../utils';
+import { getLatestArticle } from '../../server/dbApi';
 
 export async function get(_: {}, res: express.Response, next: () => void) {
   const articles = await Promise.all([

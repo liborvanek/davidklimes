@@ -1,16 +1,24 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import promiseMinDelay from 'p-min-delay';
 
-  import { showNewsletterIntro, lastArticle } from '../stores';
+  import type { IArticle } from '../server/dbApi';
+  import { showNewsletterIntro, latestArticle } from '../stores';
   import { clipRect } from '../transitions';
   import PageTransition from '../components/PageTransition.svelte';
   import Newsletter from '../components/Newsletter.svelte';
   import NewsletterOutro from '../components/NewsletterOutro.svelte';
 
-  let isMounted = false;
+  // This promise will never resolve
+  let latestArticlePromise: Promise<IArticle> = new Promise(() => {});
 
   onMount(() => {
-    isMounted = true;
+    // This promise will replace the first one and will be resolved in the {#await} block
+    // It will run on client only
+    latestArticlePromise = promiseMinDelay(
+      fetch('/api/latest-article.json').then((body) => body.json()),
+      800,
+    );
   });
 </script>
 
@@ -22,16 +30,20 @@
   <NewsletterOutro />
 {:else}
   <PageTransition outDuration={$showNewsletterIntro ? 300 : 0}>
-    {#if isMounted}
+    {#await latestArticlePromise then { title, link }}
       <aside
-        in:clipRect={{ duration: 500, delay: 800 }}
-        class="absolute top-16 right-16 transform -rotate-1 bg-gray-50 p-12 w-1/3">
+        in:clipRect={{ duration: 500, delay: 0 }}
+        class="absolute top-16 right-16 transform -rotate-1 bg-gray-50 pt-10 pl-12 pr-12 pb-12 w-1/3">
         <span class="uppercase text-xs text-gray-500">poslední komentář</span>
-        <h2 class="max-w-lg mt-2 mb-2 text-lg font-bold text-gray-600 underline">
-          Žijeme ve státě, který nám umírá před očima. Tentokrát bohužel doslovně.
+        <h2 class="max-w-lg mt-2 mb-2">
+          <a
+            href={link}
+            class="inline-block text-lg font-bold text-gray-600 visited:text-gray-600 hover:text-blue-800 underline"
+            >{title}</a>
         </h2>
       </aside>
-    {/if}
+    {/await}
+
     <section class="mt-8 ml-8 lg:mt-16 mb-16 ">
       <Newsletter />
     </section>
