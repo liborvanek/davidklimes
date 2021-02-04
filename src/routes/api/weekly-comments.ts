@@ -1,23 +1,8 @@
 import express from 'express';
 import { startOfWeek, endOfWeek } from 'date-fns';
 
-import { db } from '../../server';
+import { getArticlesInInterval } from '../../server/dbApi';
 import { formatDate } from '../../utils';
-import type { RawRssFeedItem, CollectionType } from './rssFeed.json';
-
-async function getCollectionFromDb(
-  source: CollectionType,
-  firstDayDateString: string,
-  lastDayDateString: string,
-): Promise<RawRssFeedItem[]> {
-  return db
-    .collection(source)
-    .find(
-      { isoDate: { $gte: firstDayDateString, $lte: lastDayDateString } },
-      { projection: ['title', 'content', 'isoDate', 'link'] },
-    )
-    .toArray();
-}
 
 export async function get(_: {}, res: express.Response, next: () => void) {
   const now = new Date();
@@ -25,12 +10,12 @@ export async function get(_: {}, res: express.Response, next: () => void) {
   const firstDayOfThisWeek = startOfWeek(now, { weekStartsOn: 1 }).toISOString();
   const lastDayOfThisWeek = endOfWeek(now, { weekStartsOn: 1 }).toISOString();
 
-  const [rozhlasRssFeed, aktualneRssFeed] = await Promise.all([
-    getCollectionFromDb('rozhlasRssFeed', firstDayOfThisWeek, lastDayOfThisWeek),
-    getCollectionFromDb('aktualneRssFeed', firstDayOfThisWeek, lastDayOfThisWeek),
+  const [komentareRozhlasPlus, komentareAktualne] = await Promise.all([
+    getArticlesInInterval('komentareRozhlasPlus', firstDayOfThisWeek, lastDayOfThisWeek),
+    getArticlesInInterval('komentareAktualne', firstDayOfThisWeek, lastDayOfThisWeek),
   ]);
 
-  const joinFeeds = rozhlasRssFeed.concat(aktualneRssFeed);
+  const joinFeeds = komentareRozhlasPlus.concat(komentareAktualne);
   const sortedFeedsByDate = joinFeeds.sort(
     (a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime(),
   );

@@ -1,6 +1,10 @@
 import Parser from 'rss-parser';
 
-import { insertMany, query } from './dbUtils';
+import { insertMultipleArticles, getArticles, IArticle } from './dbApi';
+
+interface IArticleGuid extends IArticle {
+  guid: string;
+}
 
 const rssParser = new Parser();
 
@@ -11,8 +15,8 @@ const compareRssItems = (rssFeed: any, collectionIds: string[]) => [
 export const rssFeed = async () => {
   try {
     const [rawRozhlasCollection, rawAktualneCollection] = await Promise.all([
-      query('rozhlasRssFeed', ['guid']),
-      query('aktualneRssFeed', ['guid']),
+      getArticles('komentareRozhlasPlus', ['guid']) as Promise<IArticleGuid[]>,
+      getArticles('komentareAktualne', ['guid']) as Promise<IArticleGuid[]>,
     ]);
     const rozhlasCollectionIds: string[] = rawRozhlasCollection.map(({ guid }) => guid);
     const aktualneCollectionIds: string[] = rawAktualneCollection.map(({ guid }) => guid);
@@ -37,11 +41,11 @@ export const rssFeed = async () => {
     );
 
     if (onlyNewRozhlasRss.length !== 0) {
-      insertMany('rozhlasRssFeed', onlyNewRozhlasRss);
+      insertMultipleArticles('komentareRozhlasPlus', onlyNewRozhlasRss);
     }
 
     if (correctOnlyNewAktualneRss.length !== 0) {
-      insertMany('aktualneRssFeed', correctOnlyNewAktualneRss);
+      insertMultipleArticles('komentareAktualne', correctOnlyNewAktualneRss);
     }
 
     console.log(

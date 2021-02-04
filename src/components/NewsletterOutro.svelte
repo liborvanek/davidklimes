@@ -2,21 +2,12 @@
   import { fly } from 'svelte/transition';
   import { goto } from '@sapper/app';
 
-  import { showNewsletterIntro, email, alreadySubscribed } from '../stores';
+  import { showNewsletterIntro, email, isSubscribed } from '../stores';
   import Button from './Button.svelte';
 
   let jmeno: string | null = null;
   let prijmeni: string | null = null;
   let note: string | null = null;
-
-  const setCookieAndRedirect = () => {
-    document.cookie = 'alreadySubscribed=true';
-    alreadySubscribed.set(true);
-    email.set('');
-    showNewsletterIntro.set(false);
-
-    goto('/');
-  };
 
   const onSubmit = async () => {
     if ((jmeno || prijmeni || note) && $email) {
@@ -28,14 +19,13 @@
             'Content-Type': 'application/json',
           },
         }).then((body) => body.json());
-        setCookieAndRedirect();
-
         // TODO: proper error and success handling
       } catch (error) {
         console.log('error: ', error);
       }
-    } else {
-      setCookieAndRedirect();
+      isSubscribed.set(true);
+      showNewsletterIntro.set(false);
+      goto('/');
     }
   };
 </script>
@@ -79,10 +69,6 @@
       pokud vám to není proti srsti.
     </p>
 
-    <p class="mt-12 text-lg leading-relaxed">
-      Tady bude text o tom, že newsletter bude vždycky zdarma, ale zároveň jeho provoz je financován
-      z darů. Vysvětlení co to znamená a na co se peníze použijí.
-    </p>
     {#if jmeno || prijmeni || note}
       <Button classes="mt-16">Aktualizovat</Button>
     {:else}
