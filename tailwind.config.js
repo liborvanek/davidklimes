@@ -1,8 +1,9 @@
 const { tailwindExtractor } = require('tailwindcss/lib/lib/purgeUnusedStyles');
 const colors = require('tailwindcss/colors');
+const typography = require('@tailwindcss/typography');
 
 module.exports = {
-	// darkMode: "media",
+	// darkMode: 'media',
 	purge: {
 		content: [
 			'./src/**/*.html',
@@ -42,6 +43,7 @@ module.exports = {
 				},
 			},
 			fontSize: {
+				sm: ['0.9rem'],
 				'6xl': ['3.75rem', '1.2'],
 			},
 			listStyleType: {
@@ -93,5 +95,5 @@ module.exports = {
 			textColor: ['visited'],
 		},
 	},
-	plugins: [],
+	plugins: [typography],
 };

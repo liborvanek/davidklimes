@@ -77,9 +77,16 @@
 
   $: {
     searchResult = pages.findIndex(({ slug }) => slug === segment);
-    activeMenuItem = searchResult === -1 ? 0 : searchResult;
+    if (segment === undefined) {
+      activeMenuItem = 0;
+    } else if (searchResult !== -1) {
+      activeMenuItem = searchResult;
+    } else {
+      activeMenuItem = 0;
+    }
   }
   $: currentPage = pages[activeMenuItem];
+  $: hideStaticH1 = showNewsletterIntro || !activeMenuItem;
 </script>
 
 <style>
@@ -183,7 +190,7 @@
         menuId="menu"
         classes="z-30 relative fixed" />
       <div
-        class="moving-box absolute hidden lg:block bg-gray-100 transition-transform duration-500 rounded-sm"
+        class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-gray-800 transition-transform duration-500 rounded-sm"
         style="transform: translateX({hoveredMenuItem !== null
           ? pages[hoveredMenuItem].translate
           : pages[activeMenuItem].translate}rem) rotate(-1deg) scaleX({hoveredMenuItem !== null
@@ -217,10 +224,10 @@
         out:fade={{ duration: 300, easing: cubicInOut }}>
         {#if activeMenuItem === 0}
           <span
-            class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
+            class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
             >David</span
           ><span
-            class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000 ml-8"
+            class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50 ml-8"
             >Klimeš</span>
         {:else}
           {currentPage.name}

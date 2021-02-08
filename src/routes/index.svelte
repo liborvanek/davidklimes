@@ -17,7 +17,7 @@
     // It will run on client only
     latestArticlePromise = promiseMinDelay(
       fetch('/api/latest-article.json').then((body) => body.json()),
-      800,
+      1000,
     );
   });
 </script>
@@ -29,34 +29,34 @@
 {#if $showNewsletterIntro}
   <NewsletterOutro />
 {:else}
+  {#await latestArticlePromise then { title, link }}
+    <aside
+      in:clipRect={{ duration: 500, delay: 0 }}
+      class="absolute top-16 right-16 transform -rotate-1 bg-gray-50 dark:bg-gray-800 pt-10 pl-12 pr-12 pb-12 w-1/3">
+      <span class="uppercase text-xs text-gray-500">poslední komentář</span>
+      <h2 class="max-w-lg mt-2 mb-2">
+        <a
+          href={link}
+          class="inline-block text-lg font-bold text-gray-600 visited:text-gray-600 dark:text-gray-300 dark:visited:text-gray-300 hover:text-blue-800 dark:hover:text-blue-500 underline transition-colors"
+          >{title}</a>
+      </h2>
+    </aside>
+  {/await}
   <PageTransition outDuration={$showNewsletterIntro ? 300 : 0}>
-    {#await latestArticlePromise then { title, link }}
-      <aside
-        in:clipRect={{ duration: 500, delay: 0 }}
-        class="absolute top-16 right-16 transform -rotate-1 bg-gray-50 pt-10 pl-12 pr-12 pb-12 w-1/3">
-        <span class="uppercase text-xs text-gray-500">poslední komentář</span>
-        <h2 class="max-w-lg mt-2 mb-2">
-          <a
-            href={link}
-            class="inline-block text-lg font-bold text-gray-600 visited:text-gray-600 hover:text-blue-800 underline"
-            >{title}</a>
-        </h2>
-      </aside>
-    {/await}
-
     <section class="mt-8 ml-8 lg:mt-16 mb-16 ">
       <Newsletter />
     </section>
-    <hr class="h-1 w-2/3 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 border-transparent" />
+    <hr
+      class="h-1 w-2/3 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
     <section class="lg:w-2/3 mx-auto mt-10 mb-12 text-lg">
-      <blockquote class="mb-8 text-gray-500 text italic leading-relaxed">
+      <blockquote class="mb-8 text-gray-500 dark:text-gray-300 text italic leading-relaxed">
         „Davida Klimeše považuji za vzácný druh racionálního komentátora, který pečlivě pracuje se
         zdroji, má historickou paměť a píše tak, aby se podle toho dalo vládnout.“
         <footer class="inline-block">
           — <cite class="author not-italic font-bold">Tomáš Němeček</cite>
         </footer>
       </blockquote>
-      <blockquote class="mb-8 text-gray-500 text italic leading-relaxed">
+      <blockquote class="mb-8 text-gray-500 dark:text-gray-300 text italic leading-relaxed">
         „Doporučuju ke stabilnímu sledování – přijde mi, že jako jeden z mála začíná práci na
         komentářích spíš otázkou ‚co o tom vlastně víme’ než ‚co chci, aby si o tom lidi mysleli’.“
         <footer class="inline-block">

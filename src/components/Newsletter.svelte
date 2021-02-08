@@ -53,10 +53,10 @@
   };
 </script>
 
-<h2 class="text-2xl lg:text-3xl font-bold text-gray-700 max-w-md ">
+<h2 class="text-2xl lg:text-3xl font-bold text-gray-700 dark:text-gray-200 max-w-md ">
   newsletter o&nbsp;souvislostech v&nbsp;byznysu a&nbsp;politice
 </h2>
-<p class="mt-3 mb-8 lg:mb-12 text-gray-500">
+<p class="mt-3 mb-8 lg:mb-12 text-gray-500 dark:text-gray-200">
   každé pondělí <span class="text-blue-500">&bull;</span>&nbsp;jen to podstatné
   <span class="text-blue-500">&bull;</span>&nbsp;kdykoliv se můžete odhlásit
 </p>

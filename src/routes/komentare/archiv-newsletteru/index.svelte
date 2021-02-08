@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-  import PageTransition from '../../components/PageTransition.svelte';
-  import { formatDate } from '../../utils';
+  import PageTransition from '../../../components/PageTransition.svelte';
+  import { formatDate } from '../../../utils';
 
   interface NewsletterItem {
     date: string;
@@ -11,6 +11,13 @@
   export async function preload() {
     const res = await this.fetch('/api/newsletter-archive.json');
     const rawNewsletterArchive: NewsletterItem[] = await res.json();
+
+    rawNewsletterArchive.unshift({
+      subject: 'Rekonstrukce volebního dramatu u Ústavního soudu i miliarda z EBRD',
+      link:
+        '/komentare/archiv-newsletteru/54-rekonstrukce-volebniho-dramatu-u-ustavniho-soudu-i-miliarda-z-ebrd',
+      date: '2020-02-08',
+    });
 
     const newsletterArchive = rawNewsletterArchive.map((item) => ({
       ...item,
@@ -34,7 +41,7 @@
     {#each newsletterArchive as { link, subject, date }}
       <article class="">
         <h2 class="mb-2 text-base font-bold text-gray-700">
-          <a href={link} target="_blank" class="no-underline">{subject}</a>
+          <a href={link} class="no-underline">{subject}</a>
         </h2>
         <p class="mt-3 text-sm text-gray-500 flex items-center">
           {date}
