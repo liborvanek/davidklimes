@@ -17,29 +17,20 @@ export interface IArticle {
 
 export interface INewsletter {
   _id: string;
-  id: string;
-  subject: string;
-  settings: {
-    subject_line: string;
-  };
-  archive_url: string;
-  long_archive_url: string;
-  sent_at: string;
-  send_time: string;
+  id: number;
+  externalId: number;
+  title: string;
+  isoDate: string;
+  markup?: string;
+  archiveUrl: string;
+  originalData: object;
 }
 export interface IArticleWithType extends IArticle {
   type: ArticleType;
 }
 
 const defaultArticleFields = ['title', 'content', 'isoDate', 'link'];
-const defaultNewsletterFields = [
-  'subject',
-  'settings.subject_line',
-  'archive_url',
-  'long_archive_url',
-  'sent_at',
-  'send_time',
-];
+const defaultNewsletterFields = ['id', 'externalId', 'title', 'archiveUrl', 'isoDate', 'markup'];
 
 export async function getArticles(
   collectionName: string,
@@ -58,7 +49,19 @@ export async function getNewsletters(
         projection: fields,
       },
     )
+    .sort({ id: -1 })
     .toArray();
+}
+export async function getNewsletter(
+  fields: string[] = defaultNewsletterFields,
+  id: number,
+): Promise<INewsletter> {
+  return db.collection('newsletterArchive').findOne(
+    { id },
+    {
+      projection: fields,
+    },
+  );
 }
 
 export async function getArticlesInInterval(

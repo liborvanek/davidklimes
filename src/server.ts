@@ -46,11 +46,14 @@ db.once('open', () => {
     console.log(`> Ready on http://${PORT}`);
   };
 
-  // run rss sync every 10 minutes
+  // Run rss sync every 10 minutes
   cron.schedule('*/10 * * * *', () => {
     rssFeed();
   });
-  cron.schedule('*/10 * * * *', () => {
+
+  // Run at every 3rd minute past hour 6 and 7 on Monday.
+  // See https://crontab.guru/#*/3_6,7_*_*_MON
+  cron.schedule('*/3 6,7 * * 1', () => {
     newsletterFromEcomail();
   });
 

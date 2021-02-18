@@ -15,7 +15,7 @@ export async function post(req: Request, res: Response, next: () => void) {
   const { email }: BodyParams = req.body;
 
   if (req.body.email) {
-    const rawResult = await fetch(`${process.env.ECOMAIL_URL}/lists/1/subscribe`, {
+    const rawResult = await fetch(`${process.env.ECOMAIL_API_URL}/lists/1/subscribe`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

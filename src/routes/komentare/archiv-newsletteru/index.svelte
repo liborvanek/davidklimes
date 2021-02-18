@@ -3,25 +3,19 @@
   import { formatDate } from '../../../utils';
 
   interface NewsletterItem {
+    id: number;
+    title: string;
     date: string;
-    subject: string;
-    link: string;
+    archiveUrl?: string;
   }
 
   export async function preload() {
     const res = await this.fetch('/api/newsletter-archive.json');
-    const rawNewsletterArchive: NewsletterItem[] = await res.json();
+    const rawNewsletterArchive = await res.json();
 
-    rawNewsletterArchive.unshift({
-      subject: 'Rekonstrukce volebního dramatu u Ústavního soudu i miliarda z EBRD',
-      link:
-        '/komentare/archiv-newsletteru/54-rekonstrukce-volebniho-dramatu-u-ustavniho-soudu-i-miliarda-z-ebrd',
-      date: '2020-02-08',
-    });
-
-    const newsletterArchive = rawNewsletterArchive.map((item) => ({
+    const newsletterArchive: NewsletterItem[] = rawNewsletterArchive.map((item) => ({
       ...item,
-      date: formatDate(item.date),
+      date: formatDate(item.isoDate),
     }));
 
     return { newsletterArchive };
@@ -33,15 +27,15 @@
 </script>
 
 <svelte:head>
-  <title>Komentáře | David Klimeš</title>
+  <title>Achiv newsletterů | David Klimeš</title>
 </svelte:head>
 
 <PageTransition>
   <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-20 gap-y-8">
-    {#each newsletterArchive as { link, subject, date }}
+    {#each newsletterArchive as { archiveUrl, title, date, id }}
       <article class="">
         <h2 class="mb-2 text-base font-bold text-gray-700">
-          <a href={link} class="no-underline">{subject}</a>
+          <a href={archiveUrl ? archiveUrl : `/newsletter/${id}`} class="no-underline">{title}</a>
         </h2>
         <p class="mt-3 text-sm text-gray-500 flex items-center">
           {date}

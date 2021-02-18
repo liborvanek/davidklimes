@@ -13,7 +13,7 @@ export async function put(req: express.Request, res: express.Response, next: () 
   const { email, jmeno, prijmeni, note }: BodyParams = req.body;
 
   if (email && (jmeno || prijmeni || note)) {
-    const result = await fetch(`${process.env.ECOMAIL_URL}/lists/1/update-subscriber`, {
+    const result = await fetch(`${process.env.ECOMAIL_API_URL}/lists/1/update-subscriber`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
