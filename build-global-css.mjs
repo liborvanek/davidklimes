@@ -1,31 +1,33 @@
 import fs from 'fs';
 import postcss from 'postcss';
+import { customAlphabet } from 'nanoid';
 // eslint-disable-next-line import/extensions
 import postcssConfig from './postcss.config.js';
 
-const { readFile, unlink, writeFile } = fs.promises;
+const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
+const hash = nanoid();
+
+const { readFile, writeFile } = fs.promises;
 
 const main = async () => {
-	let sourcemap = process.argv[process.argv.length - 1];
-	if (sourcemap === 'true') sourcemap = true;
-	else if (sourcemap === 'false') sourcemap = false;
+	let isDev = process.argv[process.argv.length - 1];
+	if (isDev === 'true') isDev = true;
+	else if (isDev === 'false') isDev = false;
 
 	const pcss = await readFile('src/global.pcss');
+	const globalCssFilename = isDev ? 'global.css' : `global-${hash}.css`;
+	const globalCssPath = `__sapper__/${isDev ? 'dev' : 'build'}/client/${globalCssFilename}`;
+	const buildJsonPath = `__sapper__/${isDev ? 'dev' : 'build'}/build.json`;
 
-	const result = await postcss(postcssConfig.plugins).process(pcss, { from: 'src/global.pcss', to: 'static/global.css', map: sourcemap ? { inline: sourcemap === 'inline' } : false });
+	const result = await postcss(postcssConfig.plugins).process(pcss, { from: 'src/global.pcss', to: globalCssPath, map: isDev ? { inline: isDev === 'inline' } : false });
 
-	await writeFile('static/global.css', result.css);
+	await writeFile(globalCssPath, result.css);
 
-	if (result.map) await writeFile('static/global.css.map', result.map.toString());
-	else {
-		try {
-			await unlink('static/global.css.map');
-		} catch (err) {
-			if (err.code !== 'ENOENT') {
-				throw err;
-			}
-		}
-	}
+	// Manually add generated CSS to build.json – sapper will take care of injecting
+	// This is very dirty and will bite us when migrating to svelte-kit
+	const buildJson = JSON.parse(fs.readFileSync(buildJsonPath));
+	buildJson.css.main = [globalCssFilename, ...buildJson.css.main];
+	fs.writeFileSync(buildJsonPath, JSON.stringify(buildJson));
 };
 
 main();

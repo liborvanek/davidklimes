@@ -76,7 +76,40 @@ export default {
 			!dev && terser({
 				module: true,
 			}),
+		],
 
+		preserveEntrySignatures: false,
+		onwarn,
+	},
+
+	server: {
+		input: { server: config.server.input().server.replace(/\.js$/, '.ts') },
+		output: { ...config.server.output(), sourcemap },
+		plugins: [
+			replace({
+				'process.browser': false,
+				'process.env.NODE_ENV': JSON.stringify(mode),
+			}),
+			svelte({
+				compilerOptions: {
+					dev,
+					generate: 'ssr',
+				},
+				preprocess,
+			}),
+			resolve({
+				dedupe: ['svelte'],
+				preferBuiltins: false,
+			}),
+			commonjs({
+				sourceMap: !!sourcemap,
+			}),
+			typescript({
+				noEmitOnError: !dev,
+				sourceMap: !!sourcemap,
+			}),
+
+			// Build global CSS
 			(() => {
 				let builder;
 				let rebuildNeeded = false;
@@ -123,44 +156,11 @@ export default {
 				return {
 					name: 'build-global-css',
 					buildStart() {
-						buildGlobalCSS();
 						globalCSSWatchFiles.forEach((file) => this.addWatchFile(file));
 					},
 					generateBundle: buildGlobalCSS,
 				};
 			})(),
-		],
-
-		preserveEntrySignatures: false,
-		onwarn,
-	},
-
-	server: {
-		input: { server: config.server.input().server.replace(/\.js$/, '.ts') },
-		output: { ...config.server.output(), sourcemap },
-		plugins: [
-			replace({
-				'process.browser': false,
-				'process.env.NODE_ENV': JSON.stringify(mode),
-			}),
-			svelte({
-				compilerOptions: {
-					dev,
-					generate: 'ssr',
-				},
-				preprocess,
-			}),
-			resolve({
-				dedupe: ['svelte'],
-				preferBuiltins: false,
-			}),
-			commonjs({
-				sourceMap: !!sourcemap,
-			}),
-			typescript({
-				noEmitOnError: !dev,
-				sourceMap: !!sourcemap,
-			}),
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives')), // eslint-disable-line global-require
@@ -170,26 +170,26 @@ export default {
 		onwarn,
 	},
 
-	serviceworker: {
-		input: config.serviceworker.input().replace(/\.js$/, '.ts'),
-		output: { ...config.serviceworker.output(), sourcemap },
-		plugins: [
-			resolve(),
-			replace({
-				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode),
-			}),
-			commonjs({
-				sourceMap: !!sourcemap,
-			}),
-			typescript({
-				noEmitOnError: !dev,
-				sourceMap: !!sourcemap,
-			}),
-			!dev && terser(),
-		],
+	// serviceworker: {
+	// 	input: config.serviceworker.input().replace(/\.js$/, '.ts'),
+	// 	output: { ...config.serviceworker.output(), sourcemap },
+	// 	plugins: [
+	// 		resolve(),
+	// 		replace({
+	// 			'process.browser': true,
+	// 			'process.env.NODE_ENV': JSON.stringify(mode),
+	// 		}),
+	// 		commonjs({
+	// 			sourceMap: !!sourcemap,
+	// 		}),
+	// 		typescript({
+	// 			noEmitOnError: !dev,
+	// 			sourceMap: !!sourcemap,
+	// 		}),
+	// 		!dev && terser(),
+	// 	],
 
-		preserveEntrySignatures: false,
-		onwarn,
-	},
+	// 	preserveEntrySignatures: false,
+	// 	onwarn,
+	// },
 };
