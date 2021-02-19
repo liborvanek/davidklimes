@@ -209,7 +209,7 @@
               on:mouseover={() => handleMouseOver(i)}
               on:mouseout={handleMouseOut}
               on:click={() => (showMobileMenu = false)}
-              rel="prefetch">{name}</a>
+              sapper:prefetch>{name}</a>
           </li>
         {/each}
       </ul>
