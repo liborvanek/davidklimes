@@ -20,9 +20,6 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const preprocess = createPreprocessors({ sourceMap: !!sourcemap });
 
-// Changes in these files will trigger a rebuild of the global CSS
-const globalCSSWatchFiles = ['postcss.config.js', 'tailwind.config.js', 'src/global.pcss'];
-
 // Workaround for https://github.com/sveltejs/sapper/issues/1266
 const onwarn = (warning, _onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || console.warn(warning.toString());
 
@@ -72,7 +69,6 @@ export default {
 					}],
 				],
 			}),
-
 			!dev && terser({
 				module: true,
 			}),
@@ -155,10 +151,7 @@ export default {
 
 				return {
 					name: 'build-global-css',
-					buildStart() {
-						globalCSSWatchFiles.forEach((file) => this.addWatchFile(file));
-					},
-					generateBundle: buildGlobalCSS,
+					options: buildGlobalCSS,
 				};
 			})(),
 		],
