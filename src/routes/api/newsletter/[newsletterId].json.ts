@@ -7,8 +7,6 @@ export async function get(req: Request, res: Response, next: () => void) {
 
   const id = parseInt(newsletterId);
 
-  console.log(id);
-
   if (!id) {
     next();
   }

@@ -15,6 +15,8 @@
 
 <script>
   import PageTransition from '../../components/PageTransition.svelte';
+  import BackToTop from '../../components/BackToTop.svelte';
+
   export let article;
 </script>
 
@@ -23,7 +25,14 @@
     margin-left: auto;
     margin-right: 0;
   }
-  :global {
+  article a.back {
+    @apply inline-block mb-4 no-underline text-sm transform -rotate-1;
+  }
+  article a.back .arrow {
+    @apply inline-block transition-transform;
+  }
+  article a.back:hover .arrow {
+    @apply transform -translate-x-3;
   }
 </style>
 
@@ -33,6 +42,9 @@
 
 <PageTransition>
   <article class="prose">
+    <a class="back" href="/archiv-newsletteru"><span class="arrow">&larr;</span> zpět na archiv</a>
+    <h1>{article.title}</h1>
     {@html article.markup}
   </article>
+  <BackToTop elementSelector="a.back" />
 </PageTransition>

@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-  import PageTransition from '../../../components/PageTransition.svelte';
-  import { formatDate } from '../../../utils';
+  import { fly } from 'svelte/transition';
+  import { formatDate } from '../../utils';
 
   interface NewsletterItem {
     id: number;
@@ -30,17 +30,17 @@
   <title>Achiv newsletterů | David Klimeš</title>
 </svelte:head>
 
-<PageTransition>
-  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-20 gap-y-8">
-    {#each newsletterArchive as { archiveUrl, title, date, id }}
-      <article class="">
-        <h2 class="mb-2 text-base font-bold text-gray-700">
-          <a href={archiveUrl ? archiveUrl : `/newsletter/${id}`} class="no-underline">{title}</a>
-        </h2>
-        <p class="mt-3 text-sm text-gray-500 flex items-center">
-          {date}
-        </p>
-      </article>
-    {/each}
-  </div>
-</PageTransition>
+<div class="mx-auto -mt-8">
+  {#each newsletterArchive as { archiveUrl, title, date, id }, i}
+    <article
+      class="px-16 py-8 bg-gray-50 bg-gradient-to-r from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
+      in:fly={{ y: 20, delay: i * 100 }}>
+      <h2 class="max-w-xl mb-4 text-2xl leading-normal font-bold text-gray-700 ">
+        <a href={archiveUrl ? archiveUrl : `/newsletter/${id}`} class="">{title}</a>
+      </h2>
+      <p class="text-gray-500 ">
+        {date}
+      </p>
+    </article>
+  {/each}
+</div>

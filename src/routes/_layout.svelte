@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
-  // import { stores } from '@sapper/app';
+  import { stores } from '@sapper/app';
   import { fade } from 'svelte/transition';
   import { cubicInOut } from 'svelte/easing';
 
@@ -15,8 +15,8 @@
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
   // https://github.com/sveltejs/sapper/issues/824
 
-  // To see the loading status
-  // const { preloading } = stores();
+  const { page } = stores();
+  $: path = $page.path.replace('/', '').split('/');
 
   export let segment: string;
   let activeMenuItem = 0;
@@ -24,8 +24,9 @@
   let searchResult: number;
   let showMobileMenu = false;
   let isNarrowScreen = false;
+  let showBackToTop = false;
 
-  const pages = [
+  const menu = [
     {
       slug: '/',
       name: 'Úvod',
@@ -52,6 +53,16 @@
     },
   ];
 
+  const headings = {
+    komentare: 'Komentáře',
+    knihy: 'Knihy',
+    'o-mne': 'O mně',
+    'archiv-newsletteru': 'Archiv newsletterů',
+    newsletter: 'Newsletter DK',
+  };
+
+  const submenuPages = ['komentare', 'archiv-newsletteru', 'newsletter'];
+
   function handleMouseOver(linkNr: number) {
     hoveredMenuItem = linkNr;
   }
@@ -71,22 +82,27 @@
   // Attach media query listener on mount hook
   onMount(() => {
     const mediaListener = window.matchMedia('(max-width: 767px)');
-
     mediaListener.addListener(mediaQueryHandler);
   });
 
   $: {
-    searchResult = pages.findIndex(({ slug }) => slug === segment);
+    searchResult = menu.findIndex(({ slug }) => slug === segment);
     if (segment === undefined) {
       activeMenuItem = 0;
     } else if (searchResult !== -1) {
       activeMenuItem = searchResult;
     } else {
-      activeMenuItem = 0;
+      activeMenuItem = null;
     }
   }
-  $: currentPage = pages[activeMenuItem];
-  $: hideStaticH1 = showNewsletterIntro || !activeMenuItem;
+  $: currentPage = activeMenuItem !== null ? menu[activeMenuItem] : null;
+  $: hideStaticH1 = $showNewsletterIntro;
+  $: isHomePage = path.length === 1 && path[0] === '';
+  $: headingIsSpan = path[0] === 'newsletter';
+
+  const activeClass =
+    'text-blue-1000 visited:text-blue-1000 bg-gray-100 transition-colors duration-500 rounded-sm';
+  const inactiveClass = 'text-gray-500 visited:text-gray-500 hover:text-blue-700';
 </script>
 
 <style>
@@ -170,9 +186,9 @@
 </style>
 
 <div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">
-  <header class="py-4 md:py-8 flex justify-between items-center">
+  <header class="site-header py-4 md:py-8 flex justify-between items-center">
     <div
-      class="transform {activeMenuItem
+      class="transform {!isHomePage
         ? 'md:scale-75'
         : 'md:scale-100'} transition-transform duration-150">
       <a href="/">
@@ -183,25 +199,27 @@
         </picture>
       </a>
     </div>
-    <nav class="lg:relative text-2xl text-right font-bold" role="navigation">
+    <nav class="main-nav lg:relative text-2xl text-right font-bold" role="navigation">
       <MenuIcon
         isOpen={showMobileMenu}
         on:menuClick={handleMobileIconClick}
         menuId="menu"
         classes="z-30 relative fixed" />
-      <div
-        class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-gray-800 transition-transform duration-500 rounded-sm"
-        style="transform: translateX({hoveredMenuItem !== null
-          ? pages[hoveredMenuItem].translate
-          : pages[activeMenuItem].translate}rem) rotate(-1deg) scaleX({hoveredMenuItem !== null
-          ? pages[hoveredMenuItem].scale
-          : pages[activeMenuItem].scale});" />
+      {#if currentPage}
+        <div
+          class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-gray-800 transition-transform duration-500 rounded-sm"
+          style="transform: translateX({hoveredMenuItem !== null
+            ? menu[hoveredMenuItem].translate
+            : menu[activeMenuItem].translate}rem) rotate(-1deg) scaleX({hoveredMenuItem !== null
+            ? menu[hoveredMenuItem].scale
+            : menu[activeMenuItem].scale});" />
+      {/if}
       <ul
         id="menu"
         class="{showMobileMenu
           ? 'opacity-100 showMobileMenu transition-opacity duration-300'
           : 'invisible lg:visible opacity-0 lg:opacity-100'} absolute left-0 top-0 w-full h-screen lg:w-auto lg:h-auto lg:relative lg:flex flex-col lg:flex-row pt-12 lg:pt-0 bg-blue-500 bg-opacity-97 lg:bg-transparent z-20 lowercase">
-        {#each pages as { slug, name }, i}
+        {#each menu as { slug, name }, i}
           <li class="transition-transform duration-500 origin-bottom-left text-center py-2 lg:py-0">
             <a
               href={slug}
@@ -216,25 +234,64 @@
     </nav>
   </header>
   <main aria-live="polite" class="mt-4 relative">
-    {#if !$showNewsletterIntro}
-      <h1
-        class="mb-4 origin-bottom-left transform -rotate-1 inline-block {activeMenuItem === 0
-          ? 'text-6xl md:text-8xl leading-none'
-          : 'text-4xl md:text-6xl leading-normal'}  font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000"
-        out:fade={{ duration: 300, easing: cubicInOut }}>
-        {#if activeMenuItem === 0}
+    <div out:fade={{ duration: 300, easing: cubicInOut }}>
+      {#if !hideStaticH1}
+        {#if isHomePage}
+          <h1
+            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-6xl md:text-8xl leading-none font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
+            <span
+              class="relative reveal-text first block bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
+              >David</span
+            ><span
+              class="relative reveal-text second block bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50 ml-8"
+              >Klimeš</span>
+          </h1>
+        {:else if headingIsSpan}
           <span
-            class="relative reveal-text first block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
-            >David</span
-          ><span
-            class="relative reveal-text second block bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50 ml-8"
-            >Klimeš</span>
+            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-normal font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-300">
+            {headings[path[0]]}
+          </span>
         {:else}
-          {currentPage.name}
+          <h1
+            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-normal font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
+            {headings[path[0]]}
+          </h1>
         {/if}
-      </h1>
+      {/if}
+    </div>
+    {#if submenuPages.includes(path[0])}
+      <section class="mt-6 lg:mt-24 lg:flex">
+        <aside class="lg:w-2/7 pr-8">
+          <ul class="sm:flex lg:block text-xl font-normal lg:space-y-4 lg:text-right">
+            <li>
+              <a
+                href="/komentare"
+                sapper:prefetch
+                class="{path[0] === 'komentare'
+                  ? activeClass
+                  : inactiveClass} inline-block transform -rotate-1 px-4 py-1 font-bold no-underline"
+                >komentáře v médiích</a>
+            </li>
+            <li>
+              <a
+                href="/archiv-newsletteru"
+                sapper:prefetch
+                class="{path[0] === 'archiv-newsletteru'
+                  ? activeClass
+                  : inactiveClass} inline-block transform -rotate-1 px-4 py-1 font-bold no-underline"
+                >archiv newsletterů</a>
+            </li>
+          </ul>
+        </aside>
+        <div class="lg:w-5/7 lg:pl-8 space-y-8 mt-8 lg:mt-0">
+          <slot />
+        </div>
+      </section>
+    {:else}
+      <slot />
     {/if}
-
-    <slot />
   </main>
+  <hr
+    class="mt-32 h-1 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
+  <footer>footer</footer>
 </div>

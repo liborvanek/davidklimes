@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
-  import PageTransition from '../../components/PageTransition.svelte';
+  import { fly } from 'svelte/transition';
+
   import { formatDate } from '../../utils';
   import type { IArticleWithType } from '../../server/dbApi';
 
@@ -24,28 +25,25 @@
   <title>Komentáře | David Klimeš</title>
 </svelte:head>
 
-<PageTransition>
-  <div class="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-8">
-    {#each articles as { link, title, content, date, type }}
-      <article class="">
-        <h2 class="max-w-lg mb-2 text-xl font-bold text-gray-700">
-          <a href={link} target="_blank">{title}</a>
-        </h2>
-        <p class="max-w-2xl">
-          {content}
-        </p>
-        <p class="mt-3 text-sm text-gray-500 flex items-center">
-          {date},
-          {#if type === 'komentarRozhlasPlus'}
-            <img
-              src="/cesky-rozhlas-plus.svg"
-              class="svg ml-2 inline w-4"
-              alt="Český rozhlas Plus" />
-          {:else}
-            <img src="/aktualne.svg" class="svg ml-2 inline w-6" alt="Aktuálně.cz" />
-          {/if}
-        </p>
-      </article>
-    {/each}
-  </div>
-</PageTransition>
+<div class="-mt-4 grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-12">
+  {#each articles as { link, title, content, date, type }, i}
+    <article
+      class="px-8 py-4 bg-gray-50 bg-gradient-to-br from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
+      in:fly={{ x: 20, delay: i * 100 }}>
+      <h2 class="pr-16 mb-4 text-xl font-bold text-gray-700">
+        <a href={link} target="_blank">{title}</a>
+      </h2>
+      <p class="max-w-2xl text-sm">
+        {content}
+      </p>
+      <p class="mt-3 text-sm text-gray-500 flex items-center">
+        <span class="font-bold text-gray-600">{date}</span>,
+        {#if type === 'komentarRozhlasPlus'}
+          <img src="/cesky-rozhlas-plus.svg" class="svg ml-2 inline w-4" alt="Český rozhlas Plus" />
+        {:else}
+          <img src="/aktualne.svg" class="svg ml-2 inline w-6" alt="Aktuálně.cz" />
+        {/if}
+      </p>
+    </article>
+  {/each}
+</div>

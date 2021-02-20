@@ -89,5 +89,5 @@
 {/if}
 
 <p class="mt-4 ml-6 text-sm">
-  <a href="/komentare/archiv-newsletteru">archiv všech čísel</a>
+  <a href="/archiv-newsletteru" sapper:prefetch>archiv všech čísel</a>
 </p>

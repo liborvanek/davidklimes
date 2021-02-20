@@ -46,23 +46,5 @@
     <section class="mt-8 ml-8 lg:mt-16 mb-16 ">
       <Newsletter />
     </section>
-    <hr
-      class="h-1 w-2/3 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
-    <section class="lg:w-2/3 mx-auto mt-10 mb-12 text-lg">
-      <blockquote class="mb-8 text-gray-500 dark:text-gray-300 text italic leading-relaxed">
-        „Davida Klimeše považuji za vzácný druh racionálního komentátora, který pečlivě pracuje se
-        zdroji, má historickou paměť a píše tak, aby se podle toho dalo vládnout.“
-        <footer class="inline-block">
-          — <cite class="author not-italic font-bold">Tomáš Němeček</cite>
-        </footer>
-      </blockquote>
-      <blockquote class="mb-8 text-gray-500 dark:text-gray-300 text italic leading-relaxed">
-        „Doporučuju ke stabilnímu sledování – přijde mi, že jako jeden z mála začíná práci na
-        komentářích spíš otázkou ‚co o tom vlastně víme’ než ‚co chci, aby si o tom lidi mysleli’.“
-        <footer class="inline-block">
-          — <cite class="author not-italic font-bold">Michal Kašpárek</cite>
-        </footer>
-      </blockquote>
-    </section>
   </PageTransition>
 {/if}
