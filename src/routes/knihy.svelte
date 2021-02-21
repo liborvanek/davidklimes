@@ -9,7 +9,7 @@
       description:
         'Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci přirovnává k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot, který nedokáže řešit některé nejnaléhavější úkoly.',
       image: 'cesko-vs-budoucnost',
-      link: 'https://www.cz',
+      link: 'https://www.ivysehrad.cz/tituly/64694486/cesko-versus-budoucnost/',
       publisher: 'Vyšehrad',
       year: 2020,
     },
@@ -19,7 +19,7 @@
       description:
         'Česká společnost zažívá od roku 1989 nejúspěšnější a nejsvobodnější období své historie. Ale dosavadní sociální a ekonomický model nevyhnutelně krachuje. Mylně si namlouváme, že za vše mohou neschopní politici a snažíme se je nahradit novými a neokoukanými. Ale za politickými krizemi číhá čím dál jasnější úpadek dosavadního polistopadového konsenzu. Jak ale probudit Česko, aby přestalo jen přešlapovat na místě a vykročilo k dalšímu čtvrtstoletí prosperity a úspěchů?',
       image: 'jak-probudit-cesko',
-      link: 'https://www.cz',
+      link: 'http://www.albatrosmedia.cz/tituly/38978104/jak-probudit-cesko/',
       publisher: 'BizBooks',
       year: 2017,
     },
@@ -29,7 +29,7 @@
       description:
         'Publikace shrnuje teoretické uvažování o pronikání zábavy do zpravodajství a předkládá odpovídající koncept infotainmentu (infozábavy), skrze který je užitečné jednotlivé infozábavní jevy analyzovat. Přináší také nový pohled na to, jak k šíření infozábavy do médií přistupovat. ',
       image: 'jak-zabavne-je-informovat',
-      link: 'https://www.cz',
+      link: 'http://www.cupress.cuni.cz/ink2_ext/index.jsp?include=podrobnosti&id=257866',
       publisher: 'Karolinum',
       year: 2015,
     },
@@ -38,7 +38,7 @@
       description:
         'Šimon Pánek je výrazná osobnost veřejného života a humanitární manažer. Knižní rozhovor představuje obě roviny jeho celoživotní práce a od konkrétních životních situací se dostává k obecnějším, nadčasovým problémům.',
       image: 'aby-dobro-neskodilo',
-      link: 'https://www.cz',
+      link: 'http://obchod.portal.cz/panek-simon--aby-dobro-neskodilo/',
       publisher: 'Portál',
       year: 2015,
     },
@@ -104,18 +104,18 @@
         <figcaption class="mt-8 space-y-1 sm:text-center text-gray-500 text-sm">
           <p>
             <span class="text-xs">Nakladatel:</span>
-            <a href="" class="font-bold">{publisher}</a>
+            <span class="text-gray-600 font-bold">{publisher}</span>
           </p>
           <p>
             <span class="text-xs">Datum vydání:</span>
-            <span href="" class="text-gray-600 font-bold">{year}</span>
+            <span class="text-gray-600 font-bold">{year}</span>
           </p>
         </figcaption>
       </figure>
       <p class="info sm:mt-8 text-sm leading-7">
         {description}
       </p>
-      <div class="info mt-8"><LinkButton>Koupit</LinkButton></div>
+      <div class="info mt-8"><LinkButton href={link}>Koupit</LinkButton></div>
     </article>
   {/each}
 </PageTransition>

@@ -41,7 +41,7 @@
 </svelte:head>
 
 <PageTransition>
-  <article class="prose">
+  <article class="prose mt-0 lg:-mt-14">
     <a class="back" href="/archiv-newsletteru"><span class="arrow">&larr;</span> zpět na archiv</a>
     <h1>{article.title}</h1>
     {@html article.markup}

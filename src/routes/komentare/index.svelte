@@ -3,6 +3,7 @@
 
   import { formatDate } from '../../utils';
   import type { IArticleWithType } from '../../server/dbApi';
+  import Link from '../../components/Link.svelte';
 
   interface IArticleWithDate extends IArticleWithType {
     date: string;
@@ -25,13 +26,15 @@
   <title>Komentáře | David Klimeš</title>
 </svelte:head>
 
-<div class="-mt-4 grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-12">
+<div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-8 lg:gap-y-8">
   {#each articles as { link, title, content, date, type }, i}
     <article
-      class="px-8 py-4 bg-gray-50 bg-gradient-to-br from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
-      in:fly={{ x: 20, delay: i * 100 }}>
-      <h2 class="pr-16 mb-4 text-xl font-bold text-gray-700">
-        <a href={link} target="_blank">{title}</a>
+      class="-ml-4 -mr-4 md:mx-0 p-4 md:px-12 md:py-10 bg-gray-50 {i % 2
+        ? 'bg-gradient-to-br'
+        : 'bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
+      in:fly={{ x: 20, delay: i < 4 ? i * 100 : 400 }}>
+      <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
+        <Link href={link} target="_blank" class="dotted">{title}</Link>
       </h2>
       <p class="max-w-2xl text-sm">
         {content}

@@ -5,10 +5,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { stores } from '@sapper/app';
-  import { fade } from 'svelte/transition';
-  import { cubicInOut } from 'svelte/easing';
+  import { fade, fly } from 'svelte/transition';
+  import { cubicInOut, backInOut } from 'svelte/easing';
 
   import MenuIcon from '../components/MenuIcon.svelte';
+  import Link from '../components/Link.svelte';
+  import { trapFocus } from '../trapFocus';
   import { showNewsletterIntro } from '../stores';
 
   // You may not want to use `segment`, but it is passed for the time being and will
@@ -185,26 +187,28 @@
   }
 </style>
 
+<svelte:head>
+  {#if showMobileMenu}<style>
+      body {
+        overflow: hidden;
+      }
+    </style>{/if}
+</svelte:head>
 <div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">
   <header class="site-header py-4 md:py-8 flex justify-between items-center">
     <div
       class="transform {!isHomePage
         ? 'md:scale-75'
         : 'md:scale-100'} transition-transform duration-150">
-      <a href="/">
+      <Link href="/" tabindex="-1" aria-hidden="true">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
           <source srcset="lion.png" type="image/png" />
           <img src="lion.png" alt="Logo" class="w-14 md:w-24" aria-label="Na úvod" />
         </picture>
-      </a>
+      </Link>
     </div>
     <nav class="main-nav lg:relative text-2xl text-right font-bold" role="navigation">
-      <MenuIcon
-        isOpen={showMobileMenu}
-        on:menuClick={handleMobileIconClick}
-        menuId="menu"
-        classes="z-30 relative fixed" />
       {#if currentPage}
         <div
           class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-gray-800 transition-transform duration-500 rounded-sm"
@@ -214,13 +218,11 @@
             ? menu[hoveredMenuItem].scale
             : menu[activeMenuItem].scale});" />
       {/if}
-      <ul
-        id="menu"
-        class="{showMobileMenu
-          ? 'opacity-100 showMobileMenu transition-opacity duration-300'
-          : 'invisible lg:visible opacity-0 lg:opacity-100'} absolute left-0 top-0 w-full h-screen lg:w-auto lg:h-auto lg:relative lg:flex flex-col lg:flex-row pt-12 lg:pt-0 bg-blue-500 bg-opacity-97 lg:bg-transparent z-20 lowercase">
+      <!-- Main menu -->
+      <ul id="menu" class="hidden lg:flex justify-center lg:flex-row lowercase">
         {#each menu as { slug, name }, i}
-          <li class="transition-transform duration-500 origin-bottom-left text-center py-2 lg:py-0">
+          <li
+            class="transition-transform transform -rotate-1 duration-500 origin-bottom-left text-center py-2 lg:py-0">
             <a
               href={slug}
               class="menu-link px-8 transition-colors {i === activeMenuItem ? 'active' : ''}"
@@ -231,6 +233,35 @@
           </li>
         {/each}
       </ul>
+      <!-- Mobile menu -->
+      <MenuIcon
+        isOpen={showMobileMenu}
+        on:menuClick={handleMobileIconClick}
+        menuId="menu-mobile"
+        classes="z-30 relative fixed" />
+      {#if showMobileMenu}
+        <ul
+          id="menu-mobile"
+          class="lg:hidden absolute left-0 top-0 w-full h-screen flex flex-col justify-center bg-brown-400 bg-opacity-97 z-20 lowercase"
+          aria-live="assertive"
+          use:trapFocus
+          in:fly={{ y: -300, duration: 150 }}>
+          {#each menu as { slug, name }, i}
+            <li
+              class:showMobileMenu
+              class="text-center py-2 lg:py-0"
+              in:fly={{ y: -15, delay: i * 60, easing: backInOut, duration: 350 }}>
+              <a
+                href={slug}
+                class="menu-link px-8 {i === activeMenuItem ? 'active' : ''}"
+                on:mouseover={() => handleMouseOver(i)}
+                on:mouseout={handleMouseOut}
+                on:click={() => (showMobileMenu = false)}
+                sapper:prefetch>{name}</a>
+            </li>
+          {/each}
+        </ul>
+      {/if}
     </nav>
   </header>
   <main aria-live="polite" class="mt-4 relative">
@@ -248,42 +279,40 @@
           </h1>
         {:else if headingIsSpan}
           <span
-            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-normal font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-300">
+            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-300">
             {headings[path[0]]}
           </span>
         {:else}
           <h1
-            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-normal font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
+            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
             {headings[path[0]]}
           </h1>
         {/if}
       {/if}
     </div>
     {#if submenuPages.includes(path[0])}
-      <section class="mt-6 lg:mt-24 lg:flex">
-        <aside class="lg:w-2/7 pr-8">
-          <ul class="sm:flex lg:block text-xl font-normal lg:space-y-4 lg:text-right">
+      <section class="mt-6 xl:mt-24 xl:flex">
+        <aside class="xl:w-2/7 mb-8 pr-8">
+          <ul class="sm:flex xl:block text-xl xl:space-y-4 xl:text-right">
             <li>
-              <a
+              <Link
                 href="/komentare"
-                sapper:prefetch
                 class="{path[0] === 'komentare'
                   ? activeClass
-                  : inactiveClass} inline-block transform -rotate-1 px-4 py-1 font-bold no-underline"
-                >komentáře v médiích</a>
+                  : inactiveClass} inline-block transform xl:-rotate-1 px-4 py-1 text-sm lg:text-xl font-bold no-underline"
+                >komentáře v médiích</Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/archiv-newsletteru"
-                sapper:prefetch
                 class="{path[0] === 'archiv-newsletteru'
                   ? activeClass
-                  : inactiveClass} inline-block transform -rotate-1 px-4 py-1 font-bold no-underline"
-                >archiv newsletterů</a>
+                  : inactiveClass} inline-block transform xl:-rotate-1 px-4 py-1 text-sm lg:text-xl font-bold no-underline"
+                >archiv newsletterů</Link>
             </li>
           </ul>
         </aside>
-        <div class="lg:w-5/7 lg:pl-8 space-y-8 mt-8 lg:mt-0">
+        <div class="xl:w-5/7 xl:pl-8 space-y-8 mt-8 xl:mt-0">
           <slot />
         </div>
       </section>
@@ -293,5 +322,5 @@
   </main>
   <hr
     class="mt-32 h-1 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
-  <footer>footer</footer>
+  <footer>&nbsp;</footer>
 </div>

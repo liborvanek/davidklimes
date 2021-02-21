@@ -4,6 +4,8 @@
 
   import { showNewsletterIntro, email as emailStore, isSubscribed } from '../stores';
   import Button from './Button.svelte';
+  import Link from './Link.svelte';
+
   import type { SubscribeSuccessResult } from '../routes/api/newsletter/subscribe';
 
   let formState = {
@@ -89,5 +91,5 @@
 {/if}
 
 <p class="mt-4 ml-6 text-sm">
-  <a href="/archiv-newsletteru" sapper:prefetch>archiv všech čísel</a>
+  <Link href="/archiv-newsletteru">archiv všech čísel</Link>
 </p>

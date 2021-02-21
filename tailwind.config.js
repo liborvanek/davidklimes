@@ -44,7 +44,7 @@ module.exports = {
 			},
 			fontSize: {
 				sm: ['0.9rem'],
-				'6xl': ['3.75rem', '1.2'],
+				'6xl': ['3.75rem'],
 			},
 			listStyleType: {
 				square: 'square',

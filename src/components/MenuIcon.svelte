@@ -40,8 +40,9 @@
   class:isOpen
   on:click={() => dispatch('menuClick')}
   aria-expanded={isOpen}
-  aria-controls={menuId}>
-  <span class="sr-only">Menu</span>
+  aria-controls={menuId}
+  id="{menuId}-button">
+  <span class="sr-only">{!isOpen ? 'Hlavní menu' : 'Zavřít menu'}</span>
   <svg class="menu-icon" width="32" height="26">
     <line class="top" x1="2" y1="2" x2="30" y2="2" stroke-linecap="round" />
     <line class="middle" x1="2" y1="12" x2="22" y2="12" stroke-linecap="round" />
