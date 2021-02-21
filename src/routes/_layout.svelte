@@ -200,13 +200,13 @@
       class="transform {!isHomePage
         ? 'md:scale-75'
         : 'md:scale-100'} transition-transform duration-150">
-      <a href="/" tabindex="-1" aria-hidden="true">
+      <Link href="/" tabindex="-1" aria-hidden="true" class="focus:outline-none">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
           <source srcset="lion.png" type="image/png" />
           <img src="lion.png" alt="Logo" class="w-14 md:w-24" aria-label="Na úvod" />
         </picture>
-      </a>
+      </Link>
     </div>
     <nav class="main-nav lg:relative text-2xl text-right font-bold" role="navigation">
       {#if currentPage}
