@@ -26,6 +26,9 @@ export async function parseEcomailHtmlEmail(ecomailCampaignId: number) {
       .closest('tr')
       .remove();
 
+    // Remove H1
+    $.root().find('h1').remove();
+
     // Remove all HTML comments and style tags
     $.root()
       .find('*')
