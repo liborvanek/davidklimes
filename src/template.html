@@ -6,7 +6,6 @@
 
     %sapper.base%
 
-    <link rel="stylesheet" href="https://use.typekit.net/bts6ujl.css" />
     <link rel="stylesheet" href="client/global.css" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#3F83F8" />
@@ -22,6 +21,59 @@
     <!-- This contains the contents of the <svelte:head> component, if
 		the current page has one -->
     %sapper.head%
+    <style>
+      @font-face {
+        font-family: 'usual';
+        src: url('https://use.typekit.net/af/ed550a/00000000000000007735a69c/30/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n4&v=3')
+            format('woff2'),
+          url('https://use.typekit.net/af/ed550a/00000000000000007735a69c/30/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n4&v=3')
+            format('woff'),
+          url('https://use.typekit.net/af/ed550a/00000000000000007735a69c/30/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n4&v=3')
+            format('opentype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: 'usual';
+        src: url('https://use.typekit.net/af/d09de2/00000000000000007735a69f/30/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i4&v=3')
+            format('woff2'),
+          url('https://use.typekit.net/af/d09de2/00000000000000007735a69f/30/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i4&v=3')
+            format('woff'),
+          url('https://use.typekit.net/af/d09de2/00000000000000007735a69f/30/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=i4&v=3')
+            format('opentype');
+        font-display: swap;
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: 'usual';
+        src: url('https://use.typekit.net/af/4619ac/00000000000000007735a6ac/30/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n8&v=3')
+            format('woff2'),
+          url('https://use.typekit.net/af/4619ac/00000000000000007735a6ac/30/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n8&v=3')
+            format('woff'),
+          url('https://use.typekit.net/af/4619ac/00000000000000007735a6ac/30/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n8&v=3')
+            format('opentype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: 800;
+      }
+
+      @font-face {
+        font-family: 'usual';
+        src: url('https://use.typekit.net/af/a851eb/00000000000000007735a6b4/30/l?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n7&v=3')
+            format('woff2'),
+          url('https://use.typekit.net/af/a851eb/00000000000000007735a6b4/30/d?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n7&v=3')
+            format('woff'),
+          url('https://use.typekit.net/af/a851eb/00000000000000007735a6b4/30/a?primer=9534f20d24153432f138f14be19fe00ed05018076afc824dd1a6f6ca76bae7c7&fvd=n7&v=3')
+            format('opentype');
+        font-display: swap;
+        font-style: normal;
+        font-weight: 700;
+      }
+    </style>
   </head>
 
   <body>
