@@ -21,5 +21,7 @@
   "start_url": "/",
   "display": "minimal-ui",
   "background_color": "#FFFFFF",
-  "theme_color": "#4f46e5"
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "categories": ["journalism", "education"]
 }

@@ -8,8 +8,10 @@
   import { fade, fly } from 'svelte/transition';
   import { cubicInOut, backInOut } from 'svelte/easing';
 
+  import DetectOffline from '../components/DetectOffline.svelte';
   import MenuIcon from '../components/MenuIcon.svelte';
   import Link from '../components/Link.svelte';
+  import { menu, headings, submenuPages } from '../pageData';
   import { trapFocus } from '../trapFocus';
   import { showNewsletterIntro } from '../stores';
 
@@ -27,43 +29,6 @@
   let showMobileMenu = false;
   let isNarrowScreen = false;
   let showBackToTop = false;
-
-  const menu = [
-    {
-      slug: '/',
-      name: 'Úvod',
-      scale: '1',
-      translate: 0,
-    },
-    {
-      slug: 'komentare',
-      name: 'Komentáře',
-      scale: '1.7',
-      translate: 9.8,
-    },
-    {
-      slug: 'knihy',
-      name: 'Knihy',
-      scale: '1.05',
-      translate: 19.8,
-    },
-    {
-      slug: 'o-mne',
-      name: 'O mně',
-      scale: '1.1',
-      translate: 28.2,
-    },
-  ];
-
-  const headings = {
-    komentare: 'Komentáře',
-    knihy: 'Knihy',
-    'o-mne': 'O mně',
-    'archiv-newsletteru': 'Archiv newsletterů',
-    newsletter: 'Newsletter DK',
-  };
-
-  const submenuPages = ['komentare', 'archiv-newsletteru', 'newsletter'];
 
   function handleMouseOver(linkNr: number) {
     hoveredMenuItem = linkNr;
@@ -194,19 +159,27 @@
       }
     </style>{/if}
 </svelte:head>
+
+<DetectOffline />
 <div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">
-  <header class="site-header py-4 md:py-8 flex justify-between items-center">
+  <header class="site-header py-4 md:py-6 flex justify-between items-center">
     <div
       class="transform {!isHomePage
         ? 'md:scale-75'
         : 'md:scale-100'} transition-transform duration-150">
-      <Link href="/" tabindex="-1" aria-hidden="true" class="focus:outline-none">
+      <a href="/" tabindex="-1" aria-hidden="true" class="focus:outline-none">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
           <source srcset="lion.png" type="image/png" />
-          <img src="lion.png" alt="Logo" class="w-14 md:w-24" aria-label="Na úvod" />
+          <img
+            src="lion.png"
+            alt="Logo"
+            class="w-14 md:w-24"
+            aria-label="Na úvod"
+            width="120"
+            height="120" />
         </picture>
-      </Link>
+      </a>
     </div>
     <nav class="main-nav lg:relative text-2xl text-right font-bold" role="navigation">
       {#if currentPage}
@@ -264,12 +237,12 @@
       {/if}
     </nav>
   </header>
-  <main aria-live="polite" class="mt-4 relative">
+  <main aria-live="polite" class="relative">
     <div out:fade={{ duration: 300, easing: cubicInOut }}>
-      {#if !hideStaticH1}
+      {#if !hideStaticH1 && (headings[path[0]] || isHomePage)}
         {#if isHomePage}
           <h1
-            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-6xl md:text-8xl leading-none font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
+            class="mt-4 lg:mt-8 mb-2 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl md:text-8xl leading-none font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
             <span
               class="relative reveal-text first block bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
               >David</span
@@ -279,12 +252,12 @@
           </h1>
         {:else if headingIsSpan}
           <span
-            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-300">
+            class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-300">
             {headings[path[0]]}
           </span>
         {:else}
           <h1
-            class="mb-4 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
+            class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
             {headings[path[0]]}
           </h1>
         {/if}
