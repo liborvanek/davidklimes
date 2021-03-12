@@ -6,6 +6,7 @@
     "eslint:fix": "eslint --fix ./*.js ./src/*.js ./src/routes/**/*.svelte ./src/components/**/*.svelte",
     "dev": "sapper dev",
     "build": "cross-env NODE_ENV=production PORT=4001 sapper build --legacy",
+    "build:modern": "cross-env NODE_ENV=production PORT=4001 sapper build",
     "prod": "npm run build",
     "export": "cross-env NODE_ENV=production sapper export --legacy",
     "start": "node __sapper__/build",

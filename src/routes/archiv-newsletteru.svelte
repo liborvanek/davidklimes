@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
   import { fly } from 'svelte/transition';
 
-  import { formatDate } from '../../utils';
-  import Link from '../../components/Link.svelte';
+  import { formatDate } from '../utils';
+  import Link from '../components/Link.svelte';
 
   interface NewsletterItem {
     id: number;

@@ -2,9 +2,9 @@
   // Originally from https://github.com/metonym/svelte-link
   export let href = 'javascript:void(0);';
   export let disabled = false;
-  export let outbound: boolean;
-  export let target: string;
-  export let rel: string;
+  export let outbound: boolean = undefined;
+  export let target: string = undefined;
+  export let rel: string = undefined;
 
   $: if (typeof window !== 'undefined') {
     const isExternal =

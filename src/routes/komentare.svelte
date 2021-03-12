@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
   import { fly } from 'svelte/transition';
 
-  import { formatDate } from '../../utils';
-  import type { IArticleWithType } from '../../server/dbApi';
-  import Link from '../../components/Link.svelte';
+  import { formatDate } from '../utils';
+  import type { IArticleWithType } from '../server/dbApi';
+  import Link from '../components/Link.svelte';
 
   interface IArticleWithDate extends IArticleWithType {
     date: string;
