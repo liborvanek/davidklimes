@@ -31,7 +31,7 @@
 </script>
 
 <div
-  class="max-w-screen-lg mx-auto p-16 bg-gray-50 rounded shadow-2xl font-light"
+  class="max-w-screen-lg mx-auto p-16 bg-gray-50 rounded shadow-2xl"
   in:fly={{ y: 100, duration: 750, delay: 300 }}>
   <p class="mt-6 text-2xl text-gray-700 leading-normal font-bold">
     Moc mě těší, že máte zájem o můj newsletter.<br />Píšu v&nbsp;něm o událostech v politice a
