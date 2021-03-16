@@ -1,16 +1,15 @@
 <script context="module" lang="ts">
-  import { fly } from 'svelte/transition';
-
   import { formatDate } from '../utils';
   import type { IArticleWithType } from '../server/dbApi';
-  import Link from '../components/Link.svelte';
 
   interface IArticleWithDate extends IArticleWithType {
     date: string;
   }
 
+  const apiRoute = '/api/articles';
+
   export async function preload() {
-    const res = await this.fetch('/api/articles.json');
+    const res = await this.fetch(apiRoute);
     const rawArticles: IArticleWithType[] = await res.json();
 
     const articles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
@@ -19,7 +18,47 @@
 </script>
 
 <script lang="ts">
+  import { fly } from 'svelte/transition';
+
+  import Button from '../components/Button.svelte';
+  import Link from '../components/Link.svelte';
+  import ErrorMessage from '../components/ErrorMessage.svelte';
+  import { bindSingles } from '../utils';
+
   export let articles: IArticleWithDate[];
+  const articlesPerPage = 12;
+  let pageToLoad = 1;
+  let loadingMore = false;
+  let loadingError: string;
+
+  async function getMoreArticles() {
+    loadingMore = true;
+    loadingError = undefined;
+    try {
+      const res = await fetch(`${apiRoute}?page=${pageToLoad}`);
+      const rawArticles: IArticleWithType[] = await res.json();
+      const newArticles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
+      articles = [...articles, ...newArticles];
+      pageToLoad = pageToLoad + 1;
+    } catch (e) {
+      loadingError = 'Nepodařilo se načíst další články.';
+    } finally {
+      loadingMore = false;
+    }
+  }
+
+  function getDelay(i: number, page: number) {
+    if (i < 4) {
+      return i * 100;
+    }
+    if (page > 1) {
+      const y = i % articlesPerPage;
+      if (y < 4) {
+        return y * 100;
+      }
+    }
+    return 400;
+  }
 </script>
 
 <svelte:head>
@@ -27,17 +66,17 @@
 </svelte:head>
 
 <div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-8 lg:gap-y-8">
-  {#each articles as { link, title, content, date, type }, i}
+  {#each articles as { link, title, perex, date, type }, i}
     <article
       class="-ml-4 -mr-4 md:mx-0 p-4 md:px-12 md:py-10 bg-gray-50 {i % 2
         ? 'bg-gradient-to-br'
         : 'bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
-      in:fly={{ x: 20, delay: i < 4 ? i * 100 : 400 }}>
+      in:fly={{ x: 20, delay: getDelay(i, pageToLoad) }}>
       <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
-        <Link href={link} target="_blank" class="dotted">{title}</Link>
+        <Link href={link} target="_blank" class="dotted">{@html bindSingles(title)}</Link>
       </h2>
       <p class="max-w-2xl text-sm">
-        {content}
+        {@html bindSingles(perex)}
       </p>
       <p class="mt-3 text-sm text-gray-500 flex items-center">
         <span class="font-bold text-gray-600">{date}</span>,
@@ -49,4 +88,12 @@
       </p>
     </article>
   {/each}
+</div>
+<div class="text-center">
+  {#if loadingError !== undefined}
+    <ErrorMessage classes="mx-auto text-center">
+      {loadingError}
+    </ErrorMessage>
+  {/if}
+  <Button on:click={getMoreArticles} isSubmitting={loadingMore}>Načíst starší</Button>
 </div>

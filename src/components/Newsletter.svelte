@@ -1,10 +1,10 @@
 <script lang="ts">
   import promiseMinDelay from 'p-min-delay';
-  import { fade } from 'svelte/transition';
 
   import { showNewsletterIntro, email as emailStore, isSubscribed } from '../stores';
   import Button from './Button.svelte';
   import Link from './Link.svelte';
+  import ErrorMessage from '../components/ErrorMessage.svelte';
 
   import type { SubscribeSuccessResult } from '../routes/api/newsletter/subscribe';
 
@@ -20,6 +20,7 @@
     if (email) {
       formState.isSubmitting = true;
       formState.isAlreadySubscribed = false;
+      formState.isError = false;
       try {
         const subscribe: SubscribeSuccessResult = await promiseMinDelay(
           fetch('/api/newsletter/subscribe', {
@@ -37,10 +38,9 @@
           formState.isAlreadySubscribed = true;
         } else {
           emailStore.set(email);
-          // TODO: proper error and success handling
-
           formState.isSubmitting = false;
           formState.isSuccess = true;
+
           setTimeout(() => {
             showNewsletterIntro.set(true);
           }, 1200);
@@ -63,13 +63,13 @@
   <span class="text-blue-500">&bull;</span>&nbsp;už je nás <strong>2154</strong>
 </p>
 {#if formState.isAlreadySubscribed}
-  <p
-    role="alert"
-    class="mb-4 lg:mb-8 flex lg:w-2/3 p-4 lg:p-8 bg-red-50 text-gray-700 rounded"
-    in:fade>
+  <ErrorMessage>
     Tento e-mail už je k odběru přihlášený, odhlásit se případně můžete kliknutím na odkaz
     v&nbsp;patičce newsletteru.
-  </p>
+  </ErrorMessage>
+{/if}
+{#if formState.isError}
+  <ErrorMessage>Při odesílání došlo k chybě, zkuste to, prosím, znovu.</ErrorMessage>
 {/if}
 {#if $isSubscribed}
   <p class="lg:w-2/3 p-4 lg:p-8 bg-gray-100 text-gray-700">

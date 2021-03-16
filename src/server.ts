@@ -25,6 +25,10 @@ mongoose.connect(process.env.MONGO_URL, {
 export const db = mongoose.connection;
 const server = express();
 
+// See https://evanhahn.com/gotchas-with-express-query-parsing-and-how-to-avoid-them/
+server.set('query parser', (queryString) => {
+  return new URLSearchParams(queryString);
+});
 server.use(
   helmet({
     contentSecurityPolicy: false,

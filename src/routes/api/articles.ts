@@ -1,0 +1,24 @@
+import { Request, Response } from 'express';
+
+import { getArticles } from '../../server/dbApi';
+
+export async function get(req: Request, res: Response, next: () => void) {
+  // See https://evanhahn.com/gotchas-with-express-query-parsing-and-how-to-avoid-them/
+  const query = (req.query as unknown) as URLSearchParams;
+  const articlesPerPage = 12;
+  const skip = query.get('page') ? parseInt(query.get('page')) * articlesPerPage : 0;
+
+  try {
+    const articles = await getArticles(articlesPerPage, skip);
+
+    if (articles.length !== 0) {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(articles));
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to load articles.');
+  }
+}

@@ -5,13 +5,14 @@ export type CollectionType =
   | 'komentareAktualne'
   | 'newsletterArchive'
   | 'podcast';
-export type ArticleType = 'komentarRozhlasPlus' | 'komentarAktualne' | 'podcast';
+export type ArticleType = 'komentarRozhlasPlus' | 'komentarAktualne';
 
 export interface IArticle {
   _id: string;
   title: string;
   link: string;
   isoDate: string;
+  perex: string;
   content?: string;
 }
 
@@ -29,16 +30,25 @@ export interface IArticleWithType extends IArticle {
   type: ArticleType;
 }
 
-const defaultArticleFields = ['title', 'content', 'isoDate', 'link'];
+const defaultArticleFields = ['title', 'perex', 'isoDate', 'link'];
 const defaultNewsletterFields = ['id', 'externalId', 'title', 'archiveUrl', 'isoDate', 'markup'];
 
 export async function getArticles(
-  collectionName: string,
+  limit = 12,
+  skip = 0,
   fields: string[] = defaultArticleFields,
 ): Promise<IArticle[]> {
-  return db.collection(collectionName).find({}, { projection: fields }).toArray();
+  return db
+    .collection('articles')
+    .find({}, { projection: fields })
+    .sort({ isoDate: -1 })
+    .limit(limit)
+    .skip(skip)
+    .toArray();
 }
 export async function getNewsletters(
+  limit = 12,
+  skip = 0,
   fields: string[] = defaultNewsletterFields,
 ): Promise<INewsletter[]> {
   return db
@@ -50,6 +60,8 @@ export async function getNewsletters(
       },
     )
     .sort({ id: -1 })
+    .limit(limit)
+    .skip(skip)
     .toArray();
 }
 export async function getNewsletter(
