@@ -17,7 +17,7 @@
     // This promise will replace the first one and will be resolved in the {#await} block
     // It will run on client only
     latestArticlePromise = promiseMinDelay(
-      fetch('/api/latest-article.json').then((body) => body.json()),
+      fetch('/api/latest-article').then((body) => body.json()),
       1000,
     );
   });

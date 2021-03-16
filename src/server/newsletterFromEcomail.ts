@@ -10,7 +10,7 @@ const compareNewsletterItems = (newsletterFeed: any, collectionIds: number[]) =>
 
 export const newsletterFromEcomail = async () => {
   try {
-    const rawNewsletterCollection = await getNewsletters(['externalId']);
+    const rawNewsletterCollection = await getNewsletters(500, 0, ['externalId']);
     const newsletterCollectionIds = rawNewsletterCollection.map(({ externalId }) => externalId);
 
     // status=3 => sent

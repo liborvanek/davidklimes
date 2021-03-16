@@ -10,13 +10,9 @@ export async function get(_: {}, res: express.Response, next: () => void) {
   const firstDayOfThisWeek = startOfWeek(now, { weekStartsOn: 1 }).toISOString();
   const lastDayOfThisWeek = endOfWeek(now, { weekStartsOn: 1 }).toISOString();
 
-  const [komentareRozhlasPlus, komentareAktualne] = await Promise.all([
-    getArticlesInInterval('komentareRozhlasPlus', firstDayOfThisWeek, lastDayOfThisWeek),
-    getArticlesInInterval('komentareAktualne', firstDayOfThisWeek, lastDayOfThisWeek),
-  ]);
+  const articles = await getArticlesInInterval('articles', firstDayOfThisWeek, lastDayOfThisWeek);
 
-  const joinFeeds = komentareRozhlasPlus.concat(komentareAktualne);
-  const sortedFeedsByDate = joinFeeds.sort(
+  const sortedFeedsByDate = articles.sort(
     (a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime(),
   );
 
@@ -28,7 +24,7 @@ export async function get(_: {}, res: express.Response, next: () => void) {
   <li>
     <p>
       <strong><a href="${current.link}">${current.title}</a></strong><br />
-      <span style="font-size: 14px">${current.content}</span><br />
+      <span style="font-size: 14px">${current.perex}</span><br />
       <span style="color: #7f8c8d"
         ><span style="font-size: 12px"><em>${current.date}</em></span></span>
     </p>

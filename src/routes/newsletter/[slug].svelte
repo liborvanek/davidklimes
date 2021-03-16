@@ -2,7 +2,7 @@
   export async function preload(page, session) {
     const { slug } = page.params;
 
-    const res = await this.fetch(`api/newsletter/${slug}.json`);
+    const res = await this.fetch(`api/newsletter/${slug}`);
 
     if (res.status === 200) {
       const article = await res.json();

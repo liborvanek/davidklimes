@@ -1,10 +1,6 @@
 import { db } from '../server';
 
-export type CollectionType =
-  | 'komentareRozhlasPlus'
-  | 'komentareAktualne'
-  | 'newsletterArchive'
-  | 'podcast';
+export type CollectionType = 'articles' | 'newsletterArchive';
 export type ArticleType = 'komentarRozhlasPlus' | 'komentarAktualne';
 
 export interface IArticle {
@@ -14,6 +10,7 @@ export interface IArticle {
   isoDate: string;
   perex: string;
   content?: string;
+  type: ArticleType;
 }
 
 export interface INewsletter {
@@ -26,11 +23,8 @@ export interface INewsletter {
   archiveUrl: string;
   originalData: object;
 }
-export interface IArticleWithType extends IArticle {
-  type: ArticleType;
-}
 
-const defaultArticleFields = ['title', 'perex', 'isoDate', 'link'];
+const defaultArticleFields = ['title', 'perex', 'isoDate', 'link', 'type'];
 const defaultNewsletterFields = ['id', 'externalId', 'title', 'archiveUrl', 'isoDate', 'markup'];
 
 export async function getArticles(
@@ -90,9 +84,9 @@ export async function getArticlesInInterval(
     .toArray();
 }
 
-export async function getLatestArticle(source: CollectionType): Promise<IArticle> {
+export async function getLatestArticle(collectionName: CollectionType): Promise<IArticle> {
   return db
-    .collection(source)
+    .collection(collectionName)
     .findOne({}, { sort: { isoDate: -1 }, projection: ['title', 'isoDate', 'link'] });
 }
 

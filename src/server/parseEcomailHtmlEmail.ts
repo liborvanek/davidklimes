@@ -27,8 +27,7 @@ export async function parseEcomailHtmlEmail(ecomailCampaignId: number) {
       .remove();
 
     // Remove H1
-    $.root().find('h1').remove();
-
+    $.root().find('h1').first().remove();
     // Remove all HTML comments and style tags
     $.root()
       .find('*')
@@ -89,7 +88,9 @@ export async function parseEcomailHtmlEmail(ecomailCampaignId: number) {
       cleanerMarkup.push(findLowestDiv(elem));
     });
 
-    return cleanerMarkup.map((el) => $.html(el)).join('');
+    // return cleanerMarkup.map((el) => $.html(el)).join('');
+
+    return unWrappedMarkup;
   } catch (error) {
     throw new Error(`Error parsing Ecomail email. Reason: ${error}`);
   }

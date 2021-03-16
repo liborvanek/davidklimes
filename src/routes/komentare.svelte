@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
   import { formatDate } from '../utils';
-  import type { IArticleWithType } from '../server/dbApi';
+  import type { IArticle } from '../server/dbApi';
 
-  interface IArticleWithDate extends IArticleWithType {
+  interface IArticleWithDate extends IArticle {
     date: string;
   }
 
@@ -10,7 +10,7 @@
 
   export async function preload() {
     const res = await this.fetch(apiRoute);
-    const rawArticles: IArticleWithType[] = await res.json();
+    const rawArticles: IArticle[] = await res.json();
 
     const articles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
     return { articles };
@@ -36,7 +36,7 @@
     loadingError = undefined;
     try {
       const res = await fetch(`${apiRoute}?page=${pageToLoad}`);
-      const rawArticles: IArticleWithType[] = await res.json();
+      const rawArticles: IArticle[] = await res.json();
       const newArticles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
       articles = [...articles, ...newArticles];
       pageToLoad = pageToLoad + 1;

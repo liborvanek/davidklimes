@@ -1,11 +1,13 @@
 import Parser from 'rss-parser';
 
-import { insertMultipleArticles, getArticles, IArticle } from './dbApi';
+import { insertMultipleArticles, getArticles } from './dbApi';
 
-interface IArticleGuid extends IArticle {
-  guid: string;
+interface IArticleGuid {
+  _id: string;
+  originalData: {
+    guid: string;
+  };
 }
-
 const rssParser = new Parser();
 
 const compareRssItems = (rssFeed: any, collectionIds: string[]) => [
@@ -14,12 +16,10 @@ const compareRssItems = (rssFeed: any, collectionIds: string[]) => [
 
 export const rssFeed = async () => {
   try {
-    const [rawRozhlasCollection, rawAktualneCollection] = await Promise.all([
-      getArticles('komentareRozhlasPlus', ['guid']) as Promise<IArticleGuid[]>,
-      getArticles('komentareAktualne', ['guid']) as Promise<IArticleGuid[]>,
-    ]);
-    const rozhlasCollectionIds: string[] = rawRozhlasCollection.map(({ guid }) => guid);
-    const aktualneCollectionIds: string[] = rawAktualneCollection.map(({ guid }) => guid);
+    const articles: IArticleGuid[] = ((await getArticles(100, 0, [
+      'originalData.guid',
+    ])) as unknown) as IArticleGuid[];
+    const articleGuids: string[] = articles.map(({ originalData }) => originalData.guid);
 
     const [rawRozhlasRss, rawAktualneRss] = await Promise.all([
       rssParser.parseURL(process.env.ROZHLAS_RSSFEED_URL),
@@ -32,26 +32,41 @@ export const rssFeed = async () => {
         .filter(({ title }) => title?.includes('David Klimeš'))
         .map((item) => ({ ...item, title: item.title?.split('David Klimeš: ')[1] })),
     };
-    const onlyNewRozhlasRss = compareRssItems(filteredRozhlasRss, rozhlasCollectionIds);
-    const onlyNewAktualneRss = compareRssItems(rawAktualneRss, aktualneCollectionIds);
+    const onlyNewRozhlasRss = compareRssItems(filteredRozhlasRss, articleGuids);
+    const onlyNewAktualneRss = compareRssItems(rawAktualneRss, articleGuids);
+
+    // Format parsed information
+    const articlesRozhlasPlus = onlyNewRozhlasRss.map((a) => ({
+      type: 'komentarRozhlasPlus',
+      title: a.title,
+      link: a.link,
+      isoDate: a.isoDate,
+      perex: a.content.replace('David Klimeš', ''),
+      originalData: a,
+    }));
 
     // remove categories from aktualne feed because it contains forbidden field $
-    const correctOnlyNewAktualneRss = onlyNewAktualneRss.map(
-      ({ categories, ...rest }: any) => rest,
-    );
+    const articlesAktualne = onlyNewAktualneRss.map(({ categories, ...a }: any) => ({
+      type: 'komentarAktualne',
+      title: a.title,
+      link: a.link,
+      isoDate: a.isoDate,
+      perex: a.content,
+      originalData: a,
+    }));
 
-    if (onlyNewRozhlasRss.length !== 0) {
-      insertMultipleArticles('komentareRozhlasPlus', onlyNewRozhlasRss);
+    if (articlesRozhlasPlus.length > 0) {
+      insertMultipleArticles('articles', articlesRozhlasPlus);
     }
 
-    if (correctOnlyNewAktualneRss.length !== 0) {
-      insertMultipleArticles('komentareAktualne', correctOnlyNewAktualneRss);
+    if (articlesAktualne.length > 0) {
+      insertMultipleArticles('articles', articlesAktualne);
     }
 
     console.log(
       `Rss sync is successfull.
-        Added: ${onlyNewRozhlasRss.length} rozhlas items.
-        Added: ${correctOnlyNewAktualneRss.length} aktualne items`,
+        Added: ${articlesRozhlasPlus.length} Rozhlas Plus items.
+        Added: ${articlesAktualne.length} Aktualne items`,
     );
   } catch (error) {
     console.error('Rss sync failed. Reason: ', error);
