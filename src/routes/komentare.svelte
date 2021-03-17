@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { formatDate } from '../utils';
+  import { formatDate, getArticleDelay } from '../utils';
   import type { IArticle } from '../server/dbApi';
 
   interface IArticleWithDate extends IArticle {
@@ -46,19 +46,6 @@
       loadingMore = false;
     }
   }
-
-  function getDelay(i: number, page: number) {
-    if (i < 4) {
-      return i * 100;
-    }
-    if (page > 1) {
-      const y = i % articlesPerPage;
-      if (y < 4) {
-        return y * 100;
-      }
-    }
-    return 400;
-  }
 </script>
 
 <svelte:head>
@@ -71,7 +58,7 @@
       class="-ml-4 -mr-4 md:mx-0 p-4 md:px-12 md:py-10 bg-gray-50 {i % 2
         ? 'bg-gradient-to-br'
         : 'bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
-      in:fly={{ x: 20, delay: getDelay(i, pageToLoad) }}>
+      in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
         <Link href={link} target="_blank" class="dotted">{@html bindSingles(title)}</Link>
       </h2>

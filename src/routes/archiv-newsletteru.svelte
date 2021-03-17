@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { formatDate, bindSingles } from '../utils';
+  import { formatDate, bindSingles, getArticleDelay } from '../utils';
 
   interface NewsletterItem {
     id: number;
@@ -52,19 +52,6 @@
       loadingMore = false;
     }
   }
-
-  function getDelay(i: number, page: number) {
-    if (i < 4) {
-      return i * 100;
-    }
-    if (page > 1) {
-      const y = i % articlesPerPage;
-      if (y < 4) {
-        return y * 100;
-      }
-    }
-    return 400;
-  }
 </script>
 
 <svelte:head>
@@ -75,7 +62,7 @@
   {#each newsletterArchive as { archiveUrl, title, date, id, isoDate }, i}
     <article
       class="px-4 lg:px-16 py-4 lg:py-8 bg-gray-50 bg-gradient-to-r from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
-      in:fly={{ x: 20, delay: getDelay(i, pageToLoad) }}>
+      in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <div class="lg:flex">
         <div
           class="mr-16 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 to-gray-200">
