@@ -15,18 +15,29 @@ const assetsToCache = files.filter((a) => a.endsWith('.webp') || a.endsWith('.pn
 
 const filesToCache = shellFilesToCache.concat(assetsToCache, cachablePaths);
 
-const dynamicCache = `cache${timestamp}`;
+const assetCache = `assets${timestamp}`;
+// const dynamicCache = 'dynamicCache';
 
 self.addEventListener('install', (event) => {
   console.log('SW: install event');
   event.waitUntil(
     caches
-      .open(dynamicCache)
+      .open(assetCache)
       .then((cache) => cache.addAll(filesToCache))
       .then(() => {
         self.skipWaiting();
       }),
   );
+  // event.waitUntil(async () => {
+  //   caches
+  //     .open(dynamicCache)
+  //     .then((cache) => {
+  //       retucache.addAll(filesToCache)
+  //     })
+  //     .then(() => {
+  //       self.skipWaiting();
+  //     });
+  // });
 });
 
 self.addEventListener('activate', (event) => {
@@ -37,7 +48,7 @@ self.addEventListener('activate', (event) => {
       // Delete old caches
       // eslint-disable-next-line no-restricted-syntax
       for (const key of keys) {
-        if (key !== dynamicCache) {
+        if (key !== assetCache) {
           // eslint-disable-next-line no-await-in-loop
           await caches.delete(key);
           console.log('SW: deleted cache ', key);
@@ -59,27 +70,33 @@ self.addEventListener('fetch', (event) => {
   if (!url.protocol.startsWith('http')) return;
 
   // Ignore dev server requests
-  if (url.hostname === self.location.hostname && url.port !== self.location.port) return;
+  // if (url.hostname === self.location.hostname && url.port !== self.location.port) return;
 
   if (event.request.cache === 'only-if-cached') return;
 
-  // For everything else, try the network first, falling back to
-  // Cache if the user is offline. (If the pages never change, you
-  // Might prefer a cache-first approach to a network-first one.)
-  if (event.request.url.endsWith('.json')) {
+  // Network first, falling back to
+  // Cache if the user is offline
+  //
+  // For HTML files and API GET repsonses
+  if (event.request.mode === 'navigate' || event.request.url.includes('/api/')) {
     event.respondWith(
-      caches.open(dynamicCache).then(async (cache) => {
+      caches.open(assetCache).then(async (cache) => {
+        // For navigate requests (HTML files), remove query parameters
+        url.search = event.request.mode === 'navigate' ? '' : url.search;
         try {
-          const response = await fetch(event.request);
-          cache.put(event.request, response.clone());
-          console.log('SW getting fresh version and storing into cache', event.request.url);
+          const response = await fetch(url);
+          cache.put(url, response.clone());
+          console.log('[SW 1]: Serving fresh version and storing into cache: ', url.pathname);
 
           return response;
         } catch (err) {
-          const response = await cache.match(event.request);
-          console.log('SW serving cached response: ', event.request.url);
-          if (response) return response;
+          const response = await cache.match(url);
+          if (response) {
+            console.log('[SW 1]: Fetch failed, serving cached response: ', url.pathname);
+            return response;
+          }
 
+          console.log('[SW 1]: Fetch failed, not in cache, throwing: ', url.pathname);
           throw err;
         }
       }),
@@ -90,18 +107,22 @@ self.addEventListener('fetch', (event) => {
   // Check cache and serve cahced file or fall back to network
   // and save reauested file into cache upon successfull response
   event.respondWith(
-    caches.open(dynamicCache).then(async (cache) => {
-      const cacheResponse = await cache.match(event.request);
+    caches.open(assetCache).then(async (cache) => {
+      const cacheResponse = await cache.match(url);
 
       if (cacheResponse) {
-        console.log('SW serving cached response:', event.request.url);
+        console.log('[SW 2]: Found in cache, serving:', url.pathname);
         return cacheResponse;
       }
-
-      const networkResponse = await fetch(event.request);
-      cache.put(event.request, networkResponse.clone());
-      console.log('SW saved into cache and serving from network:', event.request.url);
-      return networkResponse;
+      try {
+        const networkResponse = await fetch(event.request);
+        cache.put(event.request, networkResponse.clone());
+        console.log('[SW 2]: Not in cache, tried network:', url.pathname);
+        return networkResponse;
+      } catch (err) {
+        console.log('[SW 2]: Not in cache, fetch failed, throwing:', url.pathname);
+        throw err;
+      }
     }),
   );
 });
