@@ -9,55 +9,127 @@ import {
 
 import { cachablePaths } from './pageData';
 
-// Array of shell files will be injected here from service-worker-files-inject.mjs during build
+// Array of shell files (js + css) will be injected here from service-worker-files-inject.mjs
+// during build
+// All have hashed filename and are served from '/client/*'
 const shellFilesToCache = '--SHELL-FILES--';
-const assetsToCache = files.filter((a) => a.endsWith('.webp') || a.endsWith('.png') || a.endsWith('.svg'));
+// Regex matching shell assets
+const shellFilesPattern = /\/client\/(.+)/;
+const staticFilesPattern = /\.(webp|png|svg)$/i;
 
-const filesToCache = shellFilesToCache.concat(assetsToCache, cachablePaths);
+// All files served from /static folder filtered by extension
+const staticToCache = files.filter((a) => staticFilesPattern.test(a));
 
-const assetCache = `assets${timestamp}`;
-// const dynamicCache = 'dynamicCache';
+// API routes and navigation requests (html)
+const dynamicToCache = cachablePaths;
 
-self.addEventListener('install', (event) => {
-  console.log('SW: install event');
-  event.waitUntil(
-    caches
-      .open(assetCache)
-      .then((cache) => cache.addAll(filesToCache))
-      .then(() => {
-        self.skipWaiting();
-      }),
+const shellCache = 'shell';
+const staticCache = 'static';
+const dynamicCache = 'dynamic';
+
+// Cache first then network
+// [⚙️ CF]
+// Check cache and serve cached file or fall back to network
+// and save requested file into cache upon successfull response
+function cacheFirst(event, url, cacheName) {
+  event.respondWith(
+    caches.open(cacheName).then(async (cache) => {
+      const cacheResponse = await cache.match(url);
+      if (cacheResponse) {
+        console.log(`[⚙️ CF ${cacheName}]: Found in cache, serving:`, url.pathname);
+        return cacheResponse;
+      }
+      try {
+        const networkResponse = await fetch(event.request);
+        cache.put(event.request, networkResponse.clone());
+        console.log(`[⚙️ CF ${cacheName}]: Not in cache, tried network and saved:`, url.pathname);
+        return networkResponse;
+      } catch (err) {
+        console.log(`[⚙️ CF ${cacheName}]: Not in cache, fetch failed, throwing:`, url.pathname);
+        throw err;
+      }
+    }),
   );
-  // event.waitUntil(async () => {
-  //   caches
-  //     .open(dynamicCache)
-  //     .then((cache) => {
-  //       retucache.addAll(filesToCache)
-  //     })
-  //     .then(() => {
-  //       self.skipWaiting();
-  //     });
-  // });
+}
+
+// Network first
+// [⚙️ NF]
+// Try to get fresh response from network first, fall back to cache if the user is offline
+// For HTML files and API GET responses
+function networkFirst(event, url, cacheName) {
+  const requestUrl = url;
+  event.respondWith(
+    caches.open(cacheName).then(async (cache) => {
+      // For navigate requests (HTML files), remove query parameters
+      requestUrl.search = event.request.mode === 'navigate' ? '' : url.search;
+      try {
+        const response = await fetch(requestUrl);
+        cache.put(requestUrl, response.clone());
+        console.log(`[⚙️ NF ${cacheName}]: Serving fresh version and storing into cache: `, requestUrl.pathname);
+
+        return response;
+      } catch (err) {
+        const response = await cache.match(requestUrl);
+        if (response) {
+          console.log(`[⚙️ NF ${cacheName}]: Fetch failed, serving cached response: `, requestUrl.pathname);
+          return response;
+        }
+
+        console.log(`[⚙️ NF ${cacheName}]: Fetch failed, not in cache, throwing: `, requestUrl.pathname);
+        throw err;
+      }
+    }),
+  );
+}
+
+console.log('[⚙️ ini]: initiated');
+self.addEventListener('install', (event) => {
+  console.log('[⚙️ inst]: installing');
+
+  event.waitUntil(
+    // Wait until all caches are prefilled
+    Promise.all(
+      [caches
+        .open(shellCache)
+        .then((cache) => cache.addAll(shellFilesToCache))
+        .then(() => {
+          console.log(`[⚙️ inst ${shellCache}]: cache filled with ${shellFilesToCache.length} files`);
+        }),
+      caches
+        .open(staticCache)
+        .then((cache) => cache.addAll(staticToCache))
+        .then(() => {
+          console.log(`[⚙️ inst ${staticCache}]: cache filled with ${staticToCache.length} files`);
+        }),
+      caches
+        .open(dynamicCache)
+        .then((cache) => cache.addAll(dynamicToCache))
+        .then(() => {
+          console.log(`[⚙️ inst ${dynamicCache}]: cache filled with ${dynamicToCache.length} files`);
+        }),
+      ],
+    ).then(() => self.skipWaiting()),
+  );
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('SW: activate event');
+  console.log('[⚙️ act]: activating');
+  // This would be the place for cache cleanup, but we have so few resources we don't need that
+  event.waitUntil(self.clients.claim());
+});
 
-  event.waitUntil(
-    caches.keys().then(async (keys) => {
-      // Delete old caches
-      // eslint-disable-next-line no-restricted-syntax
-      for (const key of keys) {
-        if (key !== assetCache) {
-          // eslint-disable-next-line no-await-in-loop
-          await caches.delete(key);
-          console.log('SW: deleted cache ', key);
-        }
-      }
+// Get message with API paths to precache from _layout as soon as ⚙️ is active
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.command === 'PRECACHE_API_CALLS') {
+    const urlsToCache = event.data.paths;
 
-      self.clients.claim();
-    }),
-  );
+    caches
+      .open(dynamicCache)
+      .then((cache) => cache.addAll(urlsToCache))
+      .then(() => {
+        console.log(`[⚙️ msg ${dynamicCache}]: ${urlsToCache.length} API calls precached`);
+      });
+  }
 });
 
 self.addEventListener('fetch', (event) => {
@@ -74,55 +146,13 @@ self.addEventListener('fetch', (event) => {
 
   if (event.request.cache === 'only-if-cached') return;
 
-  // Network first, falling back to
-  // Cache if the user is offline
-  //
-  // For HTML files and API GET repsonses
-  if (event.request.mode === 'navigate' || event.request.url.includes('/api/')) {
-    event.respondWith(
-      caches.open(assetCache).then(async (cache) => {
-        // For navigate requests (HTML files), remove query parameters
-        url.search = event.request.mode === 'navigate' ? '' : url.search;
-        try {
-          const response = await fetch(url);
-          cache.put(url, response.clone());
-          console.log('[SW 1]: Serving fresh version and storing into cache: ', url.pathname);
-
-          return response;
-        } catch (err) {
-          const response = await cache.match(url);
-          if (response) {
-            console.log('[SW 1]: Fetch failed, serving cached response: ', url.pathname);
-            return response;
-          }
-
-          console.log('[SW 1]: Fetch failed, not in cache, throwing: ', url.pathname);
-          throw err;
-        }
-      }),
-    );
+  if (shellFilesPattern.test(event.request.url)) {
+    cacheFirst(event, url, shellCache);
     return;
   }
-  // Cache first approach for all other files
-  // Check cache and serve cahced file or fall back to network
-  // and save reauested file into cache upon successfull response
-  event.respondWith(
-    caches.open(assetCache).then(async (cache) => {
-      const cacheResponse = await cache.match(url);
-
-      if (cacheResponse) {
-        console.log('[SW 2]: Found in cache, serving:', url.pathname);
-        return cacheResponse;
-      }
-      try {
-        const networkResponse = await fetch(event.request);
-        cache.put(event.request, networkResponse.clone());
-        console.log('[SW 2]: Not in cache, tried network:', url.pathname);
-        return networkResponse;
-      } catch (err) {
-        console.log('[SW 2]: Not in cache, fetch failed, throwing:', url.pathname);
-        throw err;
-      }
-    }),
-  );
+  if (staticFilesPattern.test(event.request.url)) {
+    cacheFirst(event, url, staticCache);
+    return;
+  }
+  networkFirst(event, url, dynamicCache);
 });

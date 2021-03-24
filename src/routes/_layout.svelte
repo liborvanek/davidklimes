@@ -13,7 +13,23 @@
   import Link from '../components/Link.svelte';
   import { menu, headings, submenuPages } from '../pageData';
   import { trapFocus } from '../trapFocus';
+  import { waitForServiceWorker } from '../utils';
   import { showNewsletterIntro } from '../stores';
+
+  async function notifyServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      waitForServiceWorker().then(async () => {
+        const res = await fetch(`/api/newsletter/ids`);
+        const ids: number[] = await res.json();
+
+        const paths: string[] = ids.map((id) => `/api/newsletter/${id}`);
+        navigator.serviceWorker.controller.postMessage({
+          command: 'PRECACHE_API_CALLS',
+          paths,
+        });
+      });
+    }
+  }
 
   // You may not want to use `segment`, but it is passed for the time being and will
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
@@ -27,8 +43,6 @@
   let hoveredMenuItem: number | null = null;
   let searchResult: number;
   let showMobileMenu = false;
-  let isNarrowScreen = false;
-  let showBackToTop = false;
 
   function handleMouseOver(linkNr: number) {
     hoveredMenuItem = linkNr;
@@ -42,7 +56,6 @@
     // Reset mobile state
     if (!e.matches) {
       showMobileMenu = false;
-      isNarrowScreen = true;
     }
   };
 
@@ -159,6 +172,8 @@
       }
     </style>{/if}
 </svelte:head>
+
+<svelte:window on:load={notifyServiceWorker} />
 
 <DetectOffline />
 <div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">

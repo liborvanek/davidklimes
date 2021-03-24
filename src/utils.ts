@@ -1,3 +1,12 @@
+// This promise resolves after page is being controlled by service worker
+// See https://github.com/w3c/ServiceWorker/issues/799#issuecomment-165499718
+export function waitForServiceWorker(): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (navigator.serviceWorker.controller) return resolve(true);
+    navigator.serviceWorker.addEventListener('controllerchange', (e) => resolve(true));
+  });
+}
+
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
 
