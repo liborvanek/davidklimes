@@ -45,6 +45,10 @@ function cacheFirst(event, url, cacheName) {
         console.log(`[⚙️ CF ${cacheName}]: Not in cache, tried network and saved:`, url.pathname);
         return networkResponse;
       } catch (err) {
+        // catch is only triggered if an exception is thrown, which is likely
+        // due to a network error.
+        // If fetch() returns a valid HTTP response with a response code in
+        // the 4xx or 5xx range, the catch() will NOT be called.
         console.log(`[⚙️ CF ${cacheName}]: Not in cache, fetch failed, throwing:`, url.pathname);
         throw err;
       }
@@ -62,6 +66,12 @@ function networkFirst(event, url, cacheName) {
     caches.open(cacheName).then(async (cache) => {
       // For navigate requests (HTML files), remove query parameters
       requestUrl.search = event.request.mode === 'navigate' ? '' : url.search;
+
+      // Else, use the preloaded response, if it's there
+      // See https://developers.google.com/web/updates/2017/02/navigation-preload#using_the_preloaded_response
+      const preloadResponse = await event.preloadResponse;
+      if (preloadResponse) return preloadResponse;
+
       try {
         const response = await fetch(requestUrl);
         cache.put(requestUrl, response.clone());
@@ -115,7 +125,15 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   console.log('[⚙️ act]: activating');
   // This would be the place for cache cleanup, but we have so few resources we don't need that
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(async function activateWaitUntil() {
+    // https://developers.google.com/web/updates/2017/02/navigation-preload
+    // Feature-detect
+    if (self.registration.navigationPreload) {
+      // Enable navigation preloads!
+      await self.registration.navigationPreload.enable();
+    }
+    event.waitUntil(self.clients.claim());
+  }());
 });
 
 // Get message with API paths to precache from _layout as soon as ⚙️ is active
