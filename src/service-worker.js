@@ -67,12 +67,12 @@ function networkFirst(event, url, cacheName) {
       // For navigate requests (HTML files), remove query parameters
       requestUrl.search = event.request.mode === 'navigate' ? '' : url.search;
 
-      // Else, use the preloaded response, if it's there
-      // See https://developers.google.com/web/updates/2017/02/navigation-preload#using_the_preloaded_response
-      const preloadResponse = await event.preloadResponse;
-      if (preloadResponse) return preloadResponse;
-
       try {
+        // Else, use the preloaded response, if it's there
+        // See https://developers.google.com/web/updates/2017/02/navigation-preload#using_the_preloaded_response
+        const preloadResponse = await event.preloadResponse;
+        if (preloadResponse) return preloadResponse;
+
         const response = await fetch(requestUrl);
         cache.put(requestUrl, response.clone());
         console.log(`[⚙️ NF ${cacheName}]: Serving fresh version and storing into cache: `, requestUrl.pathname);
@@ -81,7 +81,7 @@ function networkFirst(event, url, cacheName) {
       } catch (err) {
         const response = await cache.match(requestUrl);
         if (response) {
-          console.log(`[⚙️ NF ${cacheName}]: Fetch failed, serving cached response: `, requestUrl.pathname);
+          console.log(`[⚙️ NF ${cacheName}]: Fetch failed, found and serving cached response: `, requestUrl.pathname);
           return response;
         }
 
