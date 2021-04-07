@@ -49,7 +49,10 @@
 </script>
 
 <svelte:head>
-  <title>Komentáře | David Klimeš</title>
+  <title>Komentáře – David Klimeš</title>
+  <meta
+    name="description"
+    content="Přihlaste si k odběru můj pravidelný pondělní newsletter o všem podstatném v byznysu a politice." />
 </svelte:head>
 
 <div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-8 lg:gap-y-8">

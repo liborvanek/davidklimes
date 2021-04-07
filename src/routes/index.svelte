@@ -25,6 +25,9 @@
 
 <svelte:head>
   <title>David Klimeš</title>
+  <meta
+    name="description"
+    content="Přihlaste si k odběru můj pravidelný pondělní newsletter o všem podstatném v byznysu a politice." />
 </svelte:head>
 
 {#if $showNewsletterIntro}

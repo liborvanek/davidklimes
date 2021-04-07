@@ -12,7 +12,7 @@ export async function get(req: Request, res: Response, next: () => void) {
   }
 
   try {
-    const newsletter = await getNewsletter(['markup', 'title'], id);
+    const newsletter = await getNewsletter(['markup', 'title', 'isoDate', 'id'], id);
 
     if (newsletter && newsletter.markup) {
       res.setHeader('Content-Type', 'application/json');

@@ -18,6 +18,16 @@
   import BackToTop from '../../components/BackToTop.svelte';
 
   export let article;
+
+  const jsonldObject = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    datePublished: article.isoDate,
+    dateModified: article.isoDate,
+  };
+  const jsonld = JSON.stringify(jsonldObject);
+  let jsonldScript = `<script type="application/ld+json">${jsonld + '<'}/script>`;
 </script>
 
 <style>
@@ -37,7 +47,11 @@
 </style>
 
 <svelte:head>
-  <title>{article.title}</title>
+  <title>{article.title} – David Klimeš</title>
+  <meta
+    name="description"
+    content={`${article.id}. díl newsletteru Davida Klimeše o podstatném dění v byznysu a politice.`} />
+  {@html jsonldScript}
 </svelte:head>
 
 <PageTransition>

@@ -55,7 +55,10 @@
 </script>
 
 <svelte:head>
-  <title>Archiv newsletterů | David Klimeš</title>
+  <title>Archiv newsletterů – David Klimeš</title>
+  <meta
+    name="description"
+    content="Všechna čísla mého newsletteru o podstatných souvislostech v byznysu a politice." />
 </svelte:head>
 
 <div class="xl:-mt-12">

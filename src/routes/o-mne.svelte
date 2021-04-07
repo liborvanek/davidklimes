@@ -4,7 +4,10 @@
 </script>
 
 <svelte:head>
-  <title>O mně | David Klimeš</title>
+  <title>O mně – David Klimeš</title>
+  <meta
+    name="description"
+    content="Komentuji ekonomické a politické dění. Na Fakultě sociálních věd UK vyučuji komunikaci. Jsem držitelem novinářské Ceny Karla Havlíčka Borovského." />
 </svelte:head>
 
 <PageTransition>
