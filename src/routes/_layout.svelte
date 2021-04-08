@@ -261,12 +261,14 @@
     left: 0;
     right: 0;
     bottom: 0;
+    will-change: transform;
+    transform: translateZ(0);
   }
   .reveal-text:before {
     background-color: #fff;
     opacity: 1;
     animation-name: uncover;
-    animation-duration: 0ms;
+    animation-duration: 1ms;
     animation-fill-mode: forwards;
   }
   .reveal-text:after {
