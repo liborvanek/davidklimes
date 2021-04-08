@@ -13,23 +13,6 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<style>
-  @keyframes -global-pulse {
-    0% {
-      scale: 1;
-    }
-    80% {
-      scale: 1.2;
-    }
-    100% {
-      scale: 1;
-    }
-  }
-  .success {
-    animation: pulse 300ms forwards ease-in-out;
-  }
-</style>
-
 <button
   class="button relative inline-flex items-center justify-center py-5 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-bold uppercase focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md transition-shadow {classes}"
   disabled={isSubmitting}
@@ -50,4 +33,22 @@
         stroke="#FFF"
         stroke-width="6"
         d="M3 11.91L11.857 24 34 3" />
-    </svg>{/if}</button>
+    </svg>{/if}</button
+>
+
+<style>
+  @keyframes -global-pulse {
+    0% {
+      scale: 1;
+    }
+    80% {
+      scale: 1.2;
+    }
+    100% {
+      scale: 1;
+    }
+  }
+  .success {
+    animation: pulse 300ms forwards ease-in-out;
+  }
+</style>

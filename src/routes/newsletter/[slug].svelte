@@ -30,22 +30,6 @@
   let jsonldScript = `<script type="application/ld+json">${jsonld + '<'}/script>`;
 </script>
 
-<style>
-  article {
-    margin-left: auto;
-    margin-right: 0;
-  }
-  article a.back {
-    @apply inline-block mb-4 no-underline text-sm transform -rotate-1;
-  }
-  article a.back .arrow {
-    @apply inline-block transition-transform;
-  }
-  article a.back:hover .arrow {
-    @apply transform -translate-x-3;
-  }
-</style>
-
 <svelte:head>
   <title>{article.title} – David Klimeš</title>
   <meta
@@ -62,3 +46,19 @@
   </article>
   <BackToTop elementSelector="a.back" />
 </PageTransition>
+
+<style>
+  article {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  article a.back {
+    @apply inline-block mb-4 no-underline text-sm transform -rotate-1;
+  }
+  article a.back .arrow {
+    @apply inline-block transition-transform;
+  }
+  article a.back:hover .arrow {
+    @apply transform -translate-x-3;
+  }
+</style>

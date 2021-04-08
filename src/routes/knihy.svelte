@@ -45,38 +45,6 @@
   ];
 </script>
 
-<style>
-  @screen sm {
-    .book-grid {
-      display: grid;
-      grid-template-columns: 1fr 3rem 3rem 1fr;
-    }
-
-    .book-grid:nth-of-type(odd) > .image {
-      grid-column: 1;
-      grid-row: 1 / 5;
-      justify-self: end;
-    }
-    .book-grid:nth-of-type(odd) > .info {
-      grid-column: 3 / 5;
-    }
-    .book-grid:nth-of-type(even) > .image {
-      grid-column: 4;
-      grid-row: 1 / 5;
-    }
-    .book-grid:nth-of-type(even) > .info {
-      grid-column: 1 / 3;
-      text-align: right;
-      justify-self: end;
-    }
-  }
-  @screen lg {
-    .book-grid {
-      grid-template-columns: 1fr 6rem 6rem 1fr;
-    }
-  }
-</style>
-
 <svelte:head>
   <title>Knihy – David Klimeš</title>
   <meta
@@ -122,3 +90,35 @@
     </article>
   {/each}
 </PageTransition>
+
+<style>
+  @screen sm {
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1fr 3rem 3rem 1fr;
+    }
+
+    .book-grid:nth-of-type(odd) > .image {
+      grid-column: 1;
+      grid-row: 1 / 5;
+      justify-self: end;
+    }
+    .book-grid:nth-of-type(odd) > .info {
+      grid-column: 3 / 5;
+    }
+    .book-grid:nth-of-type(even) > .image {
+      grid-column: 4;
+      grid-row: 1 / 5;
+    }
+    .book-grid:nth-of-type(even) > .info {
+      grid-column: 1 / 3;
+      text-align: right;
+      justify-self: end;
+    }
+  }
+  @screen lg {
+    .book-grid {
+      grid-template-columns: 1fr 6rem 6rem 1fr;
+    }
+  }
+</style>

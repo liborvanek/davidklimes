@@ -85,86 +85,6 @@
   const inactiveClass = 'text-gray-500 visited:text-gray-500 hover:text-blue-700';
 </script>
 
-<style>
-  .moving-box {
-    width: 6rem;
-    height: 2.4rem;
-    left: 0.9rem;
-    top: -0.1rem;
-  }
-  .menu-link {
-    @apply text-gray-600 no-underline;
-  }
-  .showMobileMenu .menu-link {
-    @apply text-white text-3xl;
-  }
-  .menu-link:hover {
-    @apply text-blue-700;
-  }
-  .menu-link.active {
-    @apply text-blue-900;
-  }
-  .reveal-text:before,
-  .reveal-text:after {
-    content: '';
-    position: absolute;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  .reveal-text:before {
-    background-color: #fff;
-    opacity: 1;
-    animation-name: uncover;
-    animation-duration: 0ms;
-    animation-fill-mode: forwards;
-  }
-  .reveal-text:after {
-    @apply bg-gray-100;
-    transform: scaleX(0);
-    animation-name: overlay;
-    animation-duration: 500ms;
-  }
-  .reveal-text.first:before {
-    animation-delay: 350ms;
-  }
-  .reveal-text.first:after {
-    animation-delay: 100ms;
-  }
-  .reveal-text.second:before {
-    animation-delay: 550ms;
-  }
-  .reveal-text.second:after {
-    animation-delay: 300ms;
-  }
-
-  @keyframes -global-overlay {
-    0% {
-      transform: scaleX(0);
-      transform-origin: left;
-    }
-    50% {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-    51% {
-      transform: scaleX(1);
-      transform-origin: right;
-    }
-    100% {
-      transform: scaleX(0);
-      transform-origin: right;
-    }
-  }
-  @keyframes -global-uncover {
-    to {
-      opacity: 0;
-    }
-  }
-</style>
-
 <svelte:head>
   {#if showMobileMenu}<style>
       body {
@@ -312,3 +232,83 @@
     class="mt-32 h-1 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
   <footer>&nbsp;</footer>
 </div>
+
+<style>
+  .moving-box {
+    width: 6rem;
+    height: 2.4rem;
+    left: 0.9rem;
+    top: -0.1rem;
+  }
+  .menu-link {
+    @apply text-gray-600 no-underline;
+  }
+  .showMobileMenu .menu-link {
+    @apply text-white text-3xl;
+  }
+  .menu-link:hover {
+    @apply text-blue-700;
+  }
+  .menu-link.active {
+    @apply text-blue-900;
+  }
+  .reveal-text:before,
+  .reveal-text:after {
+    content: '';
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .reveal-text:before {
+    background-color: #fff;
+    opacity: 1;
+    animation-name: uncover;
+    animation-duration: 0ms;
+    animation-fill-mode: forwards;
+  }
+  .reveal-text:after {
+    @apply bg-gray-100;
+    transform: scaleX(0);
+    animation-name: overlay;
+    animation-duration: 500ms;
+  }
+  .reveal-text.first:before {
+    animation-delay: 350ms;
+  }
+  .reveal-text.first:after {
+    animation-delay: 100ms;
+  }
+  .reveal-text.second:before {
+    animation-delay: 550ms;
+  }
+  .reveal-text.second:after {
+    animation-delay: 300ms;
+  }
+
+  @keyframes -global-overlay {
+    0% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    50% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    51% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+    100% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+  @keyframes -global-uncover {
+    to {
+      opacity: 0;
+    }
+  }
+</style>

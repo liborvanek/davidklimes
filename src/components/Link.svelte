@@ -21,13 +21,6 @@
   }
 </script>
 
-<style>
-  a:after {
-    content: attr(data-external);
-    @apply relative inline-block text-xs font-normal left-1 -top-1 no-underline;
-  }
-</style>
-
 {#if disabled}
   <span
     {...$$restProps}
@@ -58,3 +51,10 @@
     <slot />
   </a>
 {/if}
+
+<style>
+  a:after {
+    content: attr(data-external);
+    @apply relative inline-block text-xs font-normal left-1 -top-1 no-underline;
+  }
+</style>

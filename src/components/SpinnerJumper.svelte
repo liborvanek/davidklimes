@@ -20,6 +20,20 @@
   });
 </script>
 
+<div
+  class="wrapper inline-block {classes}"
+  in:fly={{ y: 50, duration: 150, delay: 100, easing: cubicInOut }}
+  out:fly={{ y: 50, duration: 150, easing: cubicInOut }}
+  style="--size: {size}{unit}; --color: {color}; --duration: {duration}; --width: {isMounted
+    ? size + unit
+    : '0px'}">
+  {#each range(3, 1) as version}
+    <div
+      class="circle"
+      style="animation-delay: {(parseInt(durationNum, 10) / 3) * (version - 1) + durationUnit};" />
+  {/each}
+</div>
+
 <style>
   .wrapper {
     width: var(--width);
@@ -49,17 +63,3 @@
     }
   }
 </style>
-
-<div
-  class="wrapper inline-block {classes}"
-  in:fly={{ y: 50, duration: 150, delay: 100, easing: cubicInOut }}
-  out:fly={{ y: 50, duration: 150, easing: cubicInOut }}
-  style="--size: {size}{unit}; --color: {color}; --duration: {duration}; --width: {isMounted
-    ? size + unit
-    : '0px'}">
-  {#each range(3, 1) as version}
-    <div
-      class="circle"
-      style="animation-delay: {(parseInt(durationNum, 10) / 3) * (version - 1) + durationUnit};" />
-  {/each}
-</div>
