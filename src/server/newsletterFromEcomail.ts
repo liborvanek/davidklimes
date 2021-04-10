@@ -15,7 +15,7 @@ export const newsletterFromEcomail = async () => {
 
     // status=3 => sent
     const ecomailNewsletters = await fetch(
-      `${process.env.ECOMAIL_API_URL}/campaigns?filters[status]=3`,
+      `${process.env.ECOMAIL_API_URL}${process.env.ECOMAIL_API_CAMPAIGNS}`,
       {
         method: 'GET',
         headers: {

@@ -93,3 +93,12 @@ export async function getLatestArticle(collectionName: CollectionType): Promise<
 export async function insertMultipleArticles<T>(collectionName: string, insertedArray: T[]) {
   return await db.collection(collectionName).insertMany(insertedArray);
 }
+
+export async function updateNewsletterSubscriberCount(count: number) {
+  return await db
+    .collection('siteData')
+    .updateOne({}, { $set: { newsletterSubscriberCount: count } });
+}
+export async function getNewsletterSubscriberCount() {
+  return await db.collection('siteData').findOne({}, { projection: ['newsletterSubscriberCount'] });
+}

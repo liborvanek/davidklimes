@@ -4,3 +4,4 @@ export const isSubscribed = writable(false);
 export const showNewsletterIntro = writable(false);
 export const email = writable('');
 export const isOnline = writable(true);
+export const newsletterSubscriberCount = writable<number>(null);

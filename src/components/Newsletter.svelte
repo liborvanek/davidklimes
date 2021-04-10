@@ -1,12 +1,21 @@
 <script lang="ts">
   import promiseMinDelay from 'p-min-delay';
+  import { onMount } from 'svelte';
+  import { fly } from 'svelte/transition';
 
-  import { showNewsletterIntro, email as emailStore, isSubscribed } from '../stores';
+  import {
+    showNewsletterIntro,
+    email as emailStore,
+    isSubscribed,
+    newsletterSubscriberCount,
+  } from '../stores';
   import Button from './Button.svelte';
   import Link from './Link.svelte';
   import ErrorMessage from '../components/ErrorMessage.svelte';
 
   import type { SubscribeSuccessResult } from '../routes/api/newsletter/subscribe';
+
+  let subscriberCountPromise: Promise<number> = new Promise(() => {});
 
   let formState = {
     isSubmitting: false,
@@ -15,6 +24,20 @@
     isAlreadySubscribed: false,
   };
   let email: string | null = null;
+
+  onMount(() => {
+    // This promise will replace the first one and will be resolved in the {#await} block
+    // It will run on client only
+    if ($newsletterSubscriberCount) {
+      subscriberCountPromise = Promise.resolve($newsletterSubscriberCount);
+    } else {
+      subscriberCountPromise = fetch('/api/newsletter/subscribers').then(async (body) => {
+        const count = parseInt(await body.text());
+        $newsletterSubscriberCount = count;
+        return count;
+      });
+    }
+  });
 
   const onSubmit = async () => {
     if (email) {
@@ -60,7 +83,10 @@
 </h2>
 <p class="mt-3 lg:mt-6 mb-8 lg:mb-12 text-gray-500 dark:text-gray-200">
   každé pondělí <span class="text-blue-500">&bull;</span>&nbsp;jen to podstatné
-  <span class="text-blue-500">&bull;</span>&nbsp;už je nás <strong>2154</strong>
+  <span class="text-blue-500">&bull;</span>&nbsp;už je nás
+  {#await subscriberCountPromise then count}<strong in:fly={{ duration: 250 }} class="inline"
+      >{new Number(count).toLocaleString('cs-CZ')}</strong
+    >{/await}
 </p>
 {#if formState.isAlreadySubscribed}
   <ErrorMessage>
