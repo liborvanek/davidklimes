@@ -36,7 +36,8 @@
   {#await latestArticlePromise then { title, link }}
     <aside
       in:clipRect={{ duration: 500, delay: 0 }}
-      class="hidden lg:block absolute px-8 py-4 lg:pt-10 lg:pl-12 lg:pr-12 lg:pb-12 lg:w-1/3 lg:top-16 right-8 xl:right-16 2xl:right-24 transform -rotate-1 bg-gray-50 dark:bg-gray-800 ">
+      class="hidden lg:block absolute px-8 py-4 lg:pt-10 lg:pl-12 lg:pr-12 lg:pb-12 lg:w-1/3 lg:top-16 right-8 xl:right-16 2xl:right-24 transform -rotate-1 bg-gray-50 dark:bg-gray-800"
+      aria-live="off">
       <span class="uppercase text-xs text-gray-500">poslední komentář</span>
       <h2 class="max-w-lg mt-2 mb-2">
         <Link

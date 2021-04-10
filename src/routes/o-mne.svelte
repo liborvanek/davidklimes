@@ -16,7 +16,7 @@
       class="order-last max-w-xs mx-auto mt-12 lg:mt-0 lg:mb-16 lg:ml-12 xl:ml-32 lg:float-right transform rotate-1">
       <picture>
         <source srcset="david-klimes.webp" type="image/webp" />
-        <img src="david-klimes.jpg" alt="David Klimeš" width="350" height="350" />
+        <img src="david-klimes.jpg" alt="Portrét Davida Klimeš" width="350" height="350" />
       </picture>
       <figcaption class="mt-8 text-center">
         <h3 class="font-bold text-xl text-gray-900">David Klimeš</h3>

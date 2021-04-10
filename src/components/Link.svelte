@@ -3,7 +3,6 @@
   export let href = 'javascript:void(0);';
   export let disabled = false;
   export let outbound: boolean = undefined;
-  export let target: string = undefined;
   export let rel: string = undefined;
 
   $: if (typeof window !== 'undefined') {
@@ -16,7 +15,6 @@
   }
 
   $: if (outbound) {
-    target = '_blank';
     if (rel === undefined) rel = 'noopener noreferrer';
   }
 </script>
@@ -36,8 +34,8 @@
 {:else}
   <a
     {...$$restProps}
+    class={`${$$restProps.class} ${outbound ? 'external' : ''}`}
     {href}
-    {target}
     {rel}
     sapper:prefetch={!outbound ? true : undefined}
     on:click
@@ -46,15 +44,18 @@
     on:mouseout
     on:focus
     on:blur
-    on:keydown
-    data-external={outbound ? '↗' : ''}>
+    on:keydown>
     <slot />
+    {#if outbound}
+      <span class="sr-only">- externí odkaz</span>
+    {/if}
   </a>
 {/if}
 
 <style>
-  a:after {
-    content: attr(data-external);
-    @apply relative inline-block text-xs font-normal left-1 -top-1 no-underline;
+  a.external:after {
+    content: url('/external-link.svg');
+    @apply relative inline-block w-4 h-4 text-xs font-normal left-1 -top-1 no-underline;
+    speak: none;
   }
 </style>

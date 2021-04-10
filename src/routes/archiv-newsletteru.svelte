@@ -68,7 +68,8 @@
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <div class="lg:flex">
         <div
-          class="mr-16 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 to-gray-200">
+          class="mr-16 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 to-gray-200"
+          aria-label={`Newsletter číslo ${id}`}>
           {id}
         </div>
         <div>
