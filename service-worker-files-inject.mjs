@@ -1,13 +1,15 @@
 import fs from 'fs';
 
 const main = async () => {
-  let isDev = process.argv[process.argv.length - 1];
-  if (isDev === 'true') isDev = true;
-  else if (isDev === 'false') isDev = false;
-
-  const buildJsonPath = `__sapper__/${isDev ? 'dev' : 'build'}/build.json`;
   const swPath = 'static/service-worker.js';
+  const isDev = process.env.NODE_ENV === 'development';
 
+  if (isDev) {
+    fs.closeSync(fs.openSync(swPath, 'w'));
+    return;
+  }
+
+  const buildJsonPath = '__sapper__/build/build.json';
   const buildJson = JSON.parse(fs.readFileSync(buildJsonPath));
 
   const shellFilesToCache = [...new Set([

@@ -193,7 +193,7 @@ export default {
     onwarn,
   },
 
-  serviceworker: {
+  serviceworker: dev ? undefined : {
     input: config.serviceworker.input(),
     // output: config.serviceworker.output(),
     // Rename service worker file, so it's not registered automatically
