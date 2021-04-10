@@ -60,7 +60,7 @@
     <article
       class="md:p-6 md:px-8 2xl:px-12 md:py-6 lg:py-8 2xl:py-10 md:bg-gray-50 {i % 2
         ? 'md:bg-gradient-to-br'
-        : 'md:bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform md:hover:scale-105 transition-transform origin-center"
+        : 'md:bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
         <Link href={link} target="_blank" class="dotted">{@html bindSingles(title)}</Link>

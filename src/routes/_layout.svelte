@@ -82,7 +82,7 @@
 
   const activeClass =
     'text-blue-1000 visited:text-blue-1000 bg-gray-100 transition-colors duration-500 rounded-sm';
-  const inactiveClass = 'text-gray-500 visited:text-gray-500 hover:text-blue-700';
+  const inactiveClass = 'text-gray-500 visited:text-gray-500 hover-hover:hover:text-blue-700';
 </script>
 
 <svelte:head>
@@ -133,7 +133,10 @@
             class="transition-transform transform -rotate-1 duration-500 origin-bottom-left text-center py-2 lg:py-0">
             <a
               href={slug}
-              class="menu-link px-8 transition-colors {i === activeMenuItem ? 'active' : ''}"
+              class="menu-link px-8 transition-colors hover-hover:hover:text-blue-700 {i ===
+              activeMenuItem
+                ? 'active'
+                : ''}"
               on:mouseover={() => handleMouseOver(i)}
               on:mouseout={handleMouseOut}
               on:click={() => (showMobileMenu = false)}
@@ -264,9 +267,6 @@
   }
   .showMobileMenu .menu-link {
     @apply text-white text-3xl;
-  }
-  .menu-link:hover {
-    @apply text-blue-700;
   }
   .menu-link.active {
     @apply text-blue-900;

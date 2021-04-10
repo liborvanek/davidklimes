@@ -55,6 +55,9 @@ module.exports = {
         '-23': '-23deg',
         23: '23deg',
       },
+      screens: {
+        'hover-hover': { raw: '(hover: hover)' },
+      },
       transitionProperty: {
         rotate: 'rotate',
       },
