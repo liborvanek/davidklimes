@@ -66,7 +66,7 @@
   });
 
   $: {
-    searchResult = menu.findIndex(({ slug }) => slug === segment);
+    searchResult = menu.findIndex(({ activePaths }) => activePaths.includes(segment));
     if (segment === undefined) {
       activeMenuItem = 0;
     } else if (searchResult !== -1) {
@@ -202,10 +202,10 @@
           </h1>
           {#if path[0] === 'komentare'}
             <a
-              href="/api/komentare.rss"
-              class="inline-flex p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-500 bg-gray-100 rounded-md"
+              href="/feeds/komentare.rss"
+              class="inline-flex group p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-600 hover:text-white bg-gray-100 hover:bg-blue-600 rounded-md"
               ><svg
-                class="w-4 h-4 text-blue-300"
+                class="w-4 h-4 text-blue-300 transform group-hover:scale-125 group-hover:rotate-12 transition duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

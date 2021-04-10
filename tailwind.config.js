@@ -104,6 +104,8 @@ module.exports = {
   variants: {
     extend: {
       textColor: ['visited'],
+      scale: ['group-hover'],
+      rotate: ['group-hover'],
     },
   },
   plugins: [typography],

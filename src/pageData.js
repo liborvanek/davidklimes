@@ -1,24 +1,28 @@
 export const menu = [
   {
     slug: '/',
+    activePaths: ['/'],
     name: 'Úvod',
     scale: '1',
     translate: 0,
   },
   {
     slug: 'komentare',
+    activePaths: ['komentare', 'archiv-newsletteru'],
     name: 'Komentáře',
     scale: '1.7',
     translate: 9.8,
   },
   {
     slug: 'knihy',
+    activePaths: ['knihy'],
     name: 'Knihy',
     scale: '1.05',
     translate: 19.8,
   },
   {
     slug: 'o-mne',
+    activePaths: ['o-mne'],
     name: 'O mně',
     scale: '1.1',
     translate: 28.2,

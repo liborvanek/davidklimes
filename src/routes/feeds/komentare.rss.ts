@@ -19,7 +19,7 @@ function renderXmlAtomFeed(posts) {
   return `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
-    <title>David Klimeš – komentátor</title>
+    <title>David Klimeš – komentáře</title>
     <link>https://davidklimes.cz</link>
     <description />
     <language>cs</language>
