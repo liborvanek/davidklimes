@@ -55,12 +55,12 @@
     content="Přihlaste si k odběru můj pravidelný pondělní newsletter o všem podstatném v byznysu a politice." />
 </svelte:head>
 
-<div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-8 lg:gap-y-8">
+<div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-8 gap-y-4 lg:gap-y-8">
   {#each articles as { link, title, perex, date, type }, i}
     <article
-      class="-ml-4 -mr-4 md:mx-0 p-4 md:px-12 md:py-10 bg-gray-50 {i % 2
-        ? 'bg-gradient-to-br'
-        : 'bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform hover:scale-105 transition-transform origin-center"
+      class="md:p-6 md:px-8 2xl:px-12 md:py-6 lg:py-8 2xl:py-10 md:bg-gray-50 {i % 2
+        ? 'md:bg-gradient-to-br'
+        : 'md:bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform md:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
         <Link href={link} target="_blank" class="dotted">{@html bindSingles(title)}</Link>

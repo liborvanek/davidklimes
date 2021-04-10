@@ -173,7 +173,9 @@
     </nav>
   </header>
   <main aria-live="polite" class="relative">
-    <div out:fade={{ duration: 300, easing: cubicInOut }}>
+    <div
+      out:fade={{ duration: 300, easing: cubicInOut }}
+      class="flex items-baseline justify-between md:justify-start flex-wrap sm:space-x-2 md:space-x-12">
       {#if !hideStaticH1 && (headings[path[0]] || isHomePage)}
         {#if isHomePage}
           <h1
@@ -195,13 +197,30 @@
             class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
             {headings[path[0]]}
           </h1>
+          {#if path[0] === 'komentare'}
+            <a
+              href="/api/komentare.rss"
+              class="inline-flex p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-500 bg-gray-100 rounded-md"
+              ><svg
+                class="w-4 h-4 text-blue-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg
+              ><span>RSS feed</span></a>
+          {/if}
         {/if}
       {/if}
     </div>
     {#if submenuPages.includes(path[0])}
       <section class="mt-6 xl:mt-24 xl:flex">
         <aside class="xl:w-2/7 mb-8 pr-8">
-          <ul class="sm:flex xl:block text-xl xl:space-y-4 xl:text-right">
+          <ul class="-ml-4 sm:ml-0 sm:flex xl:block text-xl xl:space-y-4 xl:text-right">
             <li>
               <Link
                 href="/komentare"
