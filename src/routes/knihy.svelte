@@ -7,7 +7,7 @@
       title:
         'Česko versus budoucnost:<br /><span class="font-normal ">Naše dnešní krize a&nbsp;jak z ní ven</span>',
       description:
-        'Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci přirovnává k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot, který nedokáže řešit některé nejnaléhavější úkoly.',
+        'Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci přirovnávám k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot, který nedokáže řešit některé nejnaléhavější úkoly.',
       image: 'cesko-vs-budoucnost',
       link: 'https://www.ivysehrad.cz/tituly/64694486/cesko-versus-budoucnost/',
       publisher: 'Vyšehrad',

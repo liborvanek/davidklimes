@@ -36,22 +36,22 @@
       >.
     </p>
 
-    <ul class="list-square mt-4 lg:mt-8 ml:8 lg:ml-12 lg:leading-8">
+    <ul class="list-square list-inside mt-4 lg:mt-8 lg:ml-12 lg:leading-8">
       <li>
-        <strong class="text-gray-600">2008&mdash;2014</strong><span
+        <strong class="inline-block lg:w-28 text-gray-600 ">2008&mdash;2014</strong><span
           class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
           >komentátor politiky a ekonomiky v&nbsp;deníku E15</span>
       </li>
       <li>
-        <strong class="text-gray-600">2014&mdash;2017</strong><span
+        <strong class="inline-block lg:w-28 text-gray-600">2014&mdash;2017</strong><span
           class="block mb-4 lg:mb-0 lg:inline lg:ml-4">komentátor v Hospodářských novinách</span>
       </li>
       <li>
-        <strong class="text-gray-600">2017&mdash;2019</strong><span
+        <strong class="inline-block lg:w-28 text-gray-600">2017&mdash;2019</strong><span
           class="block mb-4 lg:mb-0 lg:inline lg:ml-4">analytik týdeníku Ekonom</span>
       </li>
       <li>
-        <strong class="text-gray-600">od 2019</strong><span
+        <strong class="inline-block lg:w-28 text-gray-600">od 2019</strong><span
           class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
           >komentuji <Link
             href="https://www.aktualne.cz/autori/david-klimes/l~1ba93f023e3b11e8bacfac1f6b220ee8/"
@@ -75,7 +75,8 @@
       Na FSV&nbsp;UK vyučuji od roku 2014 <Link
         href="https://iksz.fsv.cuni.cz/en/contacts/people/59762032"
         >komunikaci, komentář a ekonomiku</Link
-      >.
+      >.<br />
+      Žiji v Praze.
     </p>
   </article>
 </PageTransition>

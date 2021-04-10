@@ -97,11 +97,11 @@
 
 <DetectOffline />
 <div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">
-  <header class="site-header py-4 md:py-6 flex justify-between items-center">
+  <header class="site-header pt-4 md:pt-6 pb-6 flex justify-between items-center">
     <div
       class="transform {!isHomePage
-        ? 'md:scale-75'
-        : 'md:scale-100'} transition-transform duration-150">
+        ? 'scale-75'
+        : 'scale-100'} transition-transform duration-150 origin-left">
       <a href="/" tabindex="-1" aria-hidden="true" class="focus:outline-none">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
@@ -151,27 +151,30 @@
         menuId="menu-mobile"
         classes="z-30 relative fixed" />
       {#if showMobileMenu}
-        <ul
-          id="menu-mobile"
-          class="lg:hidden absolute left-0 top-0 w-full h-screen flex flex-col justify-center bg-brown-400 bg-opacity-97 z-20 lowercase"
-          aria-live="assertive"
-          use:trapFocus
+        <div
+          class="lg:hidden absolute left-0 top-0 w-full h-screen bg-brown-400 bg-opacity-97 z-20 flex items-center justify-center"
           in:fly={{ y: -300, duration: 150 }}>
-          {#each menu as { slug, name }, i}
-            <li
-              class:showMobileMenu
-              class="text-center py-2 lg:py-0"
-              in:fly={{ y: -15, delay: i * 60, easing: backInOut, duration: 350 }}>
-              <a
-                href={slug}
-                class="menu-link px-8 {i === activeMenuItem ? 'active' : ''}"
-                on:mouseover={() => handleMouseOver(i)}
-                on:mouseout={handleMouseOut}
-                on:click={() => (showMobileMenu = false)}
-                sapper:prefetch>{name}</a>
-            </li>
-          {/each}
-        </ul>
+          <ul
+            id="menu-mobile"
+            class="flex flex-col justify-center lowercase transform -translate-y-1/4"
+            aria-live="assertive"
+            use:trapFocus>
+            {#each menu as { slug, name }, i}
+              <li
+                class:showMobileMenu
+                class="text-center py-2 lg:py-0 transform -rotate-1"
+                in:fly={{ y: -15, delay: i * 60, easing: backInOut, duration: 350 }}>
+                <a
+                  href={slug}
+                  class="menu-link-mobile px-8 {i === activeMenuItem ? 'active' : ''}"
+                  on:mouseover={() => handleMouseOver(i)}
+                  on:mouseout={handleMouseOut}
+                  on:click={() => (showMobileMenu = false)}
+                  sapper:prefetch>{name}</a>
+              </li>
+            {/each}
+          </ul>
+        </div>
       {/if}
     </nav>
   </header>
@@ -221,9 +224,9 @@
       {/if}
     </div>
     {#if submenuPages.includes(path[0])}
-      <section class="mt-6 xl:mt-24 xl:flex">
+      <section class="lg:mt-6 xl:mt-24 xl:flex">
         <aside class="xl:w-2/7 mb-8 pr-8">
-          <ul class="-ml-4 sm:ml-0 sm:flex xl:block text-xl xl:space-y-4 xl:text-right">
+          <ul class=" sm:flex xl:block text-xl xl:space-y-4 xl:text-right">
             <li>
               <Link
                 href="/komentare"
@@ -265,8 +268,11 @@
   .menu-link {
     @apply text-gray-600 no-underline;
   }
-  .showMobileMenu .menu-link {
-    @apply text-white text-3xl;
+  .showMobileMenu .menu-link-mobile {
+    @apply text-white text-3xl no-underline;
+  }
+  .showMobileMenu .menu-link-mobile.active {
+    @apply text-gray-700;
   }
   .menu-link.active {
     @apply text-blue-900;
