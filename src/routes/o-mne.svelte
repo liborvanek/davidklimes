@@ -75,8 +75,8 @@
       Na FSV&nbsp;UK vyučuji od roku 2014 <Link
         href="https://iksz.fsv.cuni.cz/en/contacts/people/59762032"
         >komunikaci, komentář a ekonomiku</Link
-      >.<br />
-      Žiji v Praze.
+      >.
     </p>
+    <p class="max-w-2xl mt-4">Žiju v Praze.</p>
   </article>
 </PageTransition>

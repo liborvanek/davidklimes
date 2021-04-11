@@ -83,7 +83,7 @@
 </h2>
 <p class="mt-3 lg:mt-6 mb-8 lg:mb-12 text-gray-500 dark:text-gray-200">
   každé pondělí <span class="text-blue-500">&bull;</span>&nbsp;jen to podstatné
-  <span class="text-blue-500">&bull;</span>&nbsp;už je nás
+  <span class="text-blue-500">&bull;</span>&nbsp;přidejte se, už je nás
   {#await subscriberCountPromise then count}<strong in:fly={{ duration: 250 }} class="inline"
       >{new Number(count).toLocaleString('cs-CZ')}</strong
     >{/await}
