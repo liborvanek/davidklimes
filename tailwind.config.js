@@ -1,6 +1,7 @@
 const { tailwindExtractor } = require('tailwindcss/lib/lib/purgeUnusedStyles');
 const colors = require('tailwindcss/colors');
 const typography = require('@tailwindcss/typography');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   // darkMode: 'media',
@@ -56,6 +57,8 @@ module.exports = {
         23: '23deg',
       },
       screens: {
+        'xs-only': { max: '475px' },
+        ...defaultTheme.screens,
         'hover-hover': { raw: '(hover: hover)' },
       },
       transitionProperty: {
