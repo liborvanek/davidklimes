@@ -273,6 +273,8 @@
           ><img src="icon/linkedin.svg" alt="LinkedIn icon" /></a>
         <a href="https://www.facebook.com/david.klimes" class="social-link"
           ><img src="icon/facebook.svg" alt="LinkedIn icon" /></a>
+        <a href="https://www.instagram.com/david_klimes/" class="social-link"
+          ><img src="icon/instagram.svg" alt="Instagram icon" /></a>
       </div>
     </div>
 
