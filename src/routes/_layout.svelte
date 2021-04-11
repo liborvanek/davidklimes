@@ -254,11 +254,43 @@
     {/if}
   </main>
   <hr
-    class="mt-32 h-1 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
-  <footer>&nbsp;</footer>
+    class="mt-24 mb-6 h-1 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
+  <footer
+    class="flex flex-col lg:flex-row lg:items-center lg:space-x-8 space-y-6 lg:space-y-0 md:justify-between text-xs text-gray-500">
+    <div
+      class="flex xs-only:flex-col lg:items-end xs-only:space-y-4 md:space-x-12 justify-between lg:justify-items-auto">
+      <div>
+        <strong>David Klimeš</strong> © {new Date().getFullYear()}<br />Pište mi na
+        <a class="text-blue-400 no-underline" href="mailto:info@davidklimes.cz"
+          >info@davidklimes.cz</a>
+      </div>
+      <div class="flex space-x-4 text-brown-200">
+        <a href="https://www.joinclubhouse.com/club/%23ToPodstatn%C3%A9" class="social-link"
+          ><img src="icon/clubhouse.svg" alt="Clubhouse icon" /></a>
+        <a href="https://twitter.com/david_klimes" class="social-link"
+          ><img src="icon/twitter.svg" alt="Twitter icon" /></a>
+        <a href="https://www.linkedin.com/in/davidklimes/" class="social-link"
+          ><img src="icon/linkedin.svg" alt="LinkedIn icon" /></a>
+        <a href="https://www.facebook.com/david.klimes" class="social-link"
+          ><img src="icon/facebook.svg" alt="LinkedIn icon" /></a>
+      </div>
+    </div>
+
+    <div class="text-gray-400">
+      Web vyrobil <a class="text-blue-400 visited:text-blue-400 no-underline" href="/"
+        >Libor Vaněk</a> <br /> na podporu nezávislé žurnalistiky.
+    </div>
+  </footer>
 </div>
 
 <style>
+  .social-link > img {
+    transition: 300ms;
+  }
+  .social-link:hover > img {
+    filter: contrast(60%);
+    transition: 300ms;
+  }
   .moving-box {
     width: 6rem;
     height: 2.4rem;
