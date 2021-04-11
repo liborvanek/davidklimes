@@ -188,10 +188,10 @@
             class="mt-4 lg:mt-8 mb-2 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl md:text-8xl leading-none font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
             <span
               class="relative reveal-text first block bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
-              >David</span
+              ><span class="before" />David<span class="after" /></span
             ><span
               class="relative reveal-text second block bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50 ml-8"
-              >Klimeš</span>
+              ><span class="before" />Klimeš<span class="after" /></span>
           </h1>
         {:else if headingIsSpan}
           <span
@@ -309,8 +309,8 @@
   .menu-link.active {
     @apply text-blue-900;
   }
-  .reveal-text:before,
-  .reveal-text:after {
+  .reveal-text > .before,
+  .reveal-text > .after {
     content: '';
     position: absolute;
     z-index: 999;
@@ -321,29 +321,29 @@
     will-change: transform;
     transform: translateZ(0);
   }
-  .reveal-text:before {
+  .reveal-text > .before {
     background-color: #fff;
     opacity: 1;
     animation-name: uncover;
     animation-duration: 1ms;
     animation-fill-mode: forwards;
   }
-  .reveal-text:after {
+  .reveal-text > .after {
     @apply bg-gray-100;
     transform: scaleX(0);
     animation-name: overlay;
     animation-duration: 500ms;
   }
-  .reveal-text.first:before {
+  .reveal-text.first > .before {
     animation-delay: 350ms;
   }
-  .reveal-text.first:after {
+  .reveal-text.first > .after {
     animation-delay: 100ms;
   }
-  .reveal-text.second:before {
+  .reveal-text.second > .before {
     animation-delay: 550ms;
   }
-  .reveal-text.second:after {
+  .reveal-text.second > .after {
     animation-delay: 300ms;
   }
 
