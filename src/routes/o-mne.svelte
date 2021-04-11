@@ -20,7 +20,8 @@
       </picture>
       <figcaption class="mt-8 text-center">
         <h3 class="font-bold text-xl text-gray-900">David Klimeš</h3>
-        <span class="text-xs text-gray-400 italic">foto: Václav Vašků</span>
+        <span class="block text-xs text-gray-500 mb-6">* 1982</span>
+        <span class="block text-xs text-gray-400 italic">foto: Václav Vašků</span>
       </figcaption>
     </figure>
     <p class="max-w-lg  lg:mt-8 text-xl lg:text-2xl text-gray-700 leading-relaxed font-bold">
