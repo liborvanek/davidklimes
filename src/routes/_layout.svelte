@@ -96,7 +96,7 @@
 <svelte:window on:load={notifyServiceWorker} />
 
 <DetectOffline />
-<div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-32">
+<div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-8">
   <header class="site-header pt-4 md:pt-6 pb-6 flex justify-between items-center">
     <div
       class="transform {!isHomePage

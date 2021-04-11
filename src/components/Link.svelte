@@ -55,7 +55,7 @@
 <style>
   a.external:after {
     content: url('/icon/external-link.svg');
-    @apply relative inline-block -top-1;
+    @apply relative inline-block -top-1 no-underline;
     speak: none;
   }
 </style>

@@ -3,21 +3,31 @@
   import promiseMinDelay from 'p-min-delay';
 
   import type { IArticle } from '../server/dbApi';
-  import { showNewsletterIntro } from '../stores';
-  import { clipRect } from '../transitions';
   import Link from '../components/Link.svelte';
   import PageTransition from '../components/PageTransition.svelte';
   import Newsletter from '../components/Newsletter.svelte';
   import NewsletterOutro from '../components/NewsletterOutro.svelte';
+  import { clipRect } from '../transitions';
+  import { showNewsletterIntro } from '../stores';
+  import { bindSingles } from '../utils';
 
   // This promise will never resolve
   let latestArticlePromise: Promise<IArticle> = new Promise(() => {});
 
+  const mondayClubhouse = {
+    subtitle: 'Pondělní clubhouse',
+    title: 'O rozvolňování i ODS s hejtmanem Martinem Kubou',
+    link: 'https://www.joinclubhouse.com/event/xXzzZJq4',
+    isoDate: '2021-04-12T20:30:00.000Z',
+    date: `<div class="flex items-center"><img class="w-6 mr-2 inline-block" src="icon/clubhouse-wave.png" alt="Clubhouse icon"/><span>12. 4. 2021, 20:00</span></div>`,
+  };
   onMount(() => {
     // This promise will replace the first one and will be resolved in the {#await} block
     // It will run on client only
     latestArticlePromise = promiseMinDelay(
-      fetch('/api/latest-article').then((body) => body.json()),
+      new Date().getDay() < 2
+        ? Promise.resolve(mondayClubhouse)
+        : fetch('/api/latest-article').then((body) => body.json()),
       1000,
     );
   });
@@ -33,18 +43,21 @@
 {#if $showNewsletterIntro}
   <NewsletterOutro />
 {:else}
-  {#await latestArticlePromise then { title, link }}
+  {#await latestArticlePromise then { title, subtitle, link, date }}
     <aside
       in:clipRect={{ duration: 500, delay: 0 }}
-      class="hidden lg:block absolute px-8 py-4 lg:pt-10 lg:pl-12 lg:pr-12 lg:pb-12 lg:w-1/3 lg:top-16 right-8 xl:right-16 2xl:right-24 transform -rotate-1 bg-gray-50 dark:bg-gray-800"
+      class="hidden lg:block absolute px-8 py-4 lg:pt-10 lg:pl-12 lg:pr-12 lg:pb-12 lg:w-96 lg:top-16 right-8 xl:right-16 2xl:right-24 transform -rotate-1 bg-gray-50 dark:bg-gray-800"
       aria-live="off">
-      <span class="uppercase text-xs text-gray-500">poslední komentář</span>
-      <h2 class="max-w-lg mt-2 mb-2">
+      <span class="uppercase text-xs text-gray-500">{@html subtitle}</span>
+      <h2 class="max-w-lg text-lg mt-2 mb-2">
         <Link
           href={link}
-          class="dotted inline-block text-lg font-bold text-gray-600 visited:text-gray-600 dark:text-gray-300 dark:visited:text-gray-300 hover:text-blue-800 dark:hover:text-blue-500 underline transition-colors"
-          >{title}</Link>
+          class="dotted inline-block font-bold text-gray-600 visited:text-gray-600 dark:text-gray-300 dark:visited:text-gray-300 hover:text-blue-800 dark:hover:text-blue-500 underline transition-colors"
+          >{@html bindSingles(title)}</Link>
       </h2>
+      {#if date}
+        <p class="mt-4 text-xs text-gray-400">{@html date}</p>
+      {/if}
     </aside>
   {/await}
   <PageTransition outDuration={$showNewsletterIntro ? 300 : 0}>
