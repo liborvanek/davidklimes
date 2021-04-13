@@ -54,7 +54,7 @@
 <svelte:head>
   <title>Knihy – David Klimeš</title>
   <Meta
-    title="Knihy David Klimeš"
+    title="Knihy Davida Klimeše"
     description="O české společnosti, ekonomice, politice a médiích." />
 </svelte:head>
 
