@@ -2,14 +2,16 @@
   import { onMount } from 'svelte';
   import promiseMinDelay from 'p-min-delay';
 
-  import type { IArticle } from '../server/dbApi';
   import Link from '../components/Link.svelte';
   import PageTransition from '../components/PageTransition.svelte';
   import Newsletter from '../components/Newsletter.svelte';
   import NewsletterOutro from '../components/NewsletterOutro.svelte';
+  import Meta from '../components/Meta.svelte';
+
   import { clipRect } from '../transitions';
   import { showNewsletterIntro } from '../stores';
   import { bindSingles } from '../utils';
+  import type { IArticle } from '../server/dbApi';
 
   // This promise will never resolve
   let latestArticlePromise: Promise<IArticle> = new Promise(() => {});
@@ -34,10 +36,10 @@
 </script>
 
 <svelte:head>
-  <title>David Klimeš</title>
-  <meta
-    name="description"
-    content="Přihlaste si k odběru můj pravidelný pondělní newsletter o všem podstatném v byznysu a politice." />
+  <title>David Klimeš – novinář</title>
+  <Meta
+    title="David Klimeš – novinář"
+    description="Komentátor ekonomického a politického dění. Přihlaste si k odběru můj pravidelný pondělní newsletter o všem podstatném v byznysu a politice." />
 </svelte:head>
 
 {#if $showNewsletterIntro}

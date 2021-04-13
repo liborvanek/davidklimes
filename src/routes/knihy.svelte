@@ -1,6 +1,7 @@
 <script lang="ts">
   import PageTransition from '../components/PageTransition.svelte';
   import LinkButton from '../components/LinkButton.svelte';
+  import Meta from '../components/Meta.svelte';
 
   const books = [
     {
@@ -52,9 +53,9 @@
 
 <svelte:head>
   <title>Knihy – David Klimeš</title>
-  <meta
-    name="description"
-    content="Pokud si chcete přečíst něco delšího o české společnosti, ekonomice, politice či médiích, zkuste některou z mých knih." />
+  <Meta
+    title="Knihy David Klimeš"
+    description="O české společnosti, ekonomice, politice a médiích." />
 </svelte:head>
 
 <PageTransition classes="max-w-screen-lg mx-auto mt-8 lg:mt-16 space-y-24 lg:space-y-32">

@@ -1,13 +1,14 @@
 <script lang="ts">
   import PageTransition from '../components/PageTransition.svelte';
   import Link from '../components/Link.svelte';
+  import Meta from '../components/Meta.svelte';
 </script>
 
 <svelte:head>
   <title>O mně – David Klimeš</title>
-  <meta
-    name="description"
-    content="Komentuji ekonomické a politické dění. Na Fakultě sociálních věd UK vyučuji komunikaci. Jsem držitelem novinářské Ceny Karla Havlíčka Borovského." />
+  <Meta
+    title="O mně – David Klimeš"
+    description="Komentuji ekonomické a politické dění. Na Fakultě sociálních věd UK vyučuji komunikaci. Jsem držitelem novinářské Ceny Karla Havlíčka Borovského." />
 </svelte:head>
 
 <PageTransition>

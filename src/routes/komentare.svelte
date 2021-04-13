@@ -23,6 +23,8 @@
   import Button from '../components/Button.svelte';
   import Link from '../components/Link.svelte';
   import ErrorMessage from '../components/ErrorMessage.svelte';
+  import Meta from '../components/Meta.svelte';
+
   import { bindSingles } from '../utils';
 
   export let articles: IArticleWithDate[];
@@ -50,9 +52,9 @@
 
 <svelte:head>
   <title>Komentáře – David Klimeš</title>
-  <meta
-    name="description"
-    content="Archiv mých komentářů ekonomického a politického dění. Publikuji na Aktuálně.cz a v Českém rozhlasu Plus." />
+  <Meta
+    title="Komentáře Davida Klimeše"
+    description="Archiv komentářů ekonomického a politického dění. Publikuji na Aktuálně.cz a v Českém rozhlasu Plus." />
 </svelte:head>
 
 <div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-4 gap-y-4 lg:gap-y-4">

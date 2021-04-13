@@ -30,6 +30,7 @@
   import Button from '../components/Button.svelte';
   import ErrorMessage from '../components/ErrorMessage.svelte';
   import Link from '../components/Link.svelte';
+  import Meta from '../components/Meta.svelte';
 
   export let newsletterArchive: NewsletterItem[];
   const articlesPerPage = 12;
@@ -52,13 +53,14 @@
       loadingMore = false;
     }
   }
+  const site = process.env.SITE_URL;
 </script>
 
 <svelte:head>
   <title>Archiv newsletterů – David Klimeš</title>
-  <meta
-    name="description"
-    content="Všechna čísla mého newsletteru o podstatných souvislostech v byznysu a politice." />
+  <Meta
+    title="Archiv newsletterů – David Klimeš"
+    description="Všechna čísla newsletteru o podstatných souvislostech v byznysu a politice." />
 </svelte:head>
 
 <div class="lg:px-4 xl:-mt-12">
