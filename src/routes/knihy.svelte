@@ -4,8 +4,8 @@
 
   const books = [
     {
-      title:
-        'Česko versus budoucnost:<br /><span class="font-normal ">Naše dnešní krize a&nbsp;jak z ní ven</span>',
+      title: 'Česko versus budoucnost:',
+      subtitle: 'Naše dnešní krize a&nbsp;jak z ní ven',
       short: 'Česko versus budoucnost',
       description:
         'Přehled některých z těch nejakutnějších problémů, jimž dnes čelí Česká republika. Situaci přirovnávám k předčasné krizi středního věku, která se projevuje nespokojeností, nejistotou a neřešením příčin problémů. Výsledkem je „zaseklý stát“ bez silných sdílených hodnot, který nedokáže řešit některé nejnaléhavější úkoly.',
@@ -15,8 +15,8 @@
       year: 2020,
     },
     {
-      title:
-        'Jak probudit Česko<br /><span class="font-normal ">Recept na úspěšnou republiku</span>',
+      title: 'Jak probudit Česko',
+      subtitle: 'Recept na úspěšnou republiku',
       short: 'Jak probudit Česko',
       description:
         'Česká společnost zažívá od roku 1989 nejúspěšnější a nejsvobodnější období své historie. Ale dosavadní sociální a ekonomický model nevyhnutelně krachuje. Mylně si namlouváme, že za vše mohou neschopní politici a snažíme se je nahradit novými a neokoukanými. Ale za politickými krizemi číhá čím dál jasnější úpadek dosavadního polistopadového konsenzu. Jak ale probudit Česko, aby přestalo jen přešlapovat na místě a vykročilo k dalšímu čtvrtstoletí prosperity a úspěchů?',
@@ -26,8 +26,8 @@
       year: 2017,
     },
     {
-      title:
-        'Jak zábavné je informovat<br /><span class="font-normal ">Infotainment čili infozábava v teorii, praxi a českém kontextu</span>',
+      title: 'Jak zábavné je informovat',
+      subtitle: 'Infotainment čili infozábava v teorii, praxi a českém kontextu',
       short: 'Jak zábavné je informovat',
       description:
         'Publikace shrnuje teoretické uvažování o pronikání zábavy do zpravodajství a předkládá odpovídající koncept infotainmentu (infozábavy), skrze který je užitečné jednotlivé infozábavní jevy analyzovat. Přináší také nový pohled na to, jak k šíření infozábavy do médií přistupovat. ',
@@ -37,7 +37,8 @@
       year: 2015,
     },
     {
-      title: 'Šimon Pánek<br /><span class="font-normal ">Aby dobro neškodilo</span>',
+      title: 'Šimon Pánek',
+      subtitle: 'Aby dobro neškodilo',
       short: 'Aby dobro neškodilo',
       description:
         'Šimon Pánek je výrazná osobnost veřejného života a humanitární manažer. Knižní rozhovor představuje obě roviny jeho celoživotní práce a od konkrétních životních situací se dostává k obecnějším, nadčasovým problémům.',
@@ -57,11 +58,12 @@
 </svelte:head>
 
 <PageTransition classes="max-w-screen-lg mx-auto mt-8 lg:mt-16 space-y-24 lg:space-y-32">
-  {#each books as { title, short, description, image, link, publisher, year }, i}
+  {#each books as { title, subtitle, short, description, image, link, publisher, year }, i}
     <article class="book-grid">
       <h2
         class="info max-w-xs mt-4 heading text-2xl lg:text-3xl font-bold text-gray-800 leading-snug">
         {@html title}
+        <span class="block mt-2 font-normal">{@html subtitle}</span>
       </h2>
       <figure class="image my-8 sm:my-0">
         <picture>
