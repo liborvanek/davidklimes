@@ -52,10 +52,10 @@
   <title>Komentáře – David Klimeš</title>
   <meta
     name="description"
-    content="Přihlaste si k odběru můj pravidelný pondělní newsletter o všem podstatném v byznysu a politice." />
+    content="Archiv mých komentářů ekonomického a politického dění. Publikuji na Aktuálně.cz a v Českém rozhlasu Plus." />
 </svelte:head>
 
-<div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-8 gap-y-4 lg:gap-y-8">
+<div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-4 gap-y-4 lg:gap-y-4">
   {#each articles as { link, title, perex, date, type }, i}
     <article
       class="md:p-6 md:px-8 2xl:px-12 md:py-6 lg:py-8 2xl:py-10 md:bg-gray-50 {i % 2
