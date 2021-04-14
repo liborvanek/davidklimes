@@ -203,9 +203,9 @@
             class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
             {headings[path[0]]}
           </h1>
-          {#if path[0] === 'komentare'}
+          {#if path[0] === 'komentare' || path[0] === 'archiv-newsletteru'}
             <a
-              href="/feeds/komentare.rss"
+              href={`/feeds/${path[0]}.rss`}
               class="inline-flex group p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-600 hover:text-white bg-gray-100 hover:bg-blue-600 rounded-md"
               ><svg
                 class="w-4 h-4 text-blue-300 transform group-hover:scale-125 group-hover:rotate-12 transition duration-300"

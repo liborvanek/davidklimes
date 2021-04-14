@@ -20,8 +20,8 @@ function renderXmlAtomFeed(posts) {
 <rss version="2.0">
   <channel>
     <title>David Klimeš – komentáře</title>
-    <link>https://davidklimes.cz</link>
-    <description />
+    <link>https://davidklimes.cz/komentare</link>
+    <description>Archiv komentářů publikovaných na Aktuálně.cz a v Českém rozhlasu Plus.</description>
     <language>cs</language>
     <docs>https://www.rssboard.org/rss-specification</docs>
     ${posts
