@@ -118,4 +118,6 @@
 
 <p class="mt-4 ml-6 text-sm">
   <Link href="/archiv-newsletteru">archiv všech čísel</Link>
+  <span class="text-blue-500">&bull;</span>
+  <Link href="/feeds/archiv-newsletteru.rss">RSS feed</Link>
 </p>
