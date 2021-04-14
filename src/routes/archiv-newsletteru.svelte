@@ -53,7 +53,6 @@
       loadingMore = false;
     }
   }
-  const site = process.env.SITE_URL;
 </script>
 
 <svelte:head>
