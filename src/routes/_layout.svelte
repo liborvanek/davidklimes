@@ -105,14 +105,7 @@
       <a href="/" tabindex="-1" aria-hidden="true" class="focus:outline-none">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
-          <source srcset="lion.png" type="image/png" />
-          <img
-            src="lion.png"
-            alt="Logo"
-            class="w-14 md:w-24"
-            aria-label="Na úvod"
-            width="120"
-            height="120" />
+          <img src="lion.png" alt="Logo" class="w-14 md:w-24" width="90" height="90" />
         </picture>
       </a>
     </div>
