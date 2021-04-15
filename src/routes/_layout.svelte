@@ -259,15 +259,15 @@
       </div>
       <div class="flex space-x-4 text-brown-200">
         <a href="https://www.joinclubhouse.com/club/%23ToPodstatn%C3%A9" class="social-link"
-          ><img src="icon/clubhouse.svg" alt="Clubhouse icon" /></a>
+          ><img src="icon/clubhouse.svg" width="24" height="24" alt="Clubhouse icon" /></a>
         <a href="https://twitter.com/david_klimes" class="social-link"
-          ><img src="icon/twitter.svg" alt="Twitter icon" /></a>
+          ><img src="icon/twitter.svg" width="24" height="24" alt="Twitter icon" /></a>
         <a href="https://www.linkedin.com/in/davidklimes/" class="social-link"
-          ><img src="icon/linkedin.svg" alt="LinkedIn icon" /></a>
+          ><img src="icon/linkedin.svg" width="24" height="24" alt="LinkedIn icon" /></a>
         <a href="https://www.facebook.com/david.klimes" class="social-link"
-          ><img src="icon/facebook.svg" alt="LinkedIn icon" /></a>
+          ><img src="icon/facebook.svg" width="24" height="24" alt="LinkedIn icon" /></a>
         <a href="https://www.instagram.com/david_klimes/" class="social-link"
-          ><img src="icon/instagram.svg" alt="Instagram icon" /></a>
+          ><img src="icon/instagram.svg" width="24" height="24" alt="Instagram icon" /></a>
       </div>
     </div>
 
