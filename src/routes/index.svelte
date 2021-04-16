@@ -19,7 +19,7 @@
   const mondayClubhouse = {
     subtitle: 'Pondělní clubhouse',
     title: 'Kam směřuje česká zahraniční politika?',
-    annotation: 'Special Guest: šéfredaktorka českého Euractivu Aneta Zachová.',
+    annotation: 'Zvláštní host: šéfredaktorka českého Euractivu Aneta Zachová.',
     link: 'https://www.joinclubhouse.com/event/mJ6knwjV',
     isoDate: '2021-04-19T20:00:00.000Z',
     date: `<div class="flex items-center"><img class="w-6 mr-2 inline-block" src="icon/clubhouse-wave.png" alt="Clubhouse icon"/><span>19. 4. 2021, 20:00</span></div>`,
@@ -28,7 +28,7 @@
     // This promise will replace the first one and will be resolved in the {#await} block
     // It will run on client only
     latestArticlePromise = promiseMinDelay(
-      new Date().getDay() > 2
+      new Date().getDay() < 2
         ? Promise.resolve(mondayClubhouse)
         : fetch('/api/latest-article').then((body) => body.json()),
       1000,
