@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "production-david-klimes-web",
+      "cwd": "/var/www/production-david-klimes-web/current",
+      "script": "node __sapper__/build",
+      "watch": false,
+      "env_production": {
+        "PORT": "4002",
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
