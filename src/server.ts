@@ -55,12 +55,6 @@ db.once('open', () => {
     rssFeed();
   });
 
-  // Run at every 3rd minute past hour 6 and 7 on Monday.
-  // See https://crontab.guru/#*/3_6,7_*_*_MON
-  cron.schedule('*/3 6,7 * * 1', () => {
-    newsletterFromEcomail();
-  });
-
   // on production we want to execute crons immediately
   // (dev can restart many times resulting in many unecessary calls)
   if (!dev) {

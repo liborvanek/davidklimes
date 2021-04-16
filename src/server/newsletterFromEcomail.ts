@@ -48,7 +48,9 @@ export const newsletterFromEcomail = async () => {
       `Newsletter sync is successfull.
         Added: ${onlyNewNewsletters.length} new newsletter(s).`,
     );
+    return onlyNewNewsletters.length;
   } catch (error) {
     console.error('Newsletter sync failed, reason: ', error);
+    throw new Error('Newsletter sync failed');
   }
 };
