@@ -47,7 +47,7 @@ db.once('open', () => {
       process.send('online');
     }
 
-    console.log(`> Ready on http://${PORT}`);
+    console.log(`> Ready on http://localhost:${PORT}`);
   };
 
   // Run rss sync every 10 minutes
@@ -62,7 +62,7 @@ db.once('open', () => {
     newsletterFromEcomail();
   }
 
-  server.listen(PORT, () => listenCallback);
+  server.listen(parseInt(PORT, 10), 'localhost', () => listenCallback);
 }).on('error: ', (error) => {
   throw new Error(`Disconnected from mongodb. Reason: ${error}`);
 });

@@ -5,6 +5,7 @@ before_script:
 
 stages:
   - build
+  - deploy_staging
   - deploy_production
 
 cache:
@@ -23,15 +24,18 @@ build:
     - npm ci
     - npm run build
 
+deploy_staging:
+  stage: deploy_staging
+  needs: [build]
+  script:
+    - source .ci/deploy-staging
+
 deploy_production:
-  #   only:
-  #     - master
+  only:
+    - master
   except:
     - tags
   stage: deploy_production
-  # when: manual
+  needs: [build, deploy_staging]
   script:
-    - export SSHPASS=$CI_USER_PASS
-    - sshpass -e ssh -o StrictHostKeyChecking=no -p 22 $CI_USER@$CI_HOST 'cd /var/www/david-klimes-web/current;PM2_HOME=/var/www/.pm2 pm2 stop process.json;cd ..;rm -rf current'
-    - sshpass -e rsync -rzq -e 'ssh -o StrictHostKeyChecking=no -p 22' . $CI_USER@$CI_HOST:/var/www/david-klimes-web/current
-    - sshpass -e ssh $CI_USER@$CI_HOST 'ln -s /var/www/david-klimes-web/shared/.env /var/www/david-klimes-web/current/.env;cd /var/www/david-klimes-web/current;PM2_HOME=/var/www/.pm2 pm2 start process.json --env production'
+    - source .ci/deploy-production
