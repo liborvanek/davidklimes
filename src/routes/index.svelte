@@ -49,7 +49,7 @@
   {#await latestArticlePromise then { title, subtitle, annotation, link, date }}
     <aside
       in:clipRect={{ duration: 500, delay: 0 }}
-      class="hidden lg:block absolute px-8 py-4 lg:pt-10 lg:pl-12 lg:pr-12 lg:pb-12 lg:w-96 lg:top-16 right-8 xl:right-16 2xl:right-24 transform -rotate-1 bg-gray-50 dark:bg-gray-800"
+      class="hidden lg:block absolute w-80 xl:w-96 top-0 xl:top-16 right-0 xl:right-16 2xl:right-24  p-12 pt-10 transform -rotate-1 bg-gray-50 dark:bg-gray-800"
       aria-live="off">
       <span class="uppercase text-xs text-gray-500">{@html subtitle}</span>
       <h2 class="max-w-lg text-lg mt-2 mb-2">

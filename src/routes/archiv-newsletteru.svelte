@@ -62,10 +62,10 @@
     description="Všechna čísla newsletteru o podstatných souvislostech v byznysu a politice." />
 </svelte:head>
 
-<div class="lg:px-4 xl:-mt-12">
+<div class="xl:px-4 xl:-mt-12">
   {#each newsletterArchive as { archiveUrl, title, date, id, isoDate }, i}
     <article
-      class="sm:px-4 lg:px-16 py-4 lg:py-8 bg-gray-50 bg-gradient-to-r from-white to-gray-50 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
+      class="sm:px-4 xl:px-16 py-4 lg:py-8 bg-gray-50 bg-gradient-to-r from-white to-gray-50 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <div class="lg:flex">
         <div

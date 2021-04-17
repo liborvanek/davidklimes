@@ -178,7 +178,7 @@
       {#if !hideStaticH1 && (headings[path[0]] || isHomePage)}
         {#if isHomePage}
           <h1
-            class="mt-4 lg:mt-8 mb-2 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl md:text-8xl leading-none font-extrabold">
+            class="mt-4 lg:mt-8 mb-2 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl xl:text-8xl leading-none font-extrabold">
             <span
               class="relative inline-block reveal-text first bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
               ><span class="before" />David<span class="after" /></span

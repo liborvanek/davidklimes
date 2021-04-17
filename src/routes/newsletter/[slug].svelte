@@ -39,7 +39,7 @@
 </svelte:head>
 
 <PageTransition>
-  <article class="prose mt-0 lg:-mt-14">
+  <article class="prose mt-0 xl:-mt-14 xl:ml-auto xl:mr-0">
     <a class="back" href="/archiv-newsletteru"><span class="arrow">&larr;</span> zpět na archiv</a>
     <h1>{article.title}</h1>
     {@html article.markup}
@@ -48,10 +48,6 @@
 </PageTransition>
 
 <style>
-  article {
-    margin-left: auto;
-    margin-right: 0;
-  }
   article a.back {
     @apply inline-block mb-4 no-underline text-sm transform -rotate-1;
   }

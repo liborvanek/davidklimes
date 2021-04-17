@@ -78,8 +78,8 @@
   };
 </script>
 
-<h2 class="text-2xl lg:text-3xl font-bold text-gray-700 dark:text-gray-200 max-w-md ">
-  newsletter o&nbsp;souvislostech v&nbsp;byznysu a&nbsp;politice
+<h2 class="text-2xl xl:text-3xl font-bold text-gray-700 dark:text-gray-200 max-w-md  ">
+  newsletter o&nbsp;souvislostech<br />v&nbsp;byznysu a&nbsp;politice
 </h2>
 <p class="mt-3 lg:mt-6 mb-8 lg:mb-12 text-gray-500 dark:text-gray-200">
   každé pondělí <span class="text-blue-500">&bull;</span>&nbsp;jen to podstatné
