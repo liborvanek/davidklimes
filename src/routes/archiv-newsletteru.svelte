@@ -78,7 +78,9 @@
             <Link href={archiveUrl ? archiveUrl : `/newsletter/${id}`} variant="heading"
               >{@html bindSingles(title)}</Link>
           </h2>
-          <time datetime={isoDate.split('T')[0]} class="font-bold text-gray-600">
+          <time
+            datetime={isoDate.split('T')[0]}
+            class="font-bold text-gray-600 dark:text-dark-gray-400">
             {date}
           </time>
         </div>

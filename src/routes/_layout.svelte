@@ -269,15 +269,15 @@
       </div>
       <div class="flex space-x-4">
         <a href="https://www.joinclubhouse.com/club/%23ToPodstatn%C3%A9" class="social-link"
-          ><img src="icon/clubhouse.svg" width="24" height="24" alt="Clubhouse icon" /></a>
+          ><img src="icon/clubhouse.svg" width="24" height="24" alt="Clubhouse ikona" /></a>
         <a href="https://twitter.com/david_klimes" class="social-link"
-          ><img src="icon/twitter.svg" width="24" height="24" alt="Twitter icon" /></a>
+          ><img src="icon/twitter.svg" width="24" height="24" alt="Twitter ikona" /></a>
         <a href="https://www.linkedin.com/in/davidklimes/" class="social-link"
-          ><img src="icon/linkedin.svg" width="24" height="24" alt="LinkedIn icon" /></a>
+          ><img src="icon/linkedin.svg" width="24" height="24" alt="LinkedIn ikona" /></a>
         <a href="https://www.facebook.com/david.klimes" class="social-link"
-          ><img src="icon/facebook.svg" width="24" height="24" alt="LinkedIn icon" /></a>
+          ><img src="icon/facebook.svg" width="24" height="24" alt="Facebook ikona" /></a>
         <a href="https://www.instagram.com/david_klimes/" class="social-link"
-          ><img src="icon/instagram.svg" width="24" height="24" alt="Instagram icon" /></a>
+          ><img src="icon/instagram.svg" width="24" height="24" alt="Instagram ikona" /></a>
       </div>
     </div>
 
