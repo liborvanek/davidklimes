@@ -115,6 +115,7 @@ module.exports = {
       green: colors.lime,
       red: colors.red,
       blue: colors.indigo,
+      yellow: colors.amber,
     },
     container: {
       screens: {

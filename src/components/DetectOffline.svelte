@@ -71,7 +71,7 @@
 
 {#if showOfflineNotice}
   <div
-    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8 mr-4 px-4 py-4 border-2 border-red-400 bg-white dark:bg-dark-gray-900 rounded-xl shadow-xl z-50"
+    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8 mr-4 px-4 py-4 border-2 border-red-400 bg-white dark:bg-dark-gray-700 rounded-xl shadow-xl z-50"
     role="alert"
     in:fly={{ y: 40 }}
     out:fly={{ y: 40 }}>
@@ -106,7 +106,7 @@
 {/if}
 {#if showOnlineNotice}
   <div
-    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8  mx-auto px-4 py-4 border-2 border-green-400 bg-white dark:bg-dark-gray-600 rounded-xl shadow-xl z-50"
+    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8  mx-auto px-4 py-4 border-2 border-green-400 bg-white dark:bg-dark-gray-700 rounded-xl shadow-xl z-50"
     role="alert"
     in:fly={{ y: 40 }}
     out:fly={{ y: 40 }}>
