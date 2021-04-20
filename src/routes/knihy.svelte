@@ -62,7 +62,7 @@
   {#each books as { title, subtitle, short, description, image, link, publisher, year }, i}
     <article class="book-grid">
       <h2
-        class="info max-w-xs mt-4 heading text-2xl lg:text-3xl font-bold text-gray-800 leading-snug">
+        class="info max-w-xs mt-4 heading text-2xl lg:text-3xl font-bold text-gray-800 dark:text-dark-gray-50 leading-snug">
         {@html title}
         <span class="block mt-2 font-normal">{@html subtitle}</span>
       </h2>
@@ -76,17 +76,18 @@
             height="543"
             class="block w-32 sm:w-auto shadow-3xl transform {i % 2 === 0
               ? '-'
-              : ''}rotate-1 border-8 border-gray-100 bg-gradient-to-r from-gray-200 to-gray-100"
+              : ''}rotate-1 border-8 border-gray-100 dark:border-dark-gray-700 bg-gradient-to-r from-gray-200 to-gray-100 dark:from-dark-gray-800 dark:to-dark-gray-700 "
             loading={i === 0 ? 'eager' : 'lazy'} />
         </picture>
-        <figcaption class="mt-8 space-y-1 sm:text-center text-gray-500 text-sm">
+        <figcaption
+          class="mt-8 space-y-1 sm:text-center text-gray-500 dark:text-dark-gray-400 text-sm">
           <p>
             <span class="text-xs">Nakladatel:</span>
-            <span class="text-gray-600 font-bold">{publisher}</span>
+            <span class="text-gray-600 dark:text-dark-gray-300 font-bold">{publisher}</span>
           </p>
           <p>
             <span class="text-xs">Datum vydání:</span>
-            <span class="text-gray-600 font-bold">{year}</span>
+            <span class="text-gray-600 dark:text-dark-gray-300 font-bold">{year}</span>
           </p>
         </figcaption>
       </figure>

@@ -16,6 +16,7 @@
 <script>
   import PageTransition from '../../components/PageTransition.svelte';
   import BackToTop from '../../components/BackToTop.svelte';
+  import Meta from '../../components/Meta.svelte';
 
   export let article;
 
@@ -32,9 +33,9 @@
 
 <svelte:head>
   <title>{article.title} – David Klimeš</title>
-  <meta
-    name="description"
-    content={`${article.id}. díl newsletteru Davida Klimeše o podstatném dění v byznysu a politice.`} />
+  <Meta
+    title={article.title}
+    description={`${article.id}. díl newsletteru Davida Klimeše o podstatném dění v byznysu a politice.`} />
   {@html jsonldScript}
 </svelte:head>
 

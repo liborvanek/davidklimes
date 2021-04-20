@@ -65,17 +65,17 @@
 <div class="xl:px-4 xl:-mt-12">
   {#each newsletterArchive as { archiveUrl, title, date, id, isoDate }, i}
     <article
-      class="sm:px-4 xl:px-16 py-4 lg:py-8 bg-gray-50 bg-gradient-to-r from-white to-gray-50 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
+      class="sm:px-4 xl:px-16 py-4 lg:py-8 bg-gray-50 dark:bg-dark-gray-900 bg-gradient-to-r from-white dark:from-dark-gray-900  to-gray-50 dark:to-dark-gray-800 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <div class="lg:flex">
         <div
-          class="mr-16 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 to-gray-200"
+          class="mr-16 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 dark:bg-dark-gray-700 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 dark:from-dark-gray-600 to-gray-200 dark:to-dark-gray-700"
           aria-label={`Newsletter číslo ${id}`}>
           {id}
         </div>
         <div>
           <h2 class="max-w-xl mb-4 text-xl lg:text-2xl leading-normal font-bold text-gray-700 ">
-            <Link href={archiveUrl ? archiveUrl : `/newsletter/${id}`} class="dotted"
+            <Link href={archiveUrl ? archiveUrl : `/newsletter/${id}`} variant="heading"
               >{@html bindSingles(title)}</Link>
           </h2>
           <time datetime={isoDate.split('T')[0]} class="font-bold text-gray-600">

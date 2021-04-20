@@ -49,20 +49,17 @@
   {#await latestArticlePromise then { title, subtitle, annotation, link, date }}
     <aside
       in:clipRect={{ duration: 500, delay: 0 }}
-      class="hidden lg:block absolute w-80 xl:w-96 top-0 xl:top-16 right-0 xl:right-16 2xl:right-24  p-12 pt-10 transform -rotate-1 bg-gray-50 dark:bg-gray-800"
+      class="hidden lg:block absolute w-80 xl:w-96 top-0 xl:top-16 right-0 xl:right-16 2xl:right-24  p-12 pt-10 transform -rotate-1 bg-gray-50 dark:bg-dark-gray-800"
       aria-live="off">
-      <span class="uppercase text-xs text-gray-500">{@html subtitle}</span>
+      <span class="uppercase text-xs text-gray-500 dark:text-dark-gray-400">{@html subtitle}</span>
       <h2 class="max-w-lg text-lg mt-2 mb-2">
-        <Link
-          href={link}
-          class="dotted inline-block font-bold text-gray-600 visited:text-gray-600 dark:text-gray-300 dark:visited:text-gray-300 hover:text-blue-800 dark:hover:text-blue-500 underline transition-colors"
-          >{@html bindSingles(title)}</Link>
+        <Link href={link} variant="heading">{@html bindSingles(title)}</Link>
       </h2>
       {#if annotation}
-        <p class="mt-4 text-sm text-gray-500">{annotation}</p>
+        <p class="mt-4 text-sm text-gray-500 dark:text-dark-gray-400">{annotation}</p>
       {/if}
       {#if date}
-        <p class="mt-4 text-xs text-gray-400">{@html date}</p>
+        <p class="mt-4 text-xs text-gray-400 dark:text-dark-gray-200">{@html date}</p>
       {/if}
     </aside>
   {/await}

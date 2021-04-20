@@ -4,6 +4,7 @@
   export let disabled = false;
   export let outbound: boolean = undefined;
   export let rel: string = undefined;
+  export let variant: 'default' | 'heading' | 'headingMild' | 'noStyle' = 'default';
 
   $: if (typeof window !== 'undefined') {
     const isExternal =
@@ -17,6 +18,16 @@
   $: if (outbound) {
     if (rel === undefined) rel = 'noopener noreferrer';
   }
+
+  const styles = {
+    default:
+      'text-blue-600 hover:text-blue-800 visited:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 dark:visited:text-blue-500 transition-colors underline',
+    heading:
+      'dotted inline-block font-bold text-dark-gray-600 visited:text-dark-gray-600 dark:text-dark-gray-200 dark:visited:text-gray-300 hover:text-blue-800 dark:hover:text-blue-500 underline transition-colors',
+    headingMild:
+      'dotted inline-block font-bold text-gray-600 visited:text-gray-600 dark:text-gray-300 dark:visited:text-gray-300 hover:text-blue-800 dark:hover:text-blue-500 underline transition-colors',
+    noStyle: '',
+  };
 </script>
 
 {#if disabled}
@@ -34,7 +45,9 @@
 {:else}
   <a
     {...$$restProps}
-    class={`${$$restProps.class} ${outbound ? 'external' : ''}`}
+    class={`${styles[variant]} ${$$restProps.class ? $$restProps.class : ''} ${
+      outbound ? 'external' : ''
+    }`}
     {href}
     {rel}
     sapper:prefetch={!outbound ? true : undefined}

@@ -11,6 +11,7 @@
   import DetectOffline from '../components/DetectOffline.svelte';
   import MenuIcon from '../components/MenuIcon.svelte';
   import Link from '../components/Link.svelte';
+  import LightDarkToggle from '../components/LightDarkToggle.svelte';
   import { menu, headings, submenuPages } from '../pageData';
   import { trapFocus } from '../trapFocus';
   import { waitForServiceWorker } from '../utils';
@@ -81,8 +82,9 @@
   $: headingIsSpan = path[0] === 'newsletter';
 
   const activeClass =
-    'text-blue-1000 visited:text-blue-1000 bg-gray-100 transition-colors duration-500 rounded-sm';
-  const inactiveClass = 'text-gray-500 visited:text-gray-500 hover-hover:hover:text-blue-700';
+    'text-blue-1000 dark:text-dark-gray-300 visited:text-blue-1000 dark:visited:text-dark-gray-300 bg-gray-100 dark:bg-dark-gray-800 transition-colors  rounded-sm';
+  const inactiveClass =
+    'text-gray-500 dark:text-dark-gray-500 visited:text-gray-500 dark:visited:text-dark-gray-500 hover-hover:hover:text-blue-700';
 </script>
 
 <svelte:head>
@@ -105,14 +107,16 @@
       <a href="/" tabindex="-1" aria-hidden="true" class="focus:outline-none">
         <picture>
           <source srcset="lion.webp" type="image/webp" />
-          <img src="lion.png" alt="Logo" class="w-14 md:w-24" width="90" height="90" />
+          <img src="lion.png" alt="Logo" class="w-14 md:w-24" width="90" height="98" />
         </picture>
       </a>
     </div>
-    <nav class="main-nav lg:relative text-2xl text-right font-bold" role="navigation">
+    <nav
+      class="flex items-center main-nav lg:relative text-2xl text-right font-bold"
+      role="navigation">
       {#if currentPage}
         <div
-          class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-gray-800 transition-transform duration-500 rounded-sm"
+          class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-dark-gray-700 transition-transform duration-500 rounded-sm"
           style="transform: translateX({hoveredMenuItem !== null
             ? menu[hoveredMenuItem].translate
             : menu[activeMenuItem].translate}rem) rotate(-1deg) scaleX({hoveredMenuItem !== null
@@ -126,10 +130,9 @@
             class="transition-transform transform -rotate-1 duration-500 origin-bottom-left text-center py-2 lg:py-0">
             <a
               href={slug}
-              class="menu-link px-8 transition-colors hover-hover:hover:text-blue-700 {i ===
-              activeMenuItem
-                ? 'active'
-                : ''}"
+              class="menu-link px-8 transition-colors no-underline {i === activeMenuItem
+                ? 'text-blue-1000 dark:text-dark-gray-100'
+                : 'text-gray-600 dark:text-dark-gray-300'}"
               on:mouseover={() => handleMouseOver(i)}
               on:mouseout={handleMouseOut}
               on:click={() => (showMobileMenu = false)}
@@ -138,11 +141,14 @@
         {/each}
       </ul>
       <!-- Mobile menu -->
+      <LightDarkToggle classes="xl:ml-8" />
+
       <MenuIcon
         isOpen={showMobileMenu}
         on:menuClick={handleMobileIconClick}
         menuId="menu-mobile"
-        classes="z-30 relative fixed" />
+        classes="z-30 relative ml-8" />
+
       {#if showMobileMenu}
         <div
           class="lg:hidden absolute left-0 top-0 w-full h-screen bg-brown-400 bg-opacity-97 z-20 flex items-center justify-center"
@@ -180,26 +186,28 @@
           <h1
             class="mt-4 lg:mt-8 mb-2 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl xl:text-8xl leading-none font-extrabold">
             <span
-              class="relative inline-block reveal-text first bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50"
-              ><span class="before" />David<span class="after" /></span
+              class="relative inline-block reveal-text first bg-clip-text text-transparent bg-black dark:bg-dark-gray-100 bg-gradient-to-r from-black to-blue-1000 dark:from-dark-gray-50 dark:to-dark-gray-100"
+              ><span class="before bg-white dark:bg-dark-gray-900" />David<span
+                class="after bg-gray-100 dark:bg-dark-gray-800" /></span
             ><br /><span
-              class="relative inline-block reveal-text second bg-clip-text text-transparent bg-black bg-gradient-to-r from-black to-blue-1000 dark:from-gray-400 dark:to-gray-50 ml-8"
-              ><span class="before" />Klimeš<span class="after" /></span>
+              class="relative inline-block reveal-text second bg-clip-text text-transparent bg-black dark:bg-dark-gray-100 bg-gradient-to-r from-black to-blue-1000 dark:from-dark-gray-50 dark:to-dark-gray-100 ml-8"
+              ><span class="before bg-white dark:bg-dark-gray-900" />Klimeš<span
+                class="after bg-gray-100 dark:bg-dark-gray-800" /></span>
           </h1>
         {:else if headingIsSpan}
           <span
-            class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-300">
+            class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-clip-text text-transparent bg-gray-300 dark:bg-dark-gray-700 bg-gradient-to-r from-gray-200 dark:from-dark-gray-700 to-gray-300 dark:to-dark-gray-600">
             {headings[path[0]]}
           </span>
         {:else}
           <h1
-            class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black to-blue-1000">
+            class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black dark:from-dark-gray-100 to-blue-1000 dark:to-dark-gray-200">
             {headings[path[0]]}
           </h1>
           {#if path[0] === 'komentare' || path[0] === 'archiv-newsletteru'}
             <a
               href={`/feeds/${path[0]}.rss`}
-              class="inline-flex group p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-600 hover:text-white bg-gray-100 hover:bg-blue-600 rounded-md"
+              class="inline-flex group p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-600 dark:text-dark-gray-100 hover:text-white dark:hover:text-white bg-gray-100 dark:bg-blue-900 hover:bg-blue-600 dark:hover:bg-blue-800 rounded-md"
               ><svg
                 class="w-4 h-4 text-blue-300 transform group-hover:scale-125 group-hover:rotate-12 transition duration-300"
                 fill="none"
@@ -223,6 +231,7 @@
             <li>
               <Link
                 href="/komentare"
+                variant="noStyle"
                 class="{path[0] === 'komentare'
                   ? activeClass
                   : inactiveClass} inline-block transform xl:-rotate-1 px-4 py-1 text-sm lg:text-xl font-bold no-underline"
@@ -231,6 +240,7 @@
             <li>
               <Link
                 href="/archiv-newsletteru"
+                variant="noStyle"
                 class="{path[0] === 'archiv-newsletteru'
                   ? activeClass
                   : inactiveClass} inline-block transform xl:-rotate-1 px-4 py-1 text-sm lg:text-xl font-bold no-underline"
@@ -247,9 +257,9 @@
     {/if}
   </main>
   <hr
-    class="mt-24 mb-6 h-1 mx-auto bg-gradient-to-r from-brown-50 to-brown-100 dark:from-gray-800 dark:to-gray-900 border-transparent" />
+    class="mt-24 mb-6 h-1 mx-auto bg-gray-100 dark:bg-dark-gray-800 bg-gradient-to-r from-brown-50 dark:from-dark-gray-700 to-brown-100 dark:to-dark-gray-800 border-transparent" />
   <footer
-    class="flex flex-col lg:flex-row lg:items-center lg:space-x-8 space-y-6 lg:space-y-0 md:justify-between text-xs text-gray-500">
+    class="flex flex-col lg:flex-row lg:items-center lg:space-x-8 space-y-6 lg:space-y-0 md:justify-between text-xs text-gray-500 dark:text-dark-gray-400">
     <div
       class="flex xs-only:flex-col lg:items-end xs-only:space-y-4 md:space-x-12 justify-between lg:justify-items-auto">
       <div>
@@ -257,7 +267,7 @@
         <a class="text-blue-400 no-underline" href="mailto:info@davidklimes.cz"
           >info@davidklimes.cz</a>
       </div>
-      <div class="flex space-x-4 text-brown-200">
+      <div class="flex space-x-4">
         <a href="https://www.joinclubhouse.com/club/%23ToPodstatn%C3%A9" class="social-link"
           ><img src="icon/clubhouse.svg" width="24" height="24" alt="Clubhouse icon" /></a>
         <a href="https://twitter.com/david_klimes" class="social-link"
@@ -271,7 +281,7 @@
       </div>
     </div>
 
-    <div class="text-gray-400">
+    <div class="text-gray-500 dark:text-dark-gray-400">
       Web vyrobil <a class="text-blue-400 visited:text-blue-400 no-underline" href="/"
         >Libor Vaněk</a> <br /> na podporu nezávislé žurnalistiky.
     </div>
@@ -290,19 +300,12 @@
     width: 6rem;
     height: 2.4rem;
     left: 0.9rem;
-    top: -0.1rem;
-  }
-  .menu-link {
-    @apply text-gray-600 no-underline;
   }
   .showMobileMenu .menu-link-mobile {
     @apply text-white text-3xl no-underline;
   }
   .showMobileMenu .menu-link-mobile.active {
     @apply text-gray-700;
-  }
-  .menu-link.active {
-    @apply text-blue-900;
   }
   .reveal-text > .before,
   .reveal-text > .after {
@@ -317,14 +320,12 @@
     transform: translateZ(0);
   }
   .reveal-text > .before {
-    background-color: #fff;
     opacity: 1;
     animation-name: uncover;
     animation-duration: 1ms;
     animation-fill-mode: forwards;
   }
   .reveal-text > .after {
-    @apply bg-gray-100;
     transform: scaleX(0);
     animation-name: overlay;
     animation-duration: 500ms;

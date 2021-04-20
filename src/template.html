@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html lang="cs" class="font-usual bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+<html lang="cs">
   <head>
     <link rel="preconnect" href="https://use.typekit.net" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
 
     %sapper.base%
 
@@ -77,7 +88,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="font-usual bg-white dark:bg-dark-gray-900 text-gray-700 dark:text-dark-gray-100">
     <div id="sapper">%sapper.html%</div>
 
     %sapper.scripts%

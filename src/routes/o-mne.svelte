@@ -20,12 +20,14 @@
         <img src="david-klimes.jpg" alt="Portrét Davida Klimeš" width="350" height="350" />
       </picture>
       <figcaption class="mt-8 text-center">
-        <h3 class="font-bold text-xl text-gray-900">David Klimeš</h3>
-        <span class="block text-xs text-gray-500 mb-6">* 1982</span>
-        <span class="block text-xs text-gray-400 italic">foto: Václav Vašků</span>
+        <h3 class="font-bold text-xl text-gray-900 dark:text-dark-gray-50">David Klimeš</h3>
+        <span class="block mb-6 text-xs text-gray-500 dark:text-dark-gray-400">* 1982</span>
+        <span class="block text-xs text-gray-400 dark:text-dark-gray-400 italic"
+          >foto: Václav Vašků</span>
       </figcaption>
     </figure>
-    <p class="max-w-lg  lg:mt-8 text-xl lg:text-2xl text-gray-700 leading-relaxed font-bold">
+    <p
+      class="max-w-lg  lg:mt-8 text-xl lg:text-2xl text-gray-700 dark:text-dark-gray-100 leading-relaxed font-bold">
       Na Aktuálně.cz či v&nbsp;Českém rozhlasu Plus komentuji ekonomické a politické dění.<br />Na
       Fakultě sociálních věd UK vyučuji komunikaci.
     </p>
@@ -40,21 +42,25 @@
 
     <ul class="list-square list-inside mt-4 lg:mt-8 lg:ml-12 lg:leading-8">
       <li>
-        <strong class="inline-block lg:w-28 text-gray-600 ">2008&mdash;2014</strong><span
-          class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
+        <strong class="inline-block lg:w-28 text-gray-600 dark:text-dark-gray-100"
+          >2008&mdash;2014</strong
+        ><span class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
           >komentátor politiky a ekonomiky v&nbsp;deníku E15</span>
       </li>
       <li>
-        <strong class="inline-block lg:w-28 text-gray-600">2014&mdash;2017</strong><span
-          class="block mb-4 lg:mb-0 lg:inline lg:ml-4">komentátor v Hospodářských novinách</span>
+        <strong class="inline-block lg:w-28 text-gray-600 dark:text-dark-gray-100"
+          >2014&mdash;2017</strong
+        ><span class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
+          >komentátor v Hospodářských novinách</span>
       </li>
       <li>
-        <strong class="inline-block lg:w-28 text-gray-600">2017&mdash;2019</strong><span
-          class="block mb-4 lg:mb-0 lg:inline lg:ml-4">analytik týdeníku Ekonom</span>
+        <strong class="inline-block lg:w-28 text-gray-600 dark:text-dark-gray-100"
+          >2017&mdash;2019</strong
+        ><span class="block mb-4 lg:mb-0 lg:inline lg:ml-4">analytik týdeníku Ekonom</span>
       </li>
       <li>
-        <strong class="inline-block lg:w-28 text-gray-600">od 2019</strong><span
-          class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
+        <strong class="inline-block lg:w-28 text-gray-600 dark:text-dark-gray-100">od 2019</strong
+        ><span class="block mb-4 lg:mb-0 lg:inline lg:ml-4"
           >komentuji <Link
             href="https://www.aktualne.cz/autori/david-klimes/l~1ba93f023e3b11e8bacfac1f6b220ee8/"
             >na Aktuálně.cz</Link

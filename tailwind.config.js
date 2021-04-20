@@ -4,7 +4,7 @@ const typography = require('@tailwindcss/typography');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  // darkMode: 'media',
+  darkMode: 'class',
   purge: {
     content: [
       './src/**/*.html',
@@ -34,6 +34,30 @@ module.exports = {
       colors: {
         blue: {
           1000: '#1f1e52',
+        },
+        'dark-gray': {
+          50: '#f0f6fc',
+          100: '#c9d1d9',
+          200: '#b1bac4',
+          300: '#8b949e',
+          400: '#6e7681',
+          500: '#484f58',
+          600: '#30363d',
+          700: '#21262d',
+          800: '#161b22',
+          900: '#0d1117',
+        },
+        'dark-blue': {
+          50: '#cae8ff',
+          100: '#a5d6ff',
+          200: '#79c0ff',
+          300: '#58a6ff',
+          400: '#388bfd',
+          500: '#1f6feb',
+          600: '#1158c7',
+          700: '#0d419d',
+          800: '#0c2d6b',
+          900: '#051d4d',
         },
         brown: {
           50: '#f9f8f3',

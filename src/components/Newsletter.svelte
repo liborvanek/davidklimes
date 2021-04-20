@@ -78,10 +78,10 @@
   };
 </script>
 
-<h2 class="text-2xl xl:text-3xl font-bold text-gray-700 dark:text-gray-200 max-w-md  ">
+<h2 class="text-2xl xl:text-3xl font-bold text-gray-700 dark:text-dark-gray-200 max-w-md  ">
   newsletter o&nbsp;souvislostech<br />v&nbsp;byznysu a&nbsp;politice
 </h2>
-<p class="mt-3 lg:mt-6 mb-8 lg:mb-12 text-gray-500 dark:text-gray-200">
+<p class="mt-3 lg:mt-6 mb-8 lg:mb-12 text-gray-500 dark:text-dark-gray-300">
   každé pondělí <span class="text-blue-500">&bull;</span>&nbsp;jen to podstatné
   <span class="text-blue-500">&bull;</span>&nbsp;přidejte se, už je nás
   {#await subscriberCountPromise then count}<strong in:fly={{ duration: 250 }} class="inline"
@@ -108,7 +108,7 @@
       type="email"
       bind:value={email}
       placeholder="váš e-mail"
-      class="w-full py-5 px-6 bg-brown-100 inline-block appearance-none placeholder-gray-500 rounded-md text-gray-700 leading-5 focus:outline-none border border-brown-100 focus:border-blue-500 transition-colors" />
+      class="w-full py-5 px-6 bg-brown-100 dark:bg-dark-gray-600 inline-block appearance-none placeholder-gray-500 dark:placeholder-gray-100 rounded-md text-gray-700 dark:text-dark-gray-100 leading-5 focus:outline-none border border-brown-100 dark:border-dark-gray-600 focus:border-blue-500 transition-colors" />
     <Button
       {...formState}
       classes="mt-1 md:mt-0 w-full md:w-auto md:ml-2"

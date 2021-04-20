@@ -60,18 +60,19 @@
 <div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-4 gap-y-4 lg:gap-y-4">
   {#each articles as { link, title, perex, date, type }, i}
     <article
-      class="md:p-6 md:px-8 2xl:px-12 md:py-6 lg:py-8 2xl:py-10 md:bg-gray-50 {i % 2
+      class="md:p-6 md:px-8 2xl:px-12 md:py-6 lg:py-8 2xl:py-10 md:bg-gray-50 md:dark:bg-dark-gray-800 {i %
+      2
         ? 'md:bg-gradient-to-br'
-        : 'md:bg-gradient-to-tl'} from-white to-gray-50 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
+        : 'md:bg-gradient-to-tl'} from-white dark:from-dark-gray-900 to-gray-50 dark:to-dark-gray-800 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
-        <Link href={link} target="_blank" class="dotted">{@html bindSingles(title)}</Link>
+        <Link href={link} target="_blank" variant="heading">{@html bindSingles(title)}</Link>
       </h2>
       <p class="max-w-2xl text-sm">
         {@html bindSingles(perex)}
       </p>
       <p class="mt-3 text-sm text-gray-500 flex items-center">
-        <span class="font-bold text-gray-600">{date}</span>,
+        <span class="font-bold text-gray-600 dark:text-dark-gray-300">{date}</span>,
         {#if type === 'komentarRozhlasPlus'}
           <img src="/cesky-rozhlas-plus.svg" class="svg ml-2 inline w-4" alt="Český rozhlas Plus" />
         {:else}

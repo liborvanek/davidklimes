@@ -71,7 +71,7 @@
 
 {#if showOfflineNotice}
   <div
-    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8 mr-4 px-4 py-4 border-2 border-red-400 bg-white rounded-xl shadow-xl z-50"
+    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8 mr-4 px-4 py-4 border-2 border-red-400 bg-white dark:bg-dark-gray-900 rounded-xl shadow-xl z-50"
     role="alert"
     in:fly={{ y: 40 }}
     out:fly={{ y: 40 }}>
@@ -91,7 +91,7 @@
         <p class="text-xs">Po webu se můžete dál pohybovat, stránky budou fungovat.</p>
       </div>
       <button
-        class="w-6 h-6 bg-gray-100 rounded-full p-1 focus:outline-none focus:ring-4 focus:ring-blue-300"
+        class="w-6 h-6 bg-gray-100 dark:bg-dark-gray-600 rounded-full p-1 focus:outline-none focus:ring-4 focus:ring-blue-300"
         on:click={closeAlert}>
         <svg
           fill="none"
@@ -106,7 +106,7 @@
 {/if}
 {#if showOnlineNotice}
   <div
-    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8  mx-auto px-4 py-4 border-2 border-green-400 bg-white rounded-xl shadow-xl z-50"
+    class="fixed left-4 lg:left-8 bottom-4 lg:bottom-8  mx-auto px-4 py-4 border-2 border-green-400 bg-white dark:bg-dark-gray-600 rounded-xl shadow-xl z-50"
     role="alert"
     in:fly={{ y: 40 }}
     out:fly={{ y: 40 }}>
@@ -123,7 +123,7 @@
           d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" /></svg>
       <p class="flex-1 ml-2 text-xs lg:text-sm">Připojení k internetu bylo obnoveno.</p>
       <button
-        class=" w-6 h-6 ml-2 bg-gray-100 rounded-full p-1 focus:outline-none focus:ring-4 focus:ring-blue-300"
+        class=" w-6 h-6 ml-2 bg-gray-100 dark:bg-dark-gray-600 rounded-full p-1 focus:outline-none focus:ring-4 focus:ring-blue-300"
         on:click={closeAlert}>
         <svg
           fill="none"
