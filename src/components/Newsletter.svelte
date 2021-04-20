@@ -108,7 +108,7 @@
       type="email"
       bind:value={email}
       placeholder="váš e-mail"
-      class="w-full py-5 px-6 bg-brown-100 dark:bg-dark-gray-600 inline-block appearance-none placeholder-gray-500 dark:placeholder-gray-100 rounded-md text-gray-700 dark:text-dark-gray-100 leading-5 focus:outline-none border border-brown-100 dark:border-dark-gray-600 focus:border-blue-500 transition-colors" />
+      class="w-full py-5 px-6 bg-brown-100 dark:bg-dark-gray-600 inline-block appearance-none placeholder-gray-500 dark:placeholder-gray-100 rounded-md text-gray-700 dark:text-dark-gray-100 leading-5 focus:outline-none border border-brown-100 dark:border-dark-gray-600 focus:border-blue-500 dark:focus:border-blue-700" />
     <Button
       {...formState}
       classes="mt-1 md:mt-0 w-full md:w-auto md:ml-2"

@@ -82,7 +82,7 @@
   $: headingIsSpan = path[0] === 'newsletter';
 
   const activeClass =
-    'text-blue-1000 dark:text-dark-gray-300 visited:text-blue-1000 dark:visited:text-dark-gray-300 bg-gray-100 dark:bg-dark-gray-800 transition-colors  rounded-sm';
+    'text-blue-1000 dark:text-dark-gray-300 visited:text-blue-1000 dark:visited:text-dark-gray-300 bg-gray-100 dark:bg-dark-gray-800 rounded-sm';
   const inactiveClass =
     'text-gray-500 dark:text-dark-gray-500 visited:text-gray-500 dark:visited:text-dark-gray-500 hover-hover:hover:text-blue-700';
 </script>

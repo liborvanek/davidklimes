@@ -29,7 +29,7 @@
 
 <button
   on:click={toggle}
-  class="flex items-center justify-center w-10 h-10 bg-gray-100 dark:bg-dark-gray-700 rounded-full dark:text-dark-gray-300 hover-hover:hover:text-amber-400 text-dark-gray-400 focus:outline-none focus:ring-4 focus:ring-blue-400 {classes} {darkMode
+  class="flex items-center justify-center w-10 h-10 bg-gray-100 dark:bg-dark-gray-700 rounded-full dark:text-dark-gray-300 hover-hover:hover:text-amber-400 text-dark-gray-400 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 {classes} {darkMode
     ? 'hover-hover:hover:text-yellow-200'
     : 'hover-hover:hover:text-blue-800'} ">
   {#if show && darkMode}
