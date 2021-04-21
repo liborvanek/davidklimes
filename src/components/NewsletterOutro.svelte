@@ -31,9 +31,9 @@
 </script>
 
 <div
-  class="max-w-screen-lg mx-auto p-16 bg-gray-50 rounded shadow-2xl"
+  class="max-w-screen-lg mx-auto p-16 bg-gray-50 dark:bg-dark-gray-700 rounded shadow-2xl"
   in:fly={{ y: 100, duration: 750, delay: 300 }}>
-  <p class="mt-6 text-2xl text-gray-700 leading-normal font-bold">
+  <p class="mt-6 text-2xl text-gray-700 dark:text-dark-gray-200 leading-normal font-bold">
     Moc mě těší, že máte zájem o můj newsletter.<br />Píšu v&nbsp;něm o událostech v politice a
     ekonomice, které nejsou na první pohled zjevné, ale zasluhují pozornost.
   </p>
@@ -50,7 +50,7 @@
       placeholder="Pište sem..."
       name="note"
       bind:value={note}
-      class="w-full h-20 py-2 px-3 bg-brown-100 inline-block appearance-none placeholder-gray-400 rounded-md text-gray-700 leading-5 focus:outline-none border-2 border-brown-100 focus:border-blue-500 transition-colors" />
+      class="w-full h-20 py-2 px-3 bg-brown-100 dark:bg-dark-gray-600 inline-block appearance-none placeholder-gray-400 dark:placeholder-gray-100 rounded-md text-gray-700 dark:text-dark-gray-100 leading-5 focus:outline-none border-2 border-brown-100 dark:border-dark-gray-600  focus:border-blue-500 dark:focus:border-blue-700" />
     <p class="mt-6 text-lg leading-relaxed">
       Doplňte, prosím, ještě svoje
       <input
@@ -58,14 +58,14 @@
         placeholder="jméno"
         name="jmeno"
         bind:value={jmeno}
-        class="w-48 py-2 px-3 bg-brown-100 inline-block appearance-none placeholder-gray-400 rounded-md text-gray-700 leading-5 focus:outline-none border-2 border-brown-100 focus:border-blue-500 transition-colors" />
+        class="w-48 py-2 px-3 bg-brown-100 dark:bg-dark-gray-600 inline-block appearance-none placeholder-gray-400 dark:placeholder-gray-100 rounded-md text-gray-700 leading-5 focus:outline-none border-2 border-brown-100 focus:border-blue-500 dark:focus:border-blue-700  dark:text-dark-gray-100 dark:border-dark-gray-600 " />
       a
       <input
         type="text"
         placeholder="příjmení"
         name="prijmeni"
         bind:value={prijmeni}
-        class="w-48 py-1 px-3 bg-brown-100 inline-block appearance-none placeholder-gray-400 rounded-md text-gray-700  focus:outline-none border-2 border-brown-100 focus:border-blue-500 transition-colors" />,
+        class="w-48 py-1 px-3 bg-brown-100 dark:bg-dark-gray-600 inline-block appearance-none placeholder-gray-400 dark:placeholder-gray-100 rounded-md text-gray-700  focus:outline-none border-2 border-brown-100 dark:border-dark-gray-600 focus:border-blue-500 dark:focus:border-blue-700" />,
       pokud vám to není proti srsti.
     </p>
 
