@@ -1,58 +1,55 @@
 <script context="module" lang="ts">
   import { formatDate, bindSingles, getArticleDelay } from '../utils';
 
-  interface NewsletterItem {
+  interface INewsletterItem {
     id: number;
     title: string;
     date: string;
     archiveUrl?: string;
     isoDate: string;
   }
+  interface INewslettersResult {
+    newsletterArchive: INewsletterItem[];
+    count: number;
+  }
 
   const apiRoute = '/api/newsletter-archive';
 
-  export async function preload() {
-    const res = await this.fetch(apiRoute);
-    const rawNewsletterArchive = await res.json();
+  export async function preload({ query }) {
+    // In SSR query is a URLSearchParams, on clinet it is a plain object
+    const pageNumber = ('get' in query ? parseInt(query.get('page')) : parseInt(query.page)) || 1;
 
-    const newsletterArchive: NewsletterItem[] = rawNewsletterArchive.map((item) => ({
-      ...item,
-      date: formatDate(item.isoDate),
-    }));
+    try {
+      const res = await this.fetch(`${apiRoute}?page=${pageNumber}`);
+      const { newsletterArchive, count }: INewslettersResult = await res.json();
 
-    return { newsletterArchive };
+      const newslettersDated = newsletterArchive.map((item) => ({
+        ...item,
+        date: formatDate(item.isoDate),
+      }));
+      return { newsletterArchive: newslettersDated, count };
+    } catch {
+      this.error(404, 'Not found');
+    }
   }
 </script>
 
 <script lang="ts">
   import { fly } from 'svelte/transition';
+  import { stores } from '@sapper/app';
 
-  import Button from '../components/Button.svelte';
-  import ErrorMessage from '../components/ErrorMessage.svelte';
   import Link from '../components/Link.svelte';
   import Meta from '../components/Meta.svelte';
+  import Pagination from '../components/Pagination.svelte';
 
-  export let newsletterArchive: NewsletterItem[];
+  export let newsletterArchive: INewsletterItem[];
+  export let count: number;
+
+  const { page } = stores();
   const articlesPerPage = 12;
   let pageToLoad = 1;
-  let loadingMore = false;
-  let loadingError: string;
 
-  async function getMoreArticles() {
-    loadingMore = true;
-    loadingError = undefined;
-    try {
-      const res = await fetch(`${apiRoute}?page=${pageToLoad}`);
-      const rawArticles: NewsletterItem[] = await res.json();
-      const newArticles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
-      newsletterArchive = [...newsletterArchive, ...newArticles];
-      pageToLoad = pageToLoad + 1;
-    } catch (e) {
-      loadingError = 'Nepodařilo se načíst další newslettery.';
-    } finally {
-      loadingMore = false;
-    }
-  }
+  $: currentPage = parseInt($page.query.page as string) || 1;
 </script>
 
 <svelte:head>
@@ -62,16 +59,16 @@
     description="Všechna čísla newsletteru o podstatných souvislostech v byznysu a politice." />
 </svelte:head>
 
-<div class="xl:px-4 xl:-mt-12">
+<div class="xl:px-4 xl:-mt-12" id="archivNewsletteru">
   {#each newsletterArchive as { archiveUrl, title, date, id, isoDate }, i}
     <article
       class="sm:px-4 xl:px-16 py-4 lg:py-8 bg-gray-50 dark:bg-dark-gray-900 bg-gradient-to-r from-white dark:from-dark-gray-900  to-gray-50 dark:to-dark-gray-800 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <div class="lg:flex">
         <div
-          class="mr-16 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 dark:bg-dark-gray-700 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 dark:from-dark-gray-600 to-gray-200 dark:to-dark-gray-700"
+          class="mr-12 mb-2 text-2xl lg:text-6xl leading-none font-black bg-gray-300 dark:bg-dark-gray-700 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 dark:from-dark-gray-600 to-gray-200 dark:to-dark-gray-700"
           aria-label={`Newsletter číslo ${id}`}>
-          {id}
+          {id}.
         </div>
         <div>
           <h2 class="max-w-xl mb-4 text-xl lg:text-2xl leading-normal font-bold text-gray-700 ">
@@ -87,12 +84,13 @@
       </div>
     </article>
   {/each}
-  <div class="text-center lg:mt-12">
-    {#if loadingError !== undefined}
-      <ErrorMessage classes="mx-auto text-center">
-        {loadingError}
-      </ErrorMessage>
-    {/if}
-    <Button on:click={getMoreArticles} isSubmitting={loadingMore}>Načíst starší</Button>
-  </div>
+</div>
+<div class="text-center">
+  <Pagination
+    path="/archiv-newsletteru"
+    {currentPage}
+    itemsCount={count}
+    perPage={articlesPerPage}
+    on:navigate={() =>
+      document.getElementById('archivNewsletteru').scrollIntoView({ behavior: 'smooth' })} />
 </div>

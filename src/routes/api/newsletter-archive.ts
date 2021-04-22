@@ -1,15 +1,18 @@
 import { Request, Response } from 'express';
 
-import { getNewsletters } from '../../server/dbApi';
+import { getNewsletters, getCount } from '../../server/dbApi';
 
 export async function get(req: Request, res: Response, next: () => void) {
   // See https://evanhahn.com/gotchas-with-express-query-parsing-and-how-to-avoid-them/
   const query = (req.query as unknown) as URLSearchParams;
   const articlesPerPage = 12;
-  const skip = query.get('page') ? parseInt(query.get('page')) * articlesPerPage : 0;
+  const skip = query.get('page') ? (parseInt(query.get('page')) - 1) * articlesPerPage : 0;
 
   try {
-    const newsletterArchive = await getNewsletters(articlesPerPage, skip);
+    const [newsletterArchive, count] = await Promise.all([
+      getNewsletters(articlesPerPage, skip),
+      getCount('newsletterArchive'),
+    ]);
 
     const newsletterArchivePublic = newsletterArchive.map(
       ({ title, isoDate, archiveUrl, markup, id }) => ({
@@ -22,7 +25,7 @@ export async function get(req: Request, res: Response, next: () => void) {
 
     if (newsletterArchivePublic.length !== 0) {
       res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(newsletterArchivePublic));
+      res.end(JSON.stringify({ newsletterArchive: newsletterArchivePublic, count }));
     } else {
       next();
     }

@@ -3,6 +3,7 @@
   import { isOnline } from '../stores';
 
   export let status: number;
+  export const error = '';
 </script>
 
 <PageTransition>

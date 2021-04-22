@@ -102,3 +102,7 @@ export async function updateNewsletterSubscriberCount(count: number) {
 export async function getNewsletterSubscriberCount() {
   return await db.collection('siteData').findOne({}, { projection: ['newsletterSubscriberCount'] });
 }
+
+export async function getCount(collectionName: CollectionType): Promise<number> {
+  return db.collection(collectionName).countDocuments();
+}

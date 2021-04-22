@@ -11,7 +11,7 @@
   type="button"
   class="lg:hidden p-2 {isOpen
     ? 'text-white focus:ring-white'
-    : 'text-gray-700 focus:ring-blue-500'} cursor-pointer focus:outline-none focus:ring-2 {classes}"
+    : 'text-gray-700 dark:text-blue-200 focus:ring-blue-500'} cursor-pointer focus:outline-none focus:ring-2 {classes}"
   class:isOpen
   on:click={() => dispatch('menuClick')}
   aria-expanded={isOpen}

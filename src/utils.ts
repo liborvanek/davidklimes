@@ -20,11 +20,12 @@ export function getArticleDelay(i: number, page: number, articlesPerPage: number
   if (i < 4) {
     return i * 100;
   }
-  if (page > 1) {
-    const y = i % articlesPerPage;
-    if (y < 4) {
-      return y * 100;
-    }
-  }
+  // if (page > 1) {
+  //   const y = i % articlesPerPage;
+  //   if (y < 4) {
+  //     return y * 100;
+  //   }
+  // }
+
   return 400;
 }

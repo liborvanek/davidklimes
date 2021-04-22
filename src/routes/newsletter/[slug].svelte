@@ -1,5 +1,5 @@
 <script context="module">
-  export async function preload(page, session) {
+  export async function preload(page) {
     const { slug } = page.params;
 
     const res = await this.fetch(`api/newsletter/${slug}`);

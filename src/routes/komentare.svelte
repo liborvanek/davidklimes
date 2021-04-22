@@ -5,49 +5,46 @@
   interface IArticleWithDate extends IArticle {
     date: string;
   }
+  interface IKomentareResult {
+    articles: IArticle[];
+    count: number;
+  }
 
   const apiRoute = '/api/articles';
 
-  export async function preload() {
-    const res = await this.fetch(apiRoute);
-    const rawArticles: IArticle[] = await res.json();
+  export async function preload({ query }) {
+    // In SSR query is a URLSearchParams, on clinet it is a plain object
+    const pageNumber = ('get' in query ? parseInt(query.get('page')) : parseInt(query.page)) || 1;
 
-    const articles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
-    return { articles };
+    try {
+      const res = await this.fetch(`${apiRoute}?page=${pageNumber}`);
+      const { articles, count }: IKomentareResult = await res.json();
+
+      const articlesDated = articles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
+      return { articles: articlesDated, count };
+    } catch {
+      this.error(404, 'Not found');
+    }
   }
 </script>
 
 <script lang="ts">
   import { fly } from 'svelte/transition';
+  import { stores } from '@sapper/app';
 
-  import Button from '../components/Button.svelte';
   import Link from '../components/Link.svelte';
-  import ErrorMessage from '../components/ErrorMessage.svelte';
   import Meta from '../components/Meta.svelte';
+  import Pagination from '../components/Pagination.svelte';
 
   import { bindSingles } from '../utils';
 
   export let articles: IArticleWithDate[];
+  export let count: number;
+
+  const { page } = stores();
   const articlesPerPage = 12;
   let pageToLoad = 1;
-  let loadingMore = false;
-  let loadingError: string;
-
-  async function getMoreArticles() {
-    loadingMore = true;
-    loadingError = undefined;
-    try {
-      const res = await fetch(`${apiRoute}?page=${pageToLoad}`);
-      const rawArticles: IArticle[] = await res.json();
-      const newArticles = rawArticles.map((item) => ({ ...item, date: formatDate(item.isoDate) }));
-      articles = [...articles, ...newArticles];
-      pageToLoad = pageToLoad + 1;
-    } catch (e) {
-      loadingError = 'Nepodařilo se načíst další články.';
-    } finally {
-      loadingMore = false;
-    }
-  }
+  $: currentPage = parseInt($page.query.page as string) || 1;
 </script>
 
 <svelte:head>
@@ -57,7 +54,7 @@
     description="Archiv komentářů ekonomického a politického dění. Publikuji na Aktuálně.cz a v Českém rozhlasu Plus." />
 </svelte:head>
 
-<div class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-4 gap-y-4 lg:gap-y-4">
+<div id="komentare" class="xl:-mt-12 grid lg:grid-cols-2 gap-x-12 lg:gap-x-4 gap-y-4 lg:gap-y-4">
   {#each articles as { link, title, perex, date, type }, i}
     <article
       class="md:p-6 md:px-8 2xl:px-12 md:py-6 lg:py-8 2xl:py-10 md:bg-gray-50 md:dark:bg-dark-gray-800 {i %
@@ -83,10 +80,11 @@
   {/each}
 </div>
 <div class="text-center">
-  {#if loadingError !== undefined}
-    <ErrorMessage classes="mx-auto text-center">
-      {loadingError}
-    </ErrorMessage>
-  {/if}
-  <Button on:click={getMoreArticles} isSubmitting={loadingMore}>Načíst starší</Button>
+  <Pagination
+    path="/komentare"
+    {currentPage}
+    itemsCount={count}
+    perPage={articlesPerPage}
+    on:navigate={() =>
+      document.getElementById('komentare').scrollIntoView({ behavior: 'smooth' })} />
 </div>

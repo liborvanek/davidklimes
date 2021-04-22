@@ -82,9 +82,9 @@
   $: headingIsSpan = path[0] === 'newsletter';
 
   const activeClass =
-    'text-blue-1000 dark:text-dark-gray-300 visited:text-blue-1000 dark:visited:text-dark-gray-300 bg-gray-100 dark:bg-dark-gray-800 rounded-sm';
+    'text-blue-1000 dark:text-blue-200 visited:text-blue-1000 dark:visited:text-blue-200 bg-gray-100 dark:bg-dark-gray-800 rounded-sm';
   const inactiveClass =
-    'text-gray-500 dark:text-dark-gray-500 visited:text-gray-500 dark:visited:text-dark-gray-500 hover-hover:hover:text-blue-700';
+    'text-gray-500 dark:text-dark-gray-400 visited:text-gray-500 dark:visited:text-dark-gray-400 hover-hover:hover:text-blue-700';
 </script>
 
 <svelte:head>
@@ -113,7 +113,9 @@
     </div>
     <nav
       class="flex items-center main-nav lg:relative text-2xl text-right font-bold"
-      role="navigation">
+      id="main"
+      role="navigation"
+      aria-label="Hlavní menu">
       {#if currentPage}
         <div
           class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-dark-gray-700 transition-transform duration-500 rounded-sm"
@@ -131,8 +133,9 @@
             <a
               href={slug}
               class="menu-link px-8 transition-colors no-underline {i === activeMenuItem
-                ? 'text-blue-1000 dark:text-dark-gray-100'
+                ? 'text-blue-1000 dark:text-blue-200'
                 : 'text-gray-600 dark:text-dark-gray-300'}"
+              aria-current={i === activeMenuItem ? 'page' : 'false'}
               on:mouseover={() => handleMouseOver(i)}
               on:mouseout={handleMouseOut}
               on:click={() => (showMobileMenu = false)}
@@ -147,7 +150,7 @@
         isOpen={showMobileMenu}
         on:menuClick={handleMobileIconClick}
         menuId="menu-mobile"
-        classes="z-30 relative ml-8" />
+        classes="z-30 relative ml-4" />
 
       {#if showMobileMenu}
         <div
@@ -207,7 +210,7 @@
           {#if path[0] === 'komentare' || path[0] === 'archiv-newsletteru'}
             <a
               href={`/feeds/${path[0]}.rss`}
-              class="inline-flex group p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-600 dark:text-dark-gray-100 hover:text-white dark:hover:text-white bg-gray-100 dark:bg-blue-900 hover:bg-blue-600 dark:hover:bg-blue-800 rounded-md"
+              class="inline-flex group xs-only:mb-4 p-2 space-x-1 transform -translate-y-2 items-center no-underline text-xs text-blue-600 dark:text-dark-gray-100 hover:text-white dark:hover:text-white bg-gray-100 dark:bg-blue-800 hover:bg-blue-600 dark:hover:bg-blue-700 rounded-md"
               ><svg
                 class="w-4 h-4 text-blue-300 transform group-hover:scale-125 group-hover:rotate-12 transition duration-300"
                 fill="none"
@@ -235,7 +238,7 @@
                 class="{path[0] === 'komentare'
                   ? activeClass
                   : inactiveClass} inline-block transform xl:-rotate-1 px-4 py-1 text-sm lg:text-xl font-bold no-underline"
-                >komentáře v médiích</Link>
+                aria-current={path[0] === 'komentare' ? 'page' : 'false'}>komentáře v médiích</Link>
             </li>
             <li>
               <Link
@@ -244,6 +247,7 @@
                 class="{path[0] === 'archiv-newsletteru'
                   ? activeClass
                   : inactiveClass} inline-block transform xl:-rotate-1 px-4 py-1 text-sm lg:text-xl font-bold no-underline"
+                aria-current={path[0] === 'archiv-newsletteru' ? 'page' : 'false'}
                 >archiv newsletterů</Link>
             </li>
           </ul>
@@ -282,8 +286,8 @@
     </div>
 
     <div class="text-gray-500 dark:text-dark-gray-400">
-      Web vyrobil <a class="text-blue-400 visited:text-blue-400 no-underline" href="/"
-        >Libor Vaněk</a> <br /> na podporu nezávislé žurnalistiky.
+      Web <a class="text-blue-400 visited:text-blue-400 no-underline" href="/">vytvořil</a> Libor
+      Vaněk<br /> na podporu nezávislé žurnalistiky.
     </div>
   </footer>
 </div>
