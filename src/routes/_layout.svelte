@@ -36,7 +36,7 @@
   // create a warning if not expected: https://github.com/sveltejs/sapper-template/issues/210
   // https://github.com/sveltejs/sapper/issues/824
 
-  const { page } = stores();
+  const { page, preloading } = stores();
   $: path = $page.path.replace('/', '').split('/');
 
   export let segment: string;
@@ -98,7 +98,7 @@
 <svelte:window on:load={notifyServiceWorker} />
 
 <DetectOffline />
-<div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-8">
+<div class="mx-auto max-w-screen-2xl px-6 md:px-12 pb-8 {$preloading ? 'cursor-wait' : ''}">
   <header class="site-header pt-4 md:pt-6 pb-6 flex justify-between items-center">
     <div
       class="transform {!isHomePage
