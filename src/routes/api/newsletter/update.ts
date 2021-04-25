@@ -13,23 +13,26 @@ export async function put(req: express.Request, res: express.Response, next: () 
   const { email, jmeno, prijmeni, note }: BodyParams = req.body;
 
   if (email && (jmeno || prijmeni || note)) {
-    const result = await fetch(`${process.env.ECOMAIL_API_URL}/lists/1/update-subscriber`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        key: process.env.ECOMAIL_KEY,
-      },
-      body: JSON.stringify({
-        email,
-        subscriber_data: {
-          name: jmeno,
-          surname: prijmeni,
-          custom_fields: {
-            note,
-          },
+    const result = await fetch(
+      `${process.env.ECOMAIL_API_URL}${process.env.ECOMAIL_API_UPDATE_SUBSCRIBER}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          key: process.env.ECOMAIL_KEY,
         },
-      }),
-    }).then((body) => body.json());
+        body: JSON.stringify({
+          email,
+          subscriber_data: {
+            name: jmeno,
+            surname: prijmeni,
+            custom_fields: {
+              note,
+            },
+          },
+        }),
+      },
+    ).then((body) => body.json());
     // TODO: fix this to return only necessary values
     console.log('result from ecomail update fn: ', result);
 
