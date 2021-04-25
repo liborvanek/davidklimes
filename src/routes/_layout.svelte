@@ -286,8 +286,10 @@
     </div>
 
     <div class="text-gray-500 dark:text-dark-gray-400">
-      Web <a class="text-blue-400 visited:text-blue-400 no-underline" href="/">vytvořil</a> Libor
-      Vaněk<br /> na podporu nezávislé žurnalistiky.
+      Web <a
+        class="text-blue-400 visited:text-blue-400 no-underline"
+        href="https://twitter.com/liborvanek/status/1386416101056253953">vytvořil</a>
+      Libor Vaněk<br /> na podporu nezávislé žurnalistiky.
     </div>
   </footer>
 </div>
