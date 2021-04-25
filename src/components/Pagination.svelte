@@ -30,7 +30,6 @@
   }
   $: if (perPage) {
     setPagesArray();
-    currentPage = 1;
   }
   $: if (itemsCount) {
     pagesCount = Math.ceil(itemsCount / perPage);
