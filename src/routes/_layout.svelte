@@ -84,7 +84,7 @@
   const activeClass =
     'text-blue-1000 dark:text-blue-200 visited:text-blue-1000 dark:visited:text-blue-200 bg-gray-100 dark:bg-dark-gray-800 rounded-sm';
   const inactiveClass =
-    'text-gray-500 dark:text-dark-gray-400 visited:text-gray-500 dark:visited:text-dark-gray-400 hover-hover:hover:text-blue-700';
+    'text-gray-500 dark:text-dark-gray-400 visited:text-gray-500 dark:visited:text-dark-gray-400 hover-hover:hover:text-blue-900';
 </script>
 
 <svelte:head>
