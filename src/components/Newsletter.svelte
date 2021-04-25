@@ -63,6 +63,7 @@
           emailStore.set(email);
           formState.isSubmitting = false;
           formState.isSuccess = true;
+          $newsletterSubscriberCount = $newsletterSubscriberCount + 1;
 
           setTimeout(() => {
             showNewsletterIntro.set(true);
@@ -98,7 +99,8 @@
   <ErrorMessage>Při odesílání došlo k chybě, zkuste to, prosím, znovu.</ErrorMessage>
 {/if}
 {#if $isSubscribed}
-  <p class="lg:w-2/3 p-4 lg:p-8 bg-gray-100 text-gray-700">
+  <p
+    class="lg:w-2/3 p-4 lg:p-8 bg-gray-100 dark:bg-dark-gray-800 text-gray-700 dark:text-dark-gray-200 rounded">
     Přihlásili jsme vás k&nbsp;odběru newsletteru, odhlásit se můžete kliknutím na odkaz v&nbsp;jeho
     patičce.
   </p>
