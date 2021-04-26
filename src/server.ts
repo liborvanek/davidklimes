@@ -33,7 +33,8 @@ server.use(
   helmet({
     contentSecurityPolicy: false,
   }),
-  json(),
+  json({ limit: '50mb' }),
+  express.urlencoded({ extended: false, limit: '50mb' }),
   compression({ threshold: 0 }),
   sirv('static', { dev }),
   sapper.middleware() as any,
