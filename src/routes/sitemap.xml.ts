@@ -37,7 +37,7 @@ export async function get(_: Request, res: Response) {
     'Content-Type': 'application/rss+xml',
   });
 
-  const articles = await getNewsletters(0, 0, ['id'], { id: { $gte: 48 } });
+  const articles = await getNewsletters(0, 0, ['id'], { id: { $gte: 49 } });
   const feed = renderSitemap(articles);
   res.end(feed);
 }
