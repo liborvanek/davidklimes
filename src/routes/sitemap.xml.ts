@@ -23,7 +23,7 @@ function renderSitemap(posts) {
     ${posts
       .map(
         (article) => `  <url>
-    <loc>https://davidklimes/newsletter/${article.id}</loc>
+    <loc>https://davidklimes.cz/newsletter/${article.id}</loc>
   </url>`,
       )
       .join('\n')}
