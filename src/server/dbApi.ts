@@ -44,11 +44,27 @@ export async function getNewsletters(
   limit = 12,
   skip = 0,
   fields: string[] = defaultNewsletterFields,
+  query = {},
+): Promise<INewsletter[]> {
+  return db
+    .collection('newsletterArchive')
+    .find(query, {
+      projection: fields,
+    })
+    .sort({ id: -1 })
+    .limit(limit)
+    .skip(skip)
+    .toArray();
+}
+export async function getHostedNewsletters(
+  limit = 0,
+  skip = 0,
+  fields: string[] = defaultNewsletterFields,
 ): Promise<INewsletter[]> {
   return db
     .collection('newsletterArchive')
     .find(
-      {},
+      { id: { $gte: 48 } },
       {
         projection: fields,
       },
