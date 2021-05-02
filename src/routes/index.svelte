@@ -17,12 +17,12 @@
   let latestArticlePromise: Promise<IArticle> = new Promise(() => {});
 
   const mondayClubhouse = {
-    subtitle: 'Pondělní clubhouse',
-    title: 'Co bude po nedůvěře vlády?',
-    annotation: 'Zvláštní host: ústavní právník Jan Wintr',
-    link: 'https://www.joinclubhouse.com/event/M6z73aVo',
+    subtitle: 'Pondělní vysílání na Twitter Spaces',
+    title: 'Jak dohnat ztráty nejdéle zavřeného školství v Evropě?',
+    annotation: 'Zvláštní host: Daniel Münich',
+    link: 'https://twitter.com/david_klimes',
     isoDate: '2021-04-26T20:00:00.000Z',
-    date: `<div class="flex items-center"><img class="w-6 mr-2 inline-block" src="icon/clubhouse-wave.png" alt="Clubhouse icon"/><span>26. 4. 2021, 20:00</span></div>`,
+    date: `<div class="flex items-center"><img width="24" height="24" class="mr-2 inline-block" src="icon/twitter.svg" alt="Twitter icon"/><span>3. 5. 2021, 20:00</span></div>`,
   };
   onMount(() => {
     // This promise will replace the first one and will be resolved in the {#await} block
