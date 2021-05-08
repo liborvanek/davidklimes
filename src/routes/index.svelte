@@ -13,24 +13,33 @@
   import { bindSingles } from '../utils';
   import type { IArticle } from '../server/dbApi';
 
+  interface IArticleExtended extends IArticle {
+    date: string;
+    subtitle: string;
+    annotation?: string;
+  }
   // This promise will never resolve
-  let latestArticlePromise: Promise<IArticle> = new Promise(() => {});
+  let latestArticlePromise: Promise<IArticleExtended> = new Promise(() => {});
 
-  const mondayClubhouse = {
-    subtitle: 'Pondělní vysílání na Twitter Spaces',
-    title: 'Jak dohnat ztráty nejdéle zavřeného školství v Evropě?',
-    annotation: 'Zvláštní host: Daniel Münich',
-    link: 'https://twitter.com/david_klimes',
-    isoDate: '2021-04-26T20:00:00.000Z',
-    date: `<div class="flex items-center"><img width="24" height="24" class="mr-2 inline-block" src="icon/twitter.svg" alt="Twitter icon"/><span>3. 5. 2021, 20:00</span></div>`,
-  };
+  // const mondayClubhouse = {
+  //   subtitle: 'Pondělní vysílání na Twitter Spaces',
+  //   title: 'Jak dohnat ztráty nejdéle zavřeného školství v Evropě?',
+  //   annotation: 'Zvláštní host: Daniel Münich',
+  //   link: 'https://twitter.com/david_klimes',
+  //   isoDate: '2021-04-26T20:00:00.000Z',
+  //   date: `<div class="flex items-center"><img width="24" height="24" class="mr-2 inline-block" src="icon/twitter.svg" alt="Twitter icon"/><span>3. 5. 2021, 20:00</span></div>`,
+  // };
   onMount(() => {
     // This promise will replace the first one and will be resolved in the {#await} block
     // It will run on client only
+    // latestArticlePromise = promiseMinDelay(
+    //   new Date().getDay() < 2
+    //     ? Promise.resolve(mondayClubhouse)
+    //     : fetch('/api/latest-article').then((body) => body.json()),
+    //   1000,
+    // );
     latestArticlePromise = promiseMinDelay(
-      new Date().getDay() < 2
-        ? Promise.resolve(mondayClubhouse)
-        : fetch('/api/latest-article').then((body) => body.json()),
+      fetch('/api/latest-article').then((body) => body.json()),
       1000,
     );
   });
