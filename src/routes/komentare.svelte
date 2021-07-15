@@ -63,7 +63,11 @@
         : 'md:bg-gradient-to-tl'} from-white dark:from-dark-gray-900 to-gray-50 dark:to-dark-gray-800 mb-4 rounded-md transform hover-hover:hover:scale-105 transition-transform origin-center"
       in:fly={{ x: 20, delay: getArticleDelay(i, pageToLoad, articlesPerPage) }}>
       <h2 class="pr-6 sm:pr-16 mb-4 text-xl font-bold text-gray-700">
-        <Link href={link} target="_blank" variant="heading">{@html bindSingles(title)}</Link>
+        {#if type === 'article'}
+          <Link href={link} variant="heading">{@html bindSingles(title)}</Link>
+        {:else}
+          <Link href={link} target="_blank" variant="heading">{@html bindSingles(title)}</Link>
+        {/if}
       </h2>
       <p class="max-w-2xl text-sm">
         {@html bindSingles(perex)}
@@ -72,7 +76,7 @@
         <span class="font-bold text-gray-600 dark:text-dark-gray-300">{date}</span>,
         {#if type === 'komentarRozhlasPlus'}
           <img src="/cesky-rozhlas-plus.svg" class="svg ml-2 inline w-4" alt="Český rozhlas Plus" />
-        {:else}
+        {:else if type === 'komentarAktualne'}
           <img src="/aktualne.svg" class="svg ml-2 inline w-6" alt="Aktuálně.cz" />
         {/if}
       </p>

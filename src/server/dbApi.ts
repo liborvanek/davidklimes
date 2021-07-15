@@ -1,7 +1,7 @@
 import { db } from '../server';
 
 export type CollectionType = 'articles' | 'newsletterArchive';
-export type ArticleType = 'komentarRozhlasPlus' | 'komentarAktualne';
+export type ArticleType = 'komentarRozhlasPlus' | 'komentarAktualne' | 'article';
 
 export interface IArticle {
   _id: string;
@@ -80,6 +80,18 @@ export async function getNewsletter(
 ): Promise<INewsletter> {
   return db.collection('newsletterArchive').findOne(
     { id },
+    {
+      projection: fields,
+    },
+  );
+}
+
+export async function getArticle(
+  fields: string[] = defaultArticleFields,
+  slug: string,
+): Promise<INewsletter> {
+  return db.collection('articles').findOne(
+    { slug },
     {
       projection: fields,
     },
