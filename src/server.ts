@@ -1,3 +1,5 @@
+require('log-timestamp')();
+
 import { config as dotenvConfig } from 'dotenv-safe';
 
 dotenvConfig();

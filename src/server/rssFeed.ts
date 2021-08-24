@@ -19,7 +19,9 @@ export const rssFeed = async () => {
     const articles: IArticleGuid[] = ((await getArticles(100, 0, [
       'originalData.guid',
     ])) as unknown) as IArticleGuid[];
-    const articleGuids: string[] = articles.map(({ originalData }) => originalData.guid);
+    const articleGuids: string[] = articles
+      .map(({ originalData }) => originalData?.guid)
+      .filter((guid) => !!guid);
 
     const [rawRozhlasRss, rawAktualneRss] = await Promise.all([
       rssParser.parseURL(process.env.ROZHLAS_RSSFEED_URL),
