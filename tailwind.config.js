@@ -4,6 +4,7 @@ const typography = require('@tailwindcss/typography');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+  // mode: 'jit',
   darkMode: 'class',
   purge: {
     content: [
@@ -25,6 +26,12 @@ module.exports = {
   },
   theme: {
     extend: {
+      inset: {
+        '-32': '-8rem',
+      },
+      lineHeight: {
+        some: 1.1,
+      },
       backgroundOpacity: {
         97: '0.97',
       },

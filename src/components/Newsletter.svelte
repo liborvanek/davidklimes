@@ -2,6 +2,7 @@
   import promiseMinDelay from 'p-min-delay';
   import { onMount } from 'svelte';
   import { fly } from 'svelte/transition';
+  import { goto } from '@sapper/app';
 
   import {
     showNewsletterIntro,
@@ -15,6 +16,7 @@
 
   import type { SubscribeSuccessResult } from '../routes/api/newsletter/subscribe';
 
+  export let isFullWidth = false;
   let subscriberCountPromise: Promise<number> = new Promise(() => {});
 
   let formState = {
@@ -65,8 +67,9 @@
           formState.isSuccess = true;
           $newsletterSubscriberCount = $newsletterSubscriberCount + 1;
 
-          setTimeout(() => {
+          setTimeout(async () => {
             showNewsletterIntro.set(true);
+            await goto('/');
           }, 1200);
         }
       } catch (error) {
@@ -105,7 +108,9 @@
     patičce.
   </p>
 {:else}
-  <form class="flex flex-wrap md:flex-nowrap w-full xl:w-2/3" on:submit|preventDefault={onSubmit}>
+  <form
+    class={`flex flex-wrap md:flex-nowrap w-full ${isFullWidth ? '' : 'xl:w-2/3'}`}
+    on:submit|preventDefault={onSubmit}>
     <input
       type="email"
       bind:value={email}
