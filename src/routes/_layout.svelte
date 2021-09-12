@@ -132,7 +132,7 @@
             class="transition-transform transform -rotate-1 duration-500 origin-bottom-left text-center py-2 lg:py-0">
             <a
               href={slug}
-              class="menu-link px-8 transition-colors no-underline {i === activeMenuItem
+              class="menu-link px-6 transition-colors no-underline {i === activeMenuItem
                 ? 'text-blue-1000 dark:text-blue-200'
                 : 'text-gray-600 dark:text-dark-gray-300'}"
               aria-current={i === activeMenuItem ? 'page' : 'false'}
@@ -308,9 +308,9 @@
     transition: 300ms;
   }
   .moving-box {
-    width: 6rem;
+    width: 5.3rem;
     height: 2.4rem;
-    left: 0.9rem;
+    left: 0.7rem;
   }
   .showMobileMenu .menu-link-mobile {
     @apply text-white text-3xl no-underline;

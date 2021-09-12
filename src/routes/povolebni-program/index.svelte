@@ -6,12 +6,15 @@
 
 <svelte:head>
   <title>Povolební program – David Klimeš</title>
-  <Meta title="Povolební program" description="" />
+  <Meta
+    title="Povolební program"
+    description="Z volebních programů a předvolebních slibů politiků bychom se měli dozvědět, co čeká Česko po
+      říjnových sněmovních volbách. Bohužel to příliš nejde." />
 </svelte:head>
 
 <PageTransition classes="max-w-screen-lg mx-auto">
   <h1
-    class="mt-12 mb-8  lg:mb-16 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl xl:text-8xl leading-none font-bold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black dark:from-dark-gray-100 to-blue-1000 dark:to-dark-gray-200 pb-2">
+    class="mt-4 lg:mt-12 mb-8 lg:mb-16 origin-bottom-left transform -rotate-1 inline-block text-5xl sm:text-7xl xl:text-8xl leading-none font-bold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black dark:from-dark-gray-100 to-blue-1000 dark:to-dark-gray-200 pb-2">
     <span class="md:block">Povolební</span> <span class="">program</span>
   </h1>
   <!-- <div class="element">
