@@ -77,6 +77,7 @@ module.exports = {
       fontSize: {
         sm: ['0.9rem'],
         '6xl': ['3.75rem'],
+        '10xl': ['10rem'],
       },
       listStyleType: {
         square: 'square',

@@ -12,7 +12,7 @@
     ohrožením stovek miliard pro celé Česko." />
 </svelte:head>
 
-<PovolebniProgramTemplate>
+<PovolebniProgramTemplate nr="4">
   <svelte:fragment slot="h1"
     >Musíme zabránit <br class="hidden md:block" /> střetu zájmů všech příštích Babišů.</svelte:fragment>
   <svelte:fragment slot="h2">Jinak to bude drahé.</svelte:fragment>

@@ -10,7 +10,7 @@
     description="Že se daně nebudou zvyšovat, je pouhá předvolební lež. Budou." />
 </svelte:head>
 
-<PovolebniProgramTemplate isLastTopic>
+<PovolebniProgramTemplate isLastTopic nr="8">
   <svelte:fragment slot="h1">A co pak?</svelte:fragment>
   <svelte:fragment slot="h2">Pak přijde spousta další práce.</svelte:fragment>
   <p>

@@ -13,7 +13,7 @@
     pátého bloku jaderné elektrárny Dukovany." />
 </svelte:head>
 
-<PovolebniProgramTemplate>
+<PovolebniProgramTemplate nr="6">
   <svelte:fragment slot="h1">Nyní nelze vyhlásit tendr na Dukovany.</svelte:fragment>
   <svelte:fragment slot="h2">Za jakých podmínek ano?</svelte:fragment>
   <p>

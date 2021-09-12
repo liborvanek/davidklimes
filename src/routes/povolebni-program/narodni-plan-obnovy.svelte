@@ -10,7 +10,7 @@
     description="Vládní i opoziční politici tvrdí, že nový Národní plán obnovy přinese Česku přes 180 miliard korun z unijních fondů. To ale není vůbec jisté." />
 </svelte:head>
 
-<PovolebniProgramTemplate>
+<PovolebniProgramTemplate nr="5">
   <svelte:fragment slot="h1">Národní plán obnovy je Potěmkinova vesnice.</svelte:fragment>
   <svelte:fragment slot="h2">Znovu a lépe.</svelte:fragment>
   <p>

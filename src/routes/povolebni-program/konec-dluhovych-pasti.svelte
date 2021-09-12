@@ -10,7 +10,7 @@
     description="Zatímco se politici předhánějí, aby všem voličům vtloukli do hlavy datum 8. a 9. října, o jiném důležitém říjnovém datu zcela mlčí." />
 </svelte:head>
 
-<PovolebniProgramTemplate>
+<PovolebniProgramTemplate nr="7">
   <svelte:fragment slot="h1"
     >Konec mnoha dluhových pastí <br class="hidden md:block" /> je na dosah.</svelte:fragment>
   <svelte:fragment slot="h2">Ale musí se o tom vědět.</svelte:fragment>

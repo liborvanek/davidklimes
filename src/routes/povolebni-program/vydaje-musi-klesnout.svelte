@@ -13,7 +13,7 @@
     miliard, je další předvolební lež." />
 </svelte:head>
 
-<PovolebniProgramTemplate>
+<PovolebniProgramTemplate nr="2">
   <svelte:fragment slot="h1"
     >Výdaje státu <br class="hidden md:block" /> musí klesnout.</svelte:fragment>
   <svelte:fragment slot="h2">Ale které, aby to nebyly jen halíře?</svelte:fragment>

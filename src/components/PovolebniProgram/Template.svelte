@@ -4,12 +4,13 @@
   import Newsletter from '../Newsletter.svelte';
 
   export let isLastTopic = false;
+  export let nr = '1';
 </script>
 
 <PageTransition classes="max-w-screen-lg mx-auto ">
   <article
-    data-content="1."
-    class="before:absolute before:left-0 before:top-0 before:content-[attr(data-content)] before:text-gray-200 dark:before:text-dark-gray-500 before:text-9xl sm:px-4 xl:px-16 py-4 lg:py-8 mb-8 ">
+    data-content={`${nr}.`}
+    class="povolebni-program-article relative sm:px-4 xl:px-16 py-4 lg:py-8 mb-8 ">
     <h1
       class="mb-8 text-4xl md:text-6xl leading-tight font-extrabold bg-black bg-clip-text text-transparent bg-gradient-to-r from-black dark:from-dark-gray-100 to-blue-1000 dark:to-dark-gray-300 ">
       <slot name="h1" />
@@ -43,14 +44,17 @@
 
 <style>
   .povolebni-program-article:before {
-    /* content: '1.';
-    font-size: 240px;
-    position: absolute;
-    left: 0;
-    top: 0;
+    content: attr(data-content);
+    @apply block;
+    @apply text-7xl xl:text-10xl;
+    @apply xl:absolute;
+    @apply xl:-ml-24 2xl:-ml-32 xl:mt-12 mb-2;
+    @apply left-0 top-0;
     @apply text-gray-200;
-    @apply dark:text-dark-gray-800;
-    font-weight: 800;
-    z-index: -1; */
+    @apply font-extrabold;
+    z-index: -1;
+  }
+  :global(.dark .povolebni-program-article):before {
+    @apply text-dark-gray-800;
   }
 </style>

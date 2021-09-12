@@ -10,7 +10,7 @@
     description="Žádný jiný unijní stát není tak špatně připraven na případný návrat covidové pandemie jako Česko." />
 </svelte:head>
 
-<PovolebniProgramTemplate>
+<PovolebniProgramTemplate nr="3">
   <svelte:fragment slot="h1"
     >Pandemický zákon <br class="hidden md:block" /> se musí změnit.</svelte:fragment>
   <svelte:fragment slot="h2">Ale jak?</svelte:fragment>
