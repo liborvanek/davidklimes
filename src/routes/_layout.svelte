@@ -77,7 +77,7 @@
     }
   }
   $: currentPage = activeMenuItem !== null ? menu[activeMenuItem] : null;
-  $: hideStaticH1 = $showNewsletterIntro;
+  $: hideStaticH1 = $showNewsletterIntro || path[0] === 'povolebni-program';
   $: isHomePage = path.length === 1 && path[0] === '';
   $: headingIsSpan = path[0] === 'newsletter';
 
@@ -112,13 +112,13 @@
       </a>
     </div>
     <nav
-      class="flex items-center main-nav lg:relative text-2xl text-right font-bold"
+      class="flex items-center main-nav xl:relative text-2xl text-right font-bold"
       id="main"
       role="navigation"
       aria-label="Hlavní menu">
       {#if currentPage}
         <div
-          class="moving-box absolute hidden lg:block bg-gray-100 dark:bg-dark-gray-700 transition-transform duration-500 rounded-sm"
+          class="moving-box absolute hidden xl:block bg-gray-100 dark:bg-dark-gray-700 transition-transform duration-500 rounded-sm"
           style="transform: translateX({hoveredMenuItem !== null
             ? menu[hoveredMenuItem].translate
             : menu[activeMenuItem].translate}rem) rotate(-1deg) scaleX({hoveredMenuItem !== null
@@ -126,7 +126,7 @@
             : menu[activeMenuItem].scale});" />
       {/if}
       <!-- Main menu -->
-      <ul id="menu" class="hidden lg:flex justify-center lg:flex-row lowercase">
+      <ul id="menu" class="hidden xl:flex justify-center xl:flex-row lowercase">
         {#each menu as { slug, name }, i}
           <li
             class="transition-transform transform -rotate-1 duration-500 origin-bottom-left text-center py-2 lg:py-0">
@@ -154,7 +154,7 @@
 
       {#if showMobileMenu}
         <div
-          class="lg:hidden absolute left-0 top-0 w-full h-screen bg-brown-400 bg-opacity-97 z-20 flex items-center justify-center"
+          class="xl:hidden absolute left-0 top-0 w-full h-screen bg-brown-400 bg-opacity-97 z-20 flex items-center justify-center"
           in:fly={{ y: -300, duration: 150 }}>
           <ul
             id="menu-mobile"
@@ -197,6 +197,11 @@
               ><span class="before bg-white dark:bg-dark-gray-900" />Klimeš<span
                 class="after bg-gray-100 dark:bg-dark-gray-800" /></span>
           </h1>
+          <!-- {:else if }
+          <h1
+            class="mt-4 lg:mt-8 mb-2 mx-auto lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-6xl sm:text-7xl xl:text-8xl leading-none font-extrabold">
+            Povolební program
+          </h1> -->
         {:else if headingIsSpan}
           <span
             class="mb-4 lg:mb-0 origin-bottom-left transform -rotate-1 inline-block text-4xl md:text-6xl leading-tight font-extrabold bg-clip-text text-transparent bg-gray-300 dark:bg-dark-gray-700 bg-gradient-to-r from-gray-200 dark:from-dark-gray-700 to-gray-300 dark:to-dark-gray-600">
