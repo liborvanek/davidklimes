@@ -6,10 +6,7 @@
 
 <svelte:head>
   <title>Povolební program – David Klimeš</title>
-  <Meta
-    title="Povolební program"
-    description="Z volebních programů a předvolebních slibů politiků bychom se měli dozvědět, co čeká Česko po
-      říjnových sněmovních volbách. Bohužel to příliš nejde." />
+  <Meta title="Povolební program" description="Ať víme, co nás čeká po volbách." />
 </svelte:head>
 
 <PageTransition classes="max-w-screen-lg mx-auto">
