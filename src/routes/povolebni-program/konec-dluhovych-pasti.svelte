@@ -37,7 +37,7 @@
   </p>
   <p>
     Některé změny jsou naštěstí automatické, především od Nového roku zastavení exekucí, kde byl
-    původní dluh do 1500 korun a šest let ho dlužník není schopen splácet, to by mělo ukončit
+    původní dluh do 1&nbsp;500 korun a tři roky ho dlužník není schopen splácet, to by mělo ukončit
     veškeré ty prodražené jízdy načerno, se kterými pak úspěšně kšeftoval Vratislav Mynář a další
     korupčníci. Stejně tak je podstatné, že umořování dluhu půjde nejprve na jistinu a až pak
     příslušenství, což přetne spirálu neustále navyšovaného dluhu. Důležité je i detailní nahrávání
@@ -69,7 +69,7 @@
   </p>
   <p>
     Milostivé léto samozřejmě není všespásné, politici mají před sebou spoustu dalších restů,
-    například do července měla být už přijata novela insolvenčního zákona navádějící unijní pravidlo
+    například do července měla být už přijata novela insolvenčního zákona zavádějící unijní pravidlo
     tříletého oddlužení fyzických osob a stagnuje spousta dalších věcí.
   </p>
   <p>
