@@ -104,6 +104,16 @@ module.exports = {
         '5/7': '71.4285714%',
         '6/7': '85.7142857%',
       },
+      typography: {
+        lg: {
+          css: {
+            hr: {
+              marginTop: '2rem',
+              marginBottom: '4rem',
+            },
+          },
+        },
+      },
     },
     borderWidth: {
       DEFAULT: '3px',

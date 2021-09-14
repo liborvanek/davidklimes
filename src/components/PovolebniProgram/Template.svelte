@@ -21,8 +21,8 @@
     </h2>
     <div class="prose prose-lg">
       <slot />
-      <div class="mt-8">
-        <div class="w-24 h-1 bg-gray-300 dark:bg-gray-700" />
+      <div class="">
+        <hr class="w-24 h-1 bg-gray-300 dark:bg-gray-700 p-0 border-none" />
         <p class="font-bold text-xl leading-relaxed"><slot name="cta" /></p>
         {#if !isLastTopic}
           <p>
@@ -34,12 +34,15 @@
         {:else}
           <Newsletter isFullWidth />{/if}
       </div>
+      {#if $$slots.comments}
+        <h2 class="text-2xl">Komentáře</h2>
+        <slot name="comments" />
+      {/if}
     </div>
   </article>
   <div class="max-w-2xl mx-auto">
     <Navigation isSmall />
   </div>
-  <slot name="footer" />
 </PageTransition>
 
 <style>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import PovolebniProgramTemplate from '../../components/PovolebniProgram/Template.svelte';
   import Meta from '../../components/Meta.svelte';
+  import Comment from '../../components/PovolebniProgram/Comment.svelte';
 </script>
 
 <svelte:head>
@@ -48,4 +49,28 @@
   <p slot="cta">
     Nelíbí se vám tento mix úspor?<br />Tak jaký jiný za 50 miliard ročně navrhujete?
   </p>
+  <svelte:fragment slot="comments">
+    <Comment>
+      <p>
+        Určitě neškrtejme investiční výdaje státu, které přes veřejné proklamace a sliby stále
+        zaostávají v relativním vyjádření vůči velikosti ekonomiky i za krizovým rokem 2012 či
+        začínajícím ekonomickým boomem 2002.
+      </p>
+      <p>
+        Zmrazením běžných výdajů na chod státu sice rozpočet hned jen tak do přebytku nepřivedete,
+        ale vytvoří se dostatečný tlak na hledání úspor a zvyšování efektivity. Konec plošnému
+        zvyšování platů ve státní správě bez zohlednění odváděného výkonu a kvality poskytované
+        služby.
+      </p>
+      <p>
+        A až pokročí digitální transformace státní služby, která v žádném případě neznamená jen
+        převedení stávajících formulářů do online prostředí, ale která po nás už nebude vyžadovat
+        informace, které o nás stát už stejně někde má, pak bude možné také zredukovat počet
+        úředníků.
+      </p>
+
+      <svelte:fragment slot="author">Helena Horská</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonomka</svelte:fragment>
+    </Comment>
+  </svelte:fragment>
 </PovolebniProgramTemplate>
