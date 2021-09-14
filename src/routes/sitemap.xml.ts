@@ -20,6 +20,36 @@ function renderSitemap(posts) {
   <url>
     <loc>https://davidklimes.cz/o-mne</loc>
   </url>
+  <url>
+    <loc>https://davidklimes.cz/o-mne</loc>
+  </url>
+    <url>
+    <loc>https://davidklimes.cz/povolebni-program</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/dane-se-zvysi</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/vydaje-musi-klesnout</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/pandemicky-zakon</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/stop-stretu-zajmu</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/narodni-plan-obnovy</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/tendr-na-dukovany</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/konec-dluhovych-pasti</loc>
+  </url>
+  <url>
+    <loc>https://davidklimes.cz/povolebni-program/a-co-pak</loc>
+  </url>
     ${posts
       .map(
         (article) => `  <url>
