@@ -4,10 +4,11 @@
 </script>
 
 <svelte:head>
-  <title>Daně se zvýší. Ale které a o kolik? – Povolební program Davida Klimeše</title>
+  <title>A co bude dál? – Povolební program Davida Klimeše</title>
   <Meta
-    title="Daně se zvýší. Ale které a o kolik?"
-    description="Že se daně nebudou zvyšovat, je pouhá předvolební lež. Budou." />
+    title="A co bude dál?"
+    description="Jakmile si vyřešíme ty nejakutnější problémy, vyvalí se na nás celá sada odkládaných reforem,
+    bez kterých se Česko nikdy neposune kupředu." />
 </svelte:head>
 
 <PovolebniProgramTemplate isLastTopic nr="8">

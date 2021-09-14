@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>Národní plán obnovy je Potěmkinova vesnice. – Povolební program Davida Klimeše</title>
+  <title>Národní plán obnovy je Potěmkinova vesnice – Povolební program Davida Klimeše</title>
   <Meta
     title="Národní plán obnovy je Potěmkinova vesnice. Znovu a lépe"
     description="Vládní i opoziční politici tvrdí, že nový Národní plán obnovy přinese Česku přes 180 miliard korun z unijních fondů. To ale není vůbec jisté." />
