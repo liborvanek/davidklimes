@@ -72,5 +72,25 @@
       <svelte:fragment slot="author">Helena Horská</svelte:fragment>
       <svelte:fragment slot="occupation">ekonomka</svelte:fragment>
     </Comment>
+    <Comment>
+      <p>
+        Určitě nemá smysl omezovat veřejné investice s vysokou návratností, ty naopak rozšířit,
+        například v oblasti předškolního vzdělávání. Následně pak investice vyhodnocovat.
+      </p>
+      <p>
+        Dám příklad: Když sečtete programy OP PIK, TREND a TRIO, za poslední dekádu šlo pěkných pár
+        desítek miliard do podpory inovaci ve firmách (sice z velké části z evropských zdrojů, ale
+        tato hranice je dlouhodobě rozostřena v rámci nahrazování běžných výdajů státního rozpočtu
+        právě evropskými zdroji). Otázka, zda nějaká podoba podpory inovaci jen vytěsňuje soukromé
+        výdaje, právě vyžaduje (zatím neexistující) výzkum o efektivitě podpory inovaci.
+      </p>
+      <p>
+        Plošné škrtání investic či úředníků, které se tu praktikovalo před 10 lety, může jen
+        podvazovat podfinancované veřejné aktivity s velkou návratností.
+      </p>
+
+      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+    </Comment>
   </svelte:fragment>
 </PovolebniProgramTemplate>

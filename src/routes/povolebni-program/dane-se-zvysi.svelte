@@ -109,5 +109,104 @@
       <svelte:fragment slot="author">Jiří Hovorka</svelte:fragment>
       <svelte:fragment slot="occupation">ekonomický novinář</svelte:fragment>
     </Comment>
+    <Comment>
+      <p>
+        Nejhorší by bylo zvednout DPH způsobem, který by výrazně postihl nízkopříjmové rodiny,
+        kterým zrušení superhrubé mzdy pomohlo nejméně, a které pocítily nejvýrazněji dopady
+        pandemie. Pořád mi přijde jako dobrý příspěvek do diskuse <a
+          href="https://idea.cerge-ei.cz/files/Zmena_dani_varianty_TAXBEN_dodatek_03_11_2020.pdf"
+          >náš loňský návrh IDEA</a> ("konzervativní" varianta zrušení superhrubé mzdy), a to jako ústupová
+        šetřící varianta současné podoby tohoto zrušeni. Obecně máme mizivou progresi (obzvlášť po započítání
+        všech dalších výhod využívaných vysokopříjmovými), v EU neobvykle velký rozdíl mezi celkovou
+        zátěží OSVČ a zaměstnanců a neobvykle velkou část rodinné politiky přes daňové úlevy, které brání
+        návratu na trh práce. Ekonom Libor Dušek nedávno hezky shrnoval v tisku, že problematické je
+        vysoké zdanění práce přes sociální a zdravotní pojištění, od čtyřnásobku průměrné mzdy se daně
+        jako procento příjmů s rostoucím příjmem snižují. Je to dáno stropy na sociální pojištění a vyšším
+        zastoupením příjmů z živnosti a kapitálu, které jsou zdaněny méně než práce. Nízké jsou v mezinárodním
+        srovnání ekologické daně a daň z nemovitostí, která je ekonomicky efektivní. Vyšší využití těchto
+        daní by umožnilo snížit DPH a zdanění práce.
+      </p>
+
+      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+    </Comment>
+    <Comment>
+      <p>
+        Nejhorší by bylo zvednout DPH způsobem, který by výrazně postihl nízkopříjmové rodiny,
+        kterým zrušení superhrubé mzdy pomohlo nejméně, a které pocítily nejvýrazněji dopady
+        pandemie. Pořád mi přijde jako dobrý příspěvek do diskuse <a
+          href="https://idea.cerge-ei.cz/files/Zmena_dani_varianty_TAXBEN_dodatek_03_11_2020.pdf"
+          >náš loňský návrh IDEA</a> ("konzervativní" varianta zrušení superhrubé mzdy), a to jako ústupová
+        šetřící varianta současné podoby tohoto zrušeni. Obecně máme mizivou progresi (obzvlášť po započítání
+        všech dalších výhod využívaných vysokopříjmovými), v EU neobvykle velký rozdíl mezi celkovou
+        zátěží OSVČ a zaměstnanců a neobvykle velkou část rodinné politiky přes daňové úlevy, které brání
+        návratu na trh práce. Ekonom Libor Dušek nedávno hezky shrnoval v tisku, že problematické je
+        vysoké zdanění práce přes sociální a zdravotní pojištění, od čtyřnásobku průměrné mzdy se daně
+        jako procento příjmů s rostoucím příjmem snižují. Je to dáno stropy na sociální pojištění a vyšším
+        zastoupením příjmů z živnosti a kapitálu, které jsou zdaněny méně než práce. Nízké jsou v mezinárodním
+        srovnání ekologické daně a daň z nemovitostí, která je ekonomicky efektivní. Vyšší využití těchto
+        daní by umožnilo snížit DPH a zdanění práce.
+      </p>
+
+      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+    </Comment>
+    <Comment>
+      <p>
+        Naprosto souhlasím s tím, že je zapotřebí konsolidovat státní dluh rychleji, než je
+        plánováno. Ne však s daňovými kroky, které k tomu mají vést. Problémem je, že případné
+        zvýšení daně z příjmů FO je ten, že tak významné skupině lidí klesnou reálné příjmy. V
+        letošním roce mnoho firem nenavyšovalo mzdy a zaměstnancům se vykryla vyšší inflace snížením
+        sazby daně z příjmů. Následující roky ale přinesou jen minimální prostor pro navýšení mezd.
+        Čeká nás zásadní zdražení vstupů kvůli Green Deal (energie, emisní povolenky, doprava). Tím
+        si výrazně snížíme konkurenceschopnost na důležitých trzích mimo EU, kam budou dodávat
+        zejména Číňané mnohem levněji. Již nyní je tento trend v našem průmyslu velmi citelný. Proto
+        není reálné výrazně zvyšovat mzdy, protože trend u B2B obchodu se čím dál víc odklání k
+        multifaktorovému hodnocení nabídek k jednofaktorovému, k ceně. Pokud nechceme tedy zvětšit
+        problémy nízkopříjmových a střední třídy, neměli bychom jim sahat na výdělek.
+      </p>
+      <p>Kde tedy peníze najít?</p>
+      <p>
+        Daň z příjmů právnických osob, která je jedna z těch nižších v rámci OECD. Klidně bych
+        souhlasil s progresivním zdaněním firem, nikoli však po pirátsku, tedy podle obratu, ale
+        podle skutečného zisku.
+      </p>
+      <p>
+        Zdanění dividend. Víme, že náš problém je odtok peněz do zahraničí. Věřím, že by se mohlo
+        začít s tím, že bude mít firma možnost buď reinvestovat x procent svého zisku nebo o toto
+        procento navýšit zdanění dividend. A zabalme to klidně do toho, že tyto peníze pak skončí
+        jako český podíl na financování projektů z NPO.
+      </p>
+      <p>
+        Daň z převodu nemovitosti. Opět zavést od druhé nemovitosti. Zároveň, a to je spíš podnět
+        pro ČNB, rozlišovat, zda bude v nemovitosti pořizované na hypotéku člověk bydlet (klasická)
+        nebo jí považuje za investici a pak jde o hypotéku americkou.
+      </p>
+      <p>
+        Spotřební daně. Na konci roku prošlo nesmyslné snížení spotřební daně z pohonných hmot.
+        Vrátit zpět. Rovněž navýšit spotřební daně na položky, které negativně ovlivňují zdraví
+        obyvatelstva (alkohol, tabákové výrobky včetně zahřívaného tabáku, slazené nápoje, nezdravé
+        pochutiny). Jsme mezi lídry v rakovině tlustého střeva, tak třeba to lidi odradí od nadměrné
+        konzumace.
+      </p>
+      <p>
+        Majetkové daně a poplatky. Jak uvádíte, máme velmi nízkou daň z nemovitostí, silniční daně…
+        A zejména obce nevyužívají potenciál v daních a poplatcích. Opět jsme u nemovitostí, dále
+        poplatky za komunální odpad, psy, správní úkony… A můžeme se klidně bavit o položkách jako
+        jsou spoluúčasti u lékařů, veřejných vysokých škol, za významné investice do regionu
+        (například zavedení ultrarychlého internetu) apod. Daňový mix by se měl jasně překlopit ze
+        zdanění příjmů (sociální a zdravotní pojištění prostě je zdaněním jen s jiným názvem) do
+        spotřeby. A není možné pořád jen brát od zaměstnanců (střední třídy).
+      </p>
+      <p>
+        A revoluční myšlenka na závěr: nahrazení DPH tzv. sales tax po vzoru USA. Minimalizujeme tím
+        prostor na daňové úniky, zjednodušíme výběr (jasné procento bez nutnosti porovnávání vstupů
+        a výstupů), omezení zbytečně dlouhých distributorských řetězců s několika zprostředkovateli
+        bez přidané hodnoty.
+      </p>
+
+      <svelte:fragment slot="author">Martin Čmarada</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+    </Comment>
   </svelte:fragment>
 </PovolebniProgramTemplate>

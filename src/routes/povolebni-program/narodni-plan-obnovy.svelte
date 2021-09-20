@@ -1,6 +1,7 @@
 <script lang="ts">
   import PovolebniProgramTemplate from '../../components/PovolebniProgram/Template.svelte';
   import Meta from '../../components/Meta.svelte';
+  import Comment from '../../components/PovolebniProgram/Comment.svelte';
 </script>
 
 <svelte:head>
@@ -74,6 +75,22 @@
     výhodných půjčkách ani nemluvě) vůbec nevyužijeme a rozestavěné betonové skanzeny aktuální
     pětiletky nakonec budeme splácet z národních zdrojů, tedy našich daní.
   </p>
+  <svelte:fragment slot="comments">
+    <Comment>
+      <p>
+        Sociolog Daniel Prokop a já jsme měli k NPO několik konkrétních návrhů úprav, včetně návrhu
+        podpory ukončení nevymáhaných exekucí. Přidám jeden příklad k NPO z oblasti RVVI/MŠMT/MZd:
+        podpora výzkumu v oblasti veřejného zdraví a ekonomiky zdravotnictví je nezbytnou součástí
+        obrany proti příštím epidemiím i snahy udržet kvalitu zdravotní péče v rámci stárnutí
+        obyvatel, ale tyto oblasti výzkumu jsou u nás dnes nedostatečně rozvíjeny a tak miliardy
+        jdou do již existujících oborů, které umí efektivně o podporu požádat, a ne tam, kde
+        výzkumná podpora nejvíc chybí.
+      </p>
+
+      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+    </Comment>
+  </svelte:fragment>
   <p slot="cta">
     Jak zlepšit Národní plán obnovy?<br />Do jakých reforem i investic má smysl jít, aby byly
     smysluplné a rychlé?
