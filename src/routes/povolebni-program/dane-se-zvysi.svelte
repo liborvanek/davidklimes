@@ -132,27 +132,6 @@
     </Comment>
     <Comment>
       <p>
-        Nejhorší by bylo zvednout DPH způsobem, který by výrazně postihl nízkopříjmové rodiny,
-        kterým zrušení superhrubé mzdy pomohlo nejméně, a které pocítily nejvýrazněji dopady
-        pandemie. Pořád mi přijde jako dobrý příspěvek do diskuse <a
-          href="https://idea.cerge-ei.cz/files/Zmena_dani_varianty_TAXBEN_dodatek_03_11_2020.pdf"
-          >náš loňský návrh IDEA</a> ("konzervativní" varianta zrušení superhrubé mzdy), a to jako ústupová
-        šetřící varianta současné podoby tohoto zrušeni. Obecně máme mizivou progresi (obzvlášť po započítání
-        všech dalších výhod využívaných vysokopříjmovými), v EU neobvykle velký rozdíl mezi celkovou
-        zátěží OSVČ a zaměstnanců a neobvykle velkou část rodinné politiky přes daňové úlevy, které brání
-        návratu na trh práce. Ekonom Libor Dušek nedávno hezky shrnoval v tisku, že problematické je
-        vysoké zdanění práce přes sociální a zdravotní pojištění, od čtyřnásobku průměrné mzdy se daně
-        jako procento příjmů s rostoucím příjmem snižují. Je to dáno stropy na sociální pojištění a vyšším
-        zastoupením příjmů z živnosti a kapitálu, které jsou zdaněny méně než práce. Nízké jsou v mezinárodním
-        srovnání ekologické daně a daň z nemovitostí, která je ekonomicky efektivní. Vyšší využití těchto
-        daní by umožnilo snížit DPH a zdanění práce.
-      </p>
-
-      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
-      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
-    </Comment>
-    <Comment>
-      <p>
         Naprosto souhlasím s tím, že je zapotřebí konsolidovat státní dluh rychleji, než je
         plánováno. Ne však s daňovými kroky, které k tomu mají vést. Problémem je, že případné
         zvýšení daně z příjmů FO je ten, že tak významné skupině lidí klesnou reálné příjmy. V
