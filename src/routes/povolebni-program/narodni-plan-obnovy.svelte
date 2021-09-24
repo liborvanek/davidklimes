@@ -75,6 +75,10 @@
     výhodných půjčkách ani nemluvě) vůbec nevyužijeme a rozestavěné betonové skanzeny aktuální
     pětiletky nakonec budeme splácet z národních zdrojů, tedy našich daní.
   </p>
+  <p slot="cta">
+    Jak zlepšit Národní plán obnovy?<br />Do jakých reforem i investic má smysl jít, aby byly
+    smysluplné a rychlé?
+  </p>
   <svelte:fragment slot="comments">
     <Comment>
       <p>
@@ -90,9 +94,23 @@
       <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
       <svelte:fragment slot="occupation">ekonom</svelte:fragment>
     </Comment>
+    <Comment>
+      <p>
+        Motto Davida Klimeše „znovu a lépe“ by snad mohlo přibýt na sochu Svatého Václava k tomu o
+        pravdě a lásce. V tomto ohledu ale platí dvojnásob. Národní plán obnovy je výrazně zasažený
+        tím, že vznikal už jako část předvolební kampaně, ale také snahou sanovat z těchto
+        prostředků aktuální výpadky rozpočtu, doslova za každou cenu. Přitom v šuplících různých
+        rezortů je nyní přes dvě stovky strategických dokumentů a nutno říct, že řada z nich jsou
+        velmi kvalitní. Problém je, že jakýmsi primárním reflexem každého nově nastupujícího
+        ministra nebo ministryně, bývá tyto strategické dokumenty strčit pokud možno co nejhlouběji,
+        aby snad nebylo nutné uznat, že i jejich předchůdce nebo předchůdkyně mohli být kompetentní.
+        V mnohých ohledech ale nemusíme začínat od nuly, stačí vzít prachovku a strategie
+        přizpůsobit současné situaci. Samozřejmě, není to spásné, ale zde by to znovu a lépe
+        nemuselo mít jen pejorativní nádech.
+      </p>
+
+      <svelte:fragment slot="author">Martin Buchtík</svelte:fragment>
+      <svelte:fragment slot="occupation">sociolog</svelte:fragment>
+    </Comment>
   </svelte:fragment>
-  <p slot="cta">
-    Jak zlepšit Národní plán obnovy?<br />Do jakých reforem i investic má smysl jít, aby byly
-    smysluplné a rychlé?
-  </p>
 </PovolebniProgramTemplate>

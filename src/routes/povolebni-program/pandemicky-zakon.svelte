@@ -1,6 +1,7 @@
 <script lang="ts">
   import PovolebniProgramTemplate from '../../components/PovolebniProgram/Template.svelte';
   import Meta from '../../components/Meta.svelte';
+  import Comment from '../../components/PovolebniProgram/Comment.svelte';
 </script>
 
 <svelte:head>
@@ -54,4 +55,29 @@
     Nelíbí se vám tento návrh?<br />Jak byste příští pandemie řešili v rámci demokratického právního
     státu vy?
   </p>
+  <svelte:fragment slot="comments">
+    <Comment>
+      <p>
+        Nejde tu jen o pandemický zákon, který se v praxi ukázal jako zcela nefunkční a potřebuje
+        komplexní revizi. Klíčová je změna přístupu, podobné situace totiž budou do budoucna
+        vyžadovat schopnost kombinovat krizový zákon, zákon o ochraně veřejného zdraví a revidovaný
+        pandemický zákon. Z praktického hlediska není příliš vhodné nechávat odpovědnost na jednom
+        ministerstvu, které zcela zjevně není na takové situace personálně připraveno. Vláda má
+        například možnost vytvořit ad hoc komisi Legislativní rady vlády, která by navrhovaná
+        opatření konzultovala.
+      </p>
+      <p>
+        Z hlediska očkování v datech vidíme, že zájem o něj od Velikonoc roste jen v řádu jednotek
+        procent. Téměř všichni, kteří se naočkovat chtěli, tak učinili. Pořád je tady ale potenciál
+        doočkovat zhruba milion lidí, kteří vakcínu striktně neodmítají. Důvodů, proč tak neučinili,
+        je poměrně hodně, a i proto se není možné soustředit na jeden nástroj motivace, který
+        přinese spásu. Stále ještě nejsou systematicky a s náležitou podporou ze strany státu
+        zapojeni praktičtí lékaři, kteří by měli aktivně oslovovat neočkované a nabízet jim termíny,
+        které pro ně mají vyhrazené. Právě praktici jsou totiž pro velkou část obyvatel tou klíčovou
+        důvěryhodnou autoritou.
+      </p>
+      <svelte:fragment slot="author">Martin Buchtík</svelte:fragment>
+      <svelte:fragment slot="occupation">sociolog</svelte:fragment>
+    </Comment>
+  </svelte:fragment>
 </PovolebniProgramTemplate>

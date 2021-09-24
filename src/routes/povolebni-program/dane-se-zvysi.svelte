@@ -65,6 +65,32 @@
   <svelte:fragment slot="comments">
     <Comment>
       <p>
+        Česká veřejnost má jednu dobrou a jednu špatnou vlastnost. Dobrá je, že umí pojmenovat
+        problémy a chce, aby se řešily: ať už jde o daňový mix, dostupnost bydlení, důchodovou
+        reformu nebo českou krajinu. Ta špatná je, že v podstatě veškeré varianty řešení, které se
+        dotýkají našich peněženek nebo změny životního stylu, striktně odmítají. Zbyde vám v zásadě
+        zdanění velkých korporací.
+      </p>
+      <p>
+        Úroveň veřejné debaty se pak často stáčí k bulvarizaci problému. Vezmete nějaký potenciální
+        trabl, který dotáhnete do extrému a doplníte tklivým příběhem o bezbranné skupině, která
+        takovou změnou bude dozajista zasažena. Případně použijete náhodnou hanlivou nálepku, kterou
+        byť zárodek podobného plánu, opatříte. Tedy zvyšovat daň z nemovitosti je dozajista
+        neokomunismus nebo ultrakapitalismus (nálepku použijte volně, jak se vám zrovna hodí) a
+        ukážete, jak lidé v důchodu nejen že budou muset prodat chatu, na kterou celý život jezdili,
+        protože nemají na daně, ale zároveň chytře ukážete sedm způsobů, jak to celé obejít a udělat
+        zcela nefunkční.
+      </p>
+      <p>
+        Co by částečně veřejné debatě pomoct mohlo, je vnímat změnu nastavení daní nejen jako
+        finanční nástroj, ale také způsob, jakým pomoct řešení problémů, se kterými se společnost
+        potýká. Do debaty by měli být víc zapojeni i experti z jiných oborů, než je ekonomie.
+      </p>
+      <svelte:fragment slot="author">Martin Buchtík</svelte:fragment>
+      <svelte:fragment slot="occupation">sociolog</svelte:fragment>
+    </Comment>
+    <Comment>
+      <p>
         Zrušením superhrubé mzdy vypadly státu příjmy v rozsahu 70&ndash;90 miliard korun každý rok.
         A to bez náhrady v ostatních nedaňových příjmech, bez kompenzace na straně výdajů. Chceme-li
         udržet stávající rozsah státu a státních služeb, budeme potřebovat i při maximálním úsilí o
