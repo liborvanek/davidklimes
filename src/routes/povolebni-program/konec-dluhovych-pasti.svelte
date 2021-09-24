@@ -1,6 +1,7 @@
 <script lang="ts">
   import PovolebniProgramTemplate from '../../components/PovolebniProgram/Template.svelte';
   import Meta from '../../components/Meta.svelte';
+  import Comment from '../../components/PovolebniProgram/Comment.svelte';
 </script>
 
 <svelte:head>
@@ -80,4 +81,39 @@
     Nesouhlasíte s řešením?<br />Jak byste dluhové pasti, které už ve velkém zatěžují celou
     republiku, řešili vy?
   </p>
+  <svelte:fragment slot="comments">
+    <Comment>
+      <p>
+        Milostivé léto je skutečně mimořádná příležitost. Místo pěti let v oddlužení s nejistým
+        výsledkem můžete se za tři měsíce zbavit statisícových až milionových dluhů. Řada škarohlídů
+        říká, že lidé s těmito dluhy mají být dávno v insolvenci, nebo že si tím dlužníci vyřeší jen
+        některé dluhy. V čem je ale Milostivé léto unikátní? Ač si většina lidí s lichvou spojí
+        spíše predátorské firmy, u řady veřejnoprávních dluhů se setkáme s excesivním
+        příslušenstvím, vedle kterého se kdejaký lichvář jeví jako lidumil. Ať již to byl 90
+        procentní roční sankční úrok u dluhů za bydlení, nebo nejvyšší odměny advokátů za vymáhání
+        bagatelních dluhů v Evropě. Výsledkem jsou statisícové až milionové dluhy, které vyrostly z
+        tisícových až desetitisícových původních dluhů.
+      </p>
+      <p>
+        Když od konce října do konce ledna zaplatíte 1&nbsp;700 Kč u dluhu za jízdu na černo, zmizí
+        vám exekuce za 21 tisíc. U nájmu to je ještě zajímavější. Zaplacením devíti tisíc se naše
+        klientka zbaví exekuce za 240 tisíc, apod.
+      </p>
+      <p>
+        Jde zkrátka o příležitost, která se nebude opakovat, ale aby ji dlužníci využili, musí se o
+        ni dozvědět. Například Praha se rozhodla informovat své dlužníky o této možnosti. Začínají
+        se pomalu přidávat další města, kraje… Pokud chceme ukončit během vánoc statisíce exekucí,
+        můžeme pro to něco udělat téměř každý. Od sdílení informací na sociálních sítích, poslat tip
+        blízkým, zaměstnavatelé mohou oslovit své zaměstnance s exekucí, novináři o tom mohou
+        napsat, komunální politici rozhodnout o informování dlužníků v obci. Nejde přitom o
+        odpuštění dluhů, ale amnestii sankcí a poplatků. Člověk v tísni teď hledá cestu, jak navíc
+        propojit lidi ochotné pomoci dlužníkům se splacením dlužné jistiny. Zvláště u těch vyšších v
+        řádu desítek tisíc to totiž dlužníci sami nezvládnou. Prosím pomozte. Pokud nevíte jak,
+        obraťte se na Helplinku Člověka v tísni 770-600-800 a my vám poradíme. Má to smysl!
+      </p>
+
+      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
+      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+    </Comment>
+  </svelte:fragment>
 </PovolebniProgramTemplate>
