@@ -112,8 +112,8 @@
         obraťte se na Helplinku Člověka v tísni 770-600-800 a my vám poradíme. Má to smysl!
       </p>
 
-      <svelte:fragment slot="author">Štěpán Jurajda</svelte:fragment>
-      <svelte:fragment slot="occupation">ekonom</svelte:fragment>
+      <svelte:fragment slot="author">Daniel Hůle</svelte:fragment>
+      <svelte:fragment slot="occupation">expert na dluhovou problematiku</svelte:fragment>
     </Comment>
   </svelte:fragment>
 </PovolebniProgramTemplate>
