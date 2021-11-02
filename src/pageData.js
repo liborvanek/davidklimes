@@ -47,4 +47,4 @@ export const headings = {
 export const submenuPages = ['komentare', 'archiv-newsletteru', 'newsletter', 'article'];
 
 // Paths to cache on install event to be available offline
-export const cachablePaths = ['/', '/komentare', '/knihy', '/o-mne', '/archiv-newsletteru', '/api/articles', '/api/newsletter-archive', '/api/latest-article', '/povolebni-program'];
+export const cachablePaths = ['/', '/komentare', '/knihy', '/o-mne', '/archiv-newsletteru', '/api/articles?page=1', '/api/newsletter-archive', '/api/latest-article', '/povolebni-program'];
